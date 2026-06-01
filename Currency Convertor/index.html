@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeCurrency - An Currency Convertor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="logo.svg">DeCurrency Convertor</div>
+        <ul>
+            <li><a href="/">Home</a> </li>
+            <li><a href="/">About</a> </li>
+            <li><a href="/">Contact Us</a> </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Choos a Currency to Convert</h1>
+        <form action="/sumbit" method="get">
+            <label for="quantity">Choose a Quantity:</label>
+            <input type="number" name="quantity" min="1" max="10">
+            <label for="currency">Choose a Currency</label>
+            <select name="currency">
+                <option value="PKR">Pakistan Rupees</option>
+                <option value="USD">US Dollar</option>
+                <option value="INR">Indian Rupees</option>
+                <option value="EUR">Euros</option>
+                <option value="PON">Pounds</option>
+                <option value="JP">Yen</option>
+                <option value="CH">Yaun</option>
+                <option value="SK">WON</option>
+                <option value="SA">Dirham</option>
+                <option value="QA">Riyal</option>
+            </select> 
+            <button class="btn" type="submit">Sumbit</button>
+        </form>
+    </div>
+
+    <div class="output">
+        <h2>Here is the Converted Currencies of the Following Value:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Currency</th>
+                    <th>Code</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        Copyright &copy; DeCurrencyConvertor.com || All rights reserved
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

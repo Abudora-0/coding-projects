@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Akbar | Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <span class="brand-dot"></span>
+                <span class="brand-text">Abdullah</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-greeting">Welcome to my portfolio</div>
+            <h1>Hi, I'm <span class="highlight-text">Abdullah Akbar</span></h1>
+            <h3 class="hero-subtitle">Full-Stack Developer & CS Student</h3>
+            <p class="hero-description">
+                A passionate Computer Science student focused on building scalable applications,
+                solving complex problems, and creating exceptional user experiences.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary-btn">
+                    <span>View My Work</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn secondary-btn">
+                    <span>Get In Touch</span>
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-container">
+            <h2 class="section-title">About <span class="title-highlight">Me</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="section-text">
+                        I'm a Computer Science student with a passion for creating elegant solutions to complex problems. 
+                        With a foundation in multiple programming languages and a keen eye for detail, I enjoy building 
+                        applications that make a real impact.
+                    </p>
+                    <p class="section-text">
+                        When I'm not coding, you'll find me learning new technologies, contributing to open-source projects, 
+                        or exploring the latest web development trends.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h4>50+</h4>
+                            <p>Problems Solved</p>
+                        </div>
+                        <div class="stat">
+                            <h4>10+</h4>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h4>2+</h4>
+                            <p>Years Learning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section light">
+        <h2 class="section-title">Technical <span class="title-highlight">Skills</span></h2>
+        <p class="section-subtitle">Languages and tools I work with</p>
+        
+        <div class="skills-container">
+            <!-- Languages -->
+            <div class="skill-category">
+                <h3 class="category-title">Languages</h3>
+                <div class="skills-slider-wrapper">
+                    <button class="slider-btn prev-btn" data-slider="languages-slider">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="skills-slider" id="languages-slider">
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-cube"></i></div>
+                            <div class="skill-name">C++</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <div class="skill-name">Python</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <div class="skill-name">JavaScript</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-php"></i></div>
+                            <div class="skill-name">PHP</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <div class="skill-name">Java</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <div class="skill-name">SQL</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-cube"></i></div>
+                            <div class="skill-name">C</div>
+                        </div>
+                    </div>
+                    <button class="slider-btn next-btn" data-slider="languages-slider">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Web Development -->
+            <div class="skill-category">
+                <h3 class="category-title">Web Development</h3>
+                <div class="skills-slider-wrapper">
+                    <button class="slider-btn prev-btn" data-slider="webdev-slider">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="skills-slider" id="webdev-slider">
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <div class="skill-name">HTML</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <div class="skill-name">CSS</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-js-square"></i></div>
+                            <div class="skill-name">JavaScript</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-react"></i></div>
+                            <div class="skill-name">React</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="skill-name">Next.js</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-server"></i></div>
+                            <div class="skill-name">Express</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="skill-name">MongoDB</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-wind"></i></div>
+                            <div class="skill-name">Tailwind CSS</div>
+                        </div>
+                    </div>
+                    <button class="slider-btn next-btn" data-slider="webdev-slider">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tools & Concepts -->
+            <div class="skill-category">
+                <h3 class="category-title">Tools & Concepts</h3>
+                <div class="skills-slider-wrapper">
+                    <button class="slider-btn prev-btn" data-slider="tools-slider">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="skills-slider" id="tools-slider">
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                            <div class="skill-name">Git & GitHub</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                            <div class="skill-name">Data Structures</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-object-group"></i></div>
+                            <div class="skill-name">OOP Concepts</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-pen-nib"></i></div>
+                            <div class="skill-name">Figma</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-th"></i></div>
+                            <div class="skill-name">Bootstrap</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-paper-plane"></i></div>
+                            <div class="skill-name">Postman</div>
+                        </div>
+                    </div>
+                    <button class="slider-btn next-btn" data-slider="tools-slider">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured <span class="title-highlight">Projects</span></h2>
+        <p class="section-subtitle">Showcasing my best work</p>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-th"></i></div>
+                    <h3>Student Management System</h3>
+                </div>
+                <p class="project-description">
+                    A C++ console-based application using file handling and
+                    structures to manage student records efficiently.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">File Handling</span>
+                    <span class="tech-tag">OOP</span>
+                </div>
+                <a href="#" class="btn secondary-btn btn-small">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>To-Do List App</h3>
+                </div>
+                <p class="project-description">
+                    A responsive web-based to-do list allowing users to add,
+                    delete, and manage daily tasks with smooth animations.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <a href="#" class="btn secondary-btn btn-small">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Portfolio Website</h3>
+                </div>
+                <p class="project-description">
+                    A modern, responsive personal portfolio website featuring smooth
+                    animations and clean UI design.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <a href="#" class="btn secondary-btn btn-small">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section light">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">My academic journey</p>
+        <div class="education-timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <p class="education-school">University (2025 – Present)</p>
+                    <p class="education-description">
+                        Currently pursuing BS in Computer Science with focus on software development, 
+                        data structures, and algorithms.
+                    </p>
+                    <div class="education-courses">
+                        <span class="course-tag">Data Structures</span>
+                        <span class="course-tag">OOP</span>
+                        <span class="course-tag">Web Dev</span>
+                        <span class="course-tag">Algorithms</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>Self-Taught Development</h3>
+                    <p class="education-school">Online Platforms (2024 – Present)</p>
+                    <p class="education-description">
+                        Actively learning and improving skills through online courses, 
+                        tutorials, and real-world projects.
+                    </p>
+                    <div class="education-courses">
+                        <span class="course-tag">Full Stack Dev</span>
+                        <span class="course-tag">Problem Solving</span>
+                        <span class="course-tag">Git/GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In <span class="title-highlight">Touch</span></h2>
+        <p class="section-text">
+            I'd love to hear from you! Whether you have a question or just want to say hello, feel free to reach out.
+        </p>
+        <div class="contact-box">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+92 (XXX) XXX-XXXX</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Your City, Country</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-links">
+            <a href="https://linkedin.com/in/yourprofile" class="social-link" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/yourprofile" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://twitter.com/yourprofile" class="social-link" title="Twitter">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+            <a href="mailto:your.email@example.com" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Abdullah Akbar</h3>
+                <p>Full-Stack Developer & CS Student</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="footer-socials">
+                    <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/yourprofile"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/yourprofile"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Abdullah Akbar. All Rights Reserved.</p>
+            <p>Built with <span class="heart">❤</span> using HTML, CSS & JavaScript</p>
+        </div>
+    </footer>
+
+</body>
+<script src="js/script.js"></script>
+</html>

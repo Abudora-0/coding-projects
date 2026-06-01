@@ -1,0 +1,73 @@
+/* .p1{
+    text-decoration: overline;
+}
+
+.p2{
+    text-decoration: underline;
+}
+
+.p3{
+    text-decoration: line-through;
+}
+
+.p4{
+    text-decoration: none;
+} */
+/* 
+h1{
+    letter-spacing: 10px;
+    line-height: 3.5;
+    text-shadow: 2px 3px 4px red;
+} */
+
+/* 
+.Box{
+    font-size: 25px;
+    padding: 15px;
+    margin: 5px;
+    border: solid red 5px;
+    width: 200px;
+    height: 300px;
+} */
+
+
+/* .s1{
+    border: solid purple 3px;
+}
+
+.s2{
+    border: solid red 3px;
+    padding: 15px 30px 15px 30px;
+
+} */
+
+/* 
+.s1{
+    border: solid purple 3px;
+}
+
+.s2{
+    border: solid red 3px;
+    margin: 12px 30px 12px 30px;
+
+} */
+
+
+
+.gt{
+    color: darkblue;
+
+
+}
+.gt:hover{
+    color: brown;
+}
+
+.gta{
+    color: blue;
+
+
+}
+.gta:hover{
+    color: yellow;
+}

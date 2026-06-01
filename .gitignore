@@ -1,0 +1,13 @@
+node_modules/
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+# Skip non-web / build-required projects
+C & C++/
+Backend/
+Beckend Pj/
+DeLinks/
+LinkTree Clone/
+Patreon Clone/

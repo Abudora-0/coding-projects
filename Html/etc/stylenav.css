@@ -1,0 +1,30 @@
+nav{
+    padding: 10px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a{
+    margin: 30px;
+    text-decoration: none;
+    color: black;
+
+}
+
+button{
+    background-color: #7E22CE;
+    color: white;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 10px;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+}
+
+.Icon{
+    font-size: 30px;
+    color: #7E22CE;
+    margin: 10px 450px 220px 20px;
+
+}

@@ -1,0 +1,26 @@
+/* span{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: purple;
+}
+
+div{
+    color: wheat;
+    padding: 20px;
+    border: 1px solid black;
+    font-size: 30px;
+    text-align: center;
+} */
+
+p{
+    color: white;
+    background-color: purple;
+
+}
+
+@media only screen and(max-width:800px){
+    p{
+        color: yellowgreen;
+    }
+    
+}

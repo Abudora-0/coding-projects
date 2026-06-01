@@ -1,0 +1,33 @@
+
+*{
+    background: #31343B;
+    background-color: #31343B;
+    
+}
+
+.push{
+    height: 70px;
+}
+
+.im{
+    text-align: center;
+
+}
+
+.im img{
+    width: 265px;
+    height: 140px;
+    border-radius: 5px;
+
+}
+
+.tit{
+    text-align: center;
+    gap: 2px;
+}
+
+.middle{
+    text-align: center;
+   
+   
+}

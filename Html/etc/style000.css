@@ -1,0 +1,98 @@
+/* span{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.mask3{
+    mask-image: linear-gradient(red,transparent);
+} */
+/* 
+.pagination{
+    display: flex;
+}
+
+.pagination a{
+    color: gray;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+a.active{
+    background-color: rebeccapurple;
+    color: white;
+
+}
+a:hover:not(.active){
+    background-color: black;
+    color: white;
+} */
+
+/* span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.box{
+    background-color: rebeccapurple;
+    padding: 20px;
+    color: wheat;
+    font-size: 30px;
+
+}
+
+@media only screen and (max-width:600px){
+    span{
+        flex-direction: column;
+        text-align: center;
+    }
+} */
+
+/* div{
+    background-color: rebeccapurple;
+
+}
+
+
+@keyframes demo {
+    from{
+        background-color: red;
+    }
+    to{
+        background-color: blue;
+    }
+}
+    */
+
+
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        animation-name: demo;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-direction: reverse;
+        animation-timing-function: ease-in;
+    }
+
+
+    @keyframes demo {
+        0%{
+            background-color: red;
+        }
+        25%{
+            background-color: yellow;
+        }
+        50%{
+            background-color: blue;
+        }
+        100%{
+            background-color: darkblue;
+        }
+        
+    }
+

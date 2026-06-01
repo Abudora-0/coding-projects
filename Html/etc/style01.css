@@ -1,0 +1,76 @@
+/* .box{
+    height: 150vw;
+    width: 150vh;
+    border: solid yellow 2px;
+} */
+
+/* .about{
+    position: relative;
+    font-size: 23px;
+}
+
+.logo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 250px;
+} */
+
+/* .yt{
+    position: fixed;
+
+}
+
+.box{
+    width: 50vw;
+    height: 150vh;
+} */
+
+
+/* h1{
+    position: sticky;
+ 
+    top: 10px;
+    right: 20px;
+}
+
+.box{
+    height: 150vh;
+} */
+
+/* .box{
+    position: relative;
+}
+
+
+.box1{
+    position: relative;
+    margin: 40px;
+    height: 100px;
+    border: solid black 2px;
+    background-color: aqua;
+    z-index: 1;
+}
+
+.box2{
+    position: absolute;
+    width: 70%;
+    height: 60px;
+    border: solid black 2px;
+    background-color: yellow;
+    z-index: 3;
+    left: 250px;
+    top: 50px;
+}
+
+
+.box3{
+    position: absolute;
+    width: 45%;
+    height: 100px;
+    border: solid black 2px;
+    background-color: purple;
+    z-index: 2;
+    top: 15px;
+    left: 270px;
+} */

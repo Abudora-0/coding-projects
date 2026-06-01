@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Akbar — Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+        }
+        header {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        header h1 { font-size: 1.3rem; font-weight: 600; }
+        header a { color: #58a6ff; text-decoration: none; font-size: 0.9rem; margin-left: auto; }
+        header a:hover { text-decoration: underline; }
+        .hero {
+            text-align: center;
+            padding: 3.5rem 2rem 2rem;
+        }
+        .hero h2 { font-size: 2rem; font-weight: 700; }
+        .hero p { color: #8b949e; margin-top: 0.5rem; font-size: 0.95rem; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+            padding: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 1.4rem;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .card:hover { border-color: #58a6ff; transform: translateY(-3px); }
+        .card-icon { font-size: 1.6rem; }
+        .card h3 { font-size: 1rem; font-weight: 600; }
+        .card p { font-size: 0.82rem; color: #8b949e; line-height: 1.5; flex: 1; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+        .tag {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 20px;
+            padding: 0.15rem 0.6rem;
+            font-size: 0.72rem;
+            color: #8b949e;
+        }
+        .section-label {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #8b949e;
+            font-size: 0.82rem;
+            border-top: 1px solid #30363d;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <i class="fab fa-github" style="font-size:1.4rem"></i>
+        <h1>Abdullah Akbar / coding-projects</h1>
+        <a href="Portfolio/">View Portfolio <i class="fas fa-arrow-right"></i></a>
+    </header>
+
+    <div class="hero">
+        <h2>All Projects</h2>
+        <p>A collection of web projects — games, tools, UI clones, and more.</p>
+    </div>
+
+    <p class="section-label">Games</p>
+    <div class="grid">
+        <a href="Dino%20Game/" class="card">
+            <div class="card-icon">🦕</div>
+            <h3>Dino Game</h3>
+            <p>A browser-based dinosaur endless runner game with obstacles and sound effects.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Snake%20Game/" class="card">
+            <div class="card-icon">🐍</div>
+            <h3>Snake Game</h3>
+            <p>Classic snake game built on canvas with keyboard controls and score tracking.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Animated%20Car/" class="card">
+            <div class="card-icon">🚗</div>
+            <h3>Animated Car</h3>
+            <p>CSS + JS animated car scene with smooth motion.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+    </div>
+
+    <p class="section-label" style="margin-top:1.5rem">Tools & Apps</p>
+    <div class="grid">
+        <a href="Analog%20Clock/" class="card">
+            <div class="card-icon">🕐</div>
+            <h3>Analog Clock</h3>
+            <p>Real-time analog clock built with JavaScript and CSS transforms.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Currency%20Convertor/" class="card">
+            <div class="card-icon">💱</div>
+            <h3>Currency Converter</h3>
+            <p>Live currency converter using the CurrencyAPI. Supports all major currencies.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">API</span></div>
+        </a>
+        <a href="Email%20Validator/" class="card">
+            <div class="card-icon">✉️</div>
+            <h3>Email Validator</h3>
+            <p>Client-side email validation tool with visual feedback.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Password%20Manager/" class="card">
+            <div class="card-icon">🔐</div>
+            <h3>Password Manager</h3>
+            <p>Browser-based password manager using localStorage. Save, view, and delete credentials.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+    </div>
+
+    <p class="section-label" style="margin-top:1.5rem">UI Clones & Templates</p>
+    <div class="grid">
+        <a href="Netflix%20Clone/" class="card">
+            <div class="card-icon">🎬</div>
+            <h3>Netflix Clone</h3>
+            <p>Static frontend clone of the Netflix landing page.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+        <a href="Spotify%20Clone/" class="card">
+            <div class="card-icon">🎵</div>
+            <h3>Spotify Clone</h3>
+            <p>Spotify UI clone with playlist layout and player controls.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Spotify%20Clone%20V2/" class="card">
+            <div class="card-icon">🎶</div>
+            <h3>Spotify Clone V2</h3>
+            <p>Improved Spotify clone with refined layout and interactions.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Myntra%20Clone/" class="card">
+            <div class="card-icon">👗</div>
+            <h3>Myntra Clone</h3>
+            <p>E-commerce landing page clone inspired by Myntra's UI.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+        <a href="WIndow%2011%20UI%20Clone/" class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Windows 11 UI Clone</h3>
+            <p>Web-based recreation of the Windows 11 desktop interface.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="BootStrap%20Website/" class="card">
+            <div class="card-icon">🅱️</div>
+            <h3>Bootstrap Website</h3>
+            <p>Multi-page website built with Bootstrap framework.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span></div>
+        </a>
+        <a href="CheatSheet%20Template/" class="card">
+            <div class="card-icon">📋</div>
+            <h3>Cheatsheet Template</h3>
+            <p>Syntax-highlighted cheatsheet template using Prism.js.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Prism.js</span></div>
+        </a>
+    </div>
+
+    <p class="section-label" style="margin-top:1.5rem">Websites</p>
+    <div class="grid">
+        <a href="Portfolio/" class="card">
+            <div class="card-icon">👤</div>
+            <h3>Portfolio</h3>
+            <p>Personal portfolio website with skills, projects, and contact sections.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="Blog%20Website/" class="card">
+            <div class="card-icon">📝</div>
+            <h3>Blog Website</h3>
+            <p>Multi-page blog website with search, about, and contact pages.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+        <a href="Landing%20Page/" class="card">
+            <div class="card-icon">🚀</div>
+            <h3>Landing Page</h3>
+            <p>Modern product landing page with animations and responsive layout.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a href="My%20First%20Website/" class="card">
+            <div class="card-icon">🌐</div>
+            <h3>My First Website</h3>
+            <p>The very first website I built — a milestone in the journey.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+        <a href="My%20First%20Website%202/" class="card">
+            <div class="card-icon">🌍</div>
+            <h3>My First Website 2</h3>
+            <p>Second iteration of the first website with improvements.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+    </div>
+
+    <footer>
+        <p>Built by <strong>Abdullah Akbar</strong> &mdash; <a href="https://github.com/Abudora-0" style="color:#58a6ff">github.com/Abudora-0</a></p>
+    </footer>
+</body>
+</html>
