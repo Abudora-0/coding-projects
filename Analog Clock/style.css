@@ -1,47 +1,83 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-#clockContainer{
-    position: relative;
-    margin: auto;
-    width: 40vw;
-    height: 40vw;
-    background: url(clock.png) no-repeat;
-    background-size: 100%;
-
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d1a 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 
-#hour, #minute , #second{
+nav {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-title { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.nav-title i { color: #a78bfa; }
+
+.back-btn {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+#clockContainer {
+    position: relative;
+    width: min(55vw, 320px);
+    height: min(55vw, 320px);
+    background: url(clock.png) no-repeat center;
+    background-size: 100%;
+    filter: drop-shadow(0 0 40px rgba(167, 139, 250, 0.35));
+    animation: floatAnim 4s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+#hour, #minute, #second {
     position: absolute;
-    background-color: black;
     transform-origin: bottom;
     border-radius: 10px;
 }
 
+#hour   { background: #1a1a2e; width: 1.8%; height: 25%; top: 25%; left: 48.85%; opacity: 0.85; }
+#minute { background: #1a1a2e; width: 1.6%; height: 30%; top: 19%; left: 48.9%;  opacity: 0.85; }
+#second { background: #a78bfa; width: 1%;   height: 40%; top: 9%;  left: 49.25%; opacity: 0.9; }
 
-#hour{
-    width: 1.8%;
-    height: 25%;
-    top: 25%;
-    left: 48.85%;
-    opacity: 0.8;
-    
+#digitalTime {
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 20px rgba(167,139,250,0.4);
 }
 
-#minute{
-    width: 1.6%;
-    height: 30%;
-    top: 19%;
-    left: 48.9%;
-    opacity: 0.8;
-    
+#dateDisplay {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
 }
-
-#second{
-    width: 1%;
-    height: 40%;
-    top: 9%;
-    left: 49.25%;
-    opacity: 0.8;
-} 
-
-
-

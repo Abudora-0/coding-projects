@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OG's Snake Game</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
-   
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="body">
-        <div id="scoreBox">Score: 0</div>
-        <div id="hiscoreBox">HiScore: 0</div>
+    <nav>
+        <span class="nav-title"><i class="fas fa-gamepad"></i> Snake Game</span>
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+    </nav>
+
+    <div class="game-wrapper">
+        <div class="scores">
+            <div class="score-box">
+                <div class="score-label">Score</div>
+                <div id="scoreBox" class="score-val">0</div>
+            </div>
+            <div class="score-box hi">
+                <div class="score-label">Best</div>
+                <div id="hiscoreBox" class="score-val">0</div>
+            </div>
+        </div>
+
         <div id="board"></div>
+
+        <p class="hint"><i class="fas fa-keyboard"></i> Use arrow keys to move. Press any key to start.</p>
     </div>
-    
+
     <script src="script.js"></script>
-    
 </body>
 </html>

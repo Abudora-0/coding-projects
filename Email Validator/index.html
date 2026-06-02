@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeValidator - An Email Validator</title>
+    <title>DeValidator — Email Validator</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="img/logo.svg" alt="logo">
-                <span>DeValidator</span>
-            </div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-                <li><a href="/">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+
+    <nav>
+        <div class="logo">
+            <img src="img/logo.svg" alt="DeValidator Logo">
+            <span>DeValidator</span>
+        </div>
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+    </nav>
+
     <main>
-        <div class="container">
-            <h1>Enter your Email to Validate</h1>
-            <form action="/sumbit" method="get">
-                <input type="text" placeholder="Enter your Email" id="username" name="username" required>
-                <br><br>
-                <input id="sumbitBtn" class="btn" type="submit" value="Sumbit">
+        <div class="hero">
+            <h1><i class="fas fa-envelope-circle-check"></i> Email Validator</h1>
+            <p>Check if an email address is valid, deliverable, and not disposable.</p>
+        </div>
+
+        <div class="card search-card">
+            <div class="api-notice">
+                <i class="fas fa-info-circle"></i>
+                <span>Add your free API key from <a href="https://emailvalidation.io" target="_blank">emailvalidation.io</a> in <code>script.js</code> to enable live validation.</span>
+            </div>
+            <form id="validateForm">
+                <div class="input-row">
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="emailInput" placeholder="Enter email address to validate..." required autocomplete="off">
+                    </div>
+                    <button class="btn" type="submit" id="submitBtn">
+                        <i class="fas fa-search"></i> Validate
+                    </button>
+                </div>
             </form>
         </div>
 
-        <div class="container">
-            <h2>Your Results</h2>
-            <div id="resultCont">
-                Your results will show here:
-            </div>
+        <div class="results-card" id="resultCard">
+            <div class="results-header" id="resultsHeader"></div>
+            <div class="results-grid" id="resultCont"></div>
         </div>
     </main>
+
     <footer>
-        Copyright &copy; DeValidator.com || All rights are reserved
+        <p>&copy; DeValidator &mdash; Powered by <a href="https://emailvalidation.io" target="_blank">EmailValidation.io</a></p>
     </footer>
-
-
 
     <script src="script.js"></script>
 </body>

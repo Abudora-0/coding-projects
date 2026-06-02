@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino Adventures</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <nav>
+        <span class="nav-title"><i>🦕</i> Dino Adventures</span>
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+    </nav>
+
     <div class="gameContainer">
-        <div class="gameOver">Welcome to Dino Adventures</div>
+        <div class="gameOver" id="gameMsg">Press <kbd>↑</kbd> to Start!</div>
+        <div id="scoreCont">Score: <span id="scoreVal">0</span></div>
         <div class="dino"></div>
-        <div id="scoreCont">Your Score: 0</div>
         <div class="obstacle obstacleAni"></div>
     </div>
-    
+
+    <script src="script.js"></script>
 </body>
 </html>

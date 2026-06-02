@@ -48,13 +48,10 @@ setInterval(() => {
     offestY = Math.abs(dy - oy);
 
     if(offestX < 73 &&  offestY < 52){
-        gameOver.innerHTML = "Game Over - Reload for Retry";
+        gameOver.innerHTML = "💀 Game Over — Reload to Retry";
         obstacle.classList.remove('obstacleAni')
-        audio.play();
-        setTimeout(() => {
-            audiogo.pause();
-            audio.pause();
-        }, 1000);
+        audio.pause();
+        audiogo.play();
     }
     else if(offestX  < 145 && cross){
         score += 1;
@@ -74,5 +71,5 @@ setInterval(() => {
 
 
 function updateScore(score){
-    scoreCont.innerHTML = "Your Score: "+ score;
+    document.getElementById("scoreVal").innerHTML = score;
 }

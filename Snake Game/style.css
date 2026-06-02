@@ -1,69 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-
-.body{
-    background: url("bg.jpg");
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("bg.jpg") center/cover no-repeat fixed;
     min-height: 100vh;
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+}
+
+nav, .game-wrapper { position: relative; z-index: 1; }
+
+nav {
+    padding: 0.9rem 1.5rem;
+    display: flex;
     align-items: center;
-    
+    justify-content: space-between;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
 }
 
-#scoreBox{
-    position: absolute;
-    top: 9px;
-    right: 200px;
-    font-size: 39px;
-    font-weight: bold;
+.nav-title { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.nav-title i { color: #4ade80; }
+
+.back-btn {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.game-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.scores {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.score-box {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    min-width: 90px;
+}
+
+.score-box.hi { border-color: rgba(74,222,128,0.4); }
+
+.score-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+}
+
+.score-val {
     font-family: 'New Tegomin', serif;
+    font-size: 1.8rem;
+    color: white;
 }
 
+.score-box.hi .score-val { color: #4ade80; }
 
-#hiscoreBox{
-    position: absolute;
-    top: 59px;
-    right: 160px;
-    font-size: 39px;
-    font-weight: bold;
-    font-family: 'New Tegomin', serif;
-
-}
-
-
-#board{
-    background: linear-gradient(rgb(170, 236, 170), rgb(236, 236, 167));
+#board {
+    background: linear-gradient(135deg, #a8edaa, #ecec9e);
     width: 90vmin;
-    height: 92vmin;
-    border: 2px solid black;
+    height: 90vmin;
+    max-width: 500px;
+    max-height: 500px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
     display: grid;
     grid-template-rows: repeat(18, 1fr);
     grid-template-columns: repeat(18, 1fr);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
-
-
-.head{
-    background: linear-gradient(rgb(240, 124, 124), rgb(228, 228, 129));
-    border: 2px solid rgb(34, 4, 34);
-    transform: scale(1.02);
-    border-radius: 9px;
-}
-
-.snake{
-    background-color: purple;
-    border: .25vmin solid white;
-    border-radius: 12px;
-}
-
-.food{
-    background: linear-gradient(red,purple);
-    border: .25vmin solid black;
+.head {
+    background: linear-gradient(135deg, #f08080, #e4e481);
+    border: 2px solid rgba(0,0,0,0.4);
+    transform: scale(1.05);
     border-radius: 8px;
+    z-index: 1;
+}
+
+.snake {
+    background: #7c3aed;
+    border: 0.25vmin solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+}
+
+.food {
+    background: radial-gradient(circle at 35% 35%, #ff6b6b, #8b0000);
+    border: 0.25vmin solid rgba(0,0,0,0.3);
+    border-radius: 50%;
+}
+
+.hint {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
