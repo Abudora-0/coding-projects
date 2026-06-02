@@ -1,117 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify - A Music Player for GNX</title>
+    <title>Spotify — Music Player</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-    <nav>
-        <ul>
-            <li class="brand"><img src="logo.png" alt="Spotify">Spotify</li>
-        </ul>
-        <a href="../index.html" class="back-btn">&#8592; All Projects</a>
-    </nav>
 
-    <div class="container">
-        <div class="songList">
-            <h1>GNX - Kendrick Lamar</h1>
-            <div class="songItemContainer">
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">5:17 <i id="0"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
+<div class="app">
+
+    <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo.png" alt="Spotify">
+            <span>Spotify</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="../index.html" class="nav-item back-item">
+                <i class="fas fa-arrow-left"></i> All Projects
+            </a>
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-search"></i> Search
+            </a>
+        </nav>
+
+        <div class="library-section">
+            <div class="library-header">
+                <div class="library-title">
+                    <i class="fas fa-book-open"></i> Your Library
                 </div>
-                <div class="songItem">
-                    <img alt="2">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">2:37 <i id="1"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
+                <button class="upload-btn" id="uploadBtn" title="Upload songs">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="playlist-list" id="playlistList">
+                <div class="playlist-item active" onclick="switchPlaylist('gnx')">
+                    <img src="covers/1.jpg" alt="GNX" class="playlist-thumb">
+                    <div class="playlist-info">
+                        <div class="playlist-name">GNX</div>
+                        <div class="playlist-meta">Album &middot; Kendrick Lamar</div>
+                    </div>
                 </div>
-                <div class="songItem">
-                    <img alt="3">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">2:57 <i id="2"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="4">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">3:53 <i id="3"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="5">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">3:37 <i id="4"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="6">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">4:35 <i id="5"
-                                class="far songItemPlay fa-play-circle"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="7">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">3:40 <i id="6"
-                                class="far songItemPlay fa-play-circle"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="8">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">2:11 <i id="7"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="9">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">2:35<i id="8"
-                                class="far songItemPlay fa-play-circle" ></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="10">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">4:52 <i id="9"
-                                class="far songItemPlay fa-play-circle"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="11">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">3:13 <i id="10"
-                                class="far songItemPlay fa-play-circle"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="12">
-                    <span class="songName"></span>
-                    <span class="songlistplay"><span class="timestamp">4:47 <i id="11"
-                                class="far songItemPlay fa-play-circle"></i></span></span>
+                <div class="playlist-item" id="uploadedPlaylistItem" style="display:none" onclick="switchPlaylist('uploads')">
+                    <div class="playlist-thumb upload-thumb"><i class="fas fa-music"></i></div>
+                    <div class="playlist-info">
+                        <div class="playlist-name">My Uploads</div>
+                        <div class="playlist-meta">Playlist &middot; <span id="uploadCount">0</span> songs</div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Upload Drop Zone -->
+            <div class="drop-zone" id="dropZone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drop MP3 files here</p>
+                <span>or click <strong>+</strong> above</span>
+            </div>
         </div>
-        <div class="songBanner"></div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ─────────────────────────────────────────── -->
+    <main class="main-content">
+
+        <!-- GNX Playlist -->
+        <div id="gnxView">
+            <div class="album-header" style="background: linear-gradient(to bottom, #2d1b4e, #1a1a1a)">
+                <img src="covers/1.jpg" alt="GNX" class="album-cover">
+                <div class="album-info">
+                    <div class="album-type">Album</div>
+                    <h1 class="album-title">GNX</h1>
+                    <div class="album-meta">
+                        <img src="logo.png" alt="spotify" style="width:20px;border-radius:50%">
+                        <strong>Kendrick Lamar</strong>
+                        <span>&middot; 2024 &middot; 12 songs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="big-play-row">
+                    <button class="big-play-btn" id="gnxPlayBtn" onclick="playPlaylist('gnx')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="shuffle-big-btn" id="gnxShuffleBtn" onclick="toggleShuffle()">
+                        <i class="fas fa-random"></i>
+                    </button>
+                </div>
+
+                <table class="song-table">
+                    <thead>
+                        <tr>
+                            <th class="col-num">#</th>
+                            <th class="col-title">Title</th>
+                            <th class="col-time"><i class="fas fa-clock"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="gnxSongList"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Uploads Playlist -->
+        <div id="uploadsView" style="display:none">
+            <div class="album-header" style="background: linear-gradient(to bottom, #1a3a2a, #1a1a1a)">
+                <div class="album-cover upload-cover"><i class="fas fa-music"></i></div>
+                <div class="album-info">
+                    <div class="album-type">Playlist</div>
+                    <h1 class="album-title">My Uploads</h1>
+                    <div class="album-meta">
+                        <span><span id="uploadCountMain">0</span> songs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="big-play-row">
+                    <button class="big-play-btn" onclick="playPlaylist('uploads')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="upload-big-btn" id="uploadBigBtn">
+                        <i class="fas fa-cloud-upload-alt"></i> Add Songs
+                    </button>
+                </div>
+
+                <div class="upload-empty" id="uploadEmpty">
+                    <i class="fas fa-music" style="font-size:3rem;color:#535353;margin-bottom:1rem"></i>
+                    <p>No songs uploaded yet</p>
+                    <button class="upload-cta-btn" id="uploadCtaBtn">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Songs
+                    </button>
+                </div>
+
+                <table class="song-table" id="uploadsTableWrap" style="display:none">
+                    <thead>
+                        <tr>
+                            <th class="col-num">#</th>
+                            <th class="col-title">Title</th>
+                            <th class="col-time"><i class="fas fa-clock"></i></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="uploadedSongList"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- ── PLAYER BAR ───────────────────────────────────────────────── -->
+<div class="player-bar">
+
+    <div class="player-left">
+        <div class="now-playing-cover" id="nowPlayingCover">
+            <i class="fas fa-music"></i>
+        </div>
+        <div class="now-playing-info">
+            <div class="now-playing-title" id="nowPlayingTitle">—</div>
+            <div class="now-playing-artist" id="nowPlayingArtist">Select a song</div>
+        </div>
+        <button class="heart-btn" id="heartBtn"><i class="far fa-heart"></i></button>
     </div>
 
-    <div class="bottom">
-        <input type="range" name="range" id="myProgressBar" max="100" min="0" value="0">
-        <div class="icons">
-            <i class="fas fa-2x fa-step-backward" id="previous"></i>
-            <i class="far fa-2x fa-play-circle" id="masterPlay"></i>
-            <i class="fas fa-2x fa-step-forward" id="next"></i>
+    <div class="player-center">
+        <div class="player-controls">
+            <button class="ctrl-icon" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">
+                <i class="fas fa-random"></i>
+            </button>
+            <button class="ctrl-icon" id="prevBtn"><i class="fas fa-step-backward"></i></button>
+            <button class="play-pause-btn" id="masterPlay">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="ctrl-icon" id="nextBtn"><i class="fas fa-step-forward"></i></button>
+            <button class="ctrl-icon" id="repeatBtn" onclick="toggleRepeat()" title="Repeat">
+                <i class="fas fa-redo"></i>
+            </button>
         </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42px" alt="" id="gif"><span id="masterSongName"></span>
+        <div class="progress-row">
+            <span class="time-label" id="currentTime">0:00</span>
+            <input type="range" class="progress-bar" id="progressBar" min="0" max="100" value="0">
+            <span class="time-label" id="totalTime">0:00</span>
         </div>
     </div>
-   
 
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/594ac63ca8.js" crossorigin="anonymous"></script>
+    <div class="player-right">
+        <button class="ctrl-icon volume-icon"><i class="fas fa-volume-up"></i></button>
+        <input type="range" class="volume-bar" id="volumeBar" min="0" max="100" value="80">
+    </div>
+</div>
+
+<!-- Hidden file input -->
+<input type="file" id="fileInput" accept="audio/*" multiple style="display:none">
+
+<script src="script.js"></script>
 </body>
-
 </html>

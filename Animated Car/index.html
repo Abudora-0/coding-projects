@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Car</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-    <div class="container">
-        <div class="sky">
-            <div class="trees"></div>
-            <div class="track"></div>
-            <div class="car">
-                <div class="wheel1">
-                    <img src="car_wheel_left.png" alt="">
-                </div>
-                <div class="wheel2">
-                    <img src="car_wheel_right.png" alt="">
-                </div>
+    <nav>
+        <span class="nav-logo"><i class="fas fa-car"></i> Animated Car</span>
+        <div class="nav-controls">
+            <button class="ctrl-btn" id="nightToggle" onclick="toggleNight()" title="Toggle Night Mode">
+                <i class="fas fa-moon" id="nightIcon"></i>
+            </button>
+            <button class="ctrl-btn horn-btn" id="hornBtn" title="Honk!">
+                <i class="fas fa-bullhorn"></i> Honk
+            </button>
+            <a href="../index.html" class="back-btn">← All Projects</a>
+        </div>
+    </nav>
+
+    <!-- Speed HUD -->
+    <div class="hud">
+        <div class="speedometer">
+            <div class="speed-value" id="speedDisplay">60</div>
+            <div class="speed-label">km/h</div>
+        </div>
+        <div class="speed-controls">
+            <button class="speed-btn" onclick="changeSpeed(-1)"><i class="fas fa-minus"></i></button>
+            <div class="speed-track">
+                <div class="speed-fill" id="speedFill"></div>
             </div>
+            <button class="speed-btn" onclick="changeSpeed(1)"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="speed-labels">
+            <span>Slow</span><span>Fast</span>
         </div>
     </div>
 
-</body>
+    <!-- Scene -->
+    <div class="scene" id="scene">
+        <div class="sky" id="sky">
+            <div class="sun" id="sun"></div>
+            <div class="moon" id="moon"></div>
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+        </div>
+        <div class="trees" id="trees"></div>
+        <div class="road">
+            <div class="track" id="track"></div>
+        </div>
+        <div class="car" id="car">
+            <div class="headlights" id="headlights"></div>
+            <img class="car-body-img" src="car_body.png" alt="car">
+            <img class="wheel left-wheel" id="leftWheel" src="car_wheel_left.png" alt="">
+            <img class="wheel right-wheel" id="rightWheel" src="car_wheel_right.png" alt="">
+        </div>
+    </div>
 
+    <script src="script.js"></script>
+</body>
 </html>

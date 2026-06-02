@@ -5,20 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino Adventures</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <nav>
-        <span class="nav-title"><i>🦕</i> Dino Adventures</span>
-        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+        <span class="nav-logo">🦕 Dino Adventures</span>
+        <div class="nav-right">
+            <span class="hi-score-nav">Best: <strong id="hiScoreNav">0</strong></span>
+            <a href="../index.html" class="back-btn">← All Projects</a>
+        </div>
     </nav>
 
-    <div class="gameContainer">
-        <div class="gameOver" id="gameMsg">Press <kbd>↑</kbd> to Start!</div>
-        <div id="scoreCont">Score: <span id="scoreVal">0</span></div>
-        <div class="dino"></div>
-        <div class="obstacle obstacleAni"></div>
+    <!-- Start Screen -->
+    <div class="overlay" id="startScreen">
+        <div class="overlay-box">
+            <div class="dino-emoji">🦕</div>
+            <h1>Dino Adventures</h1>
+            <p>Jump over the dragon to survive!</p>
+            <div class="controls-hint">
+                <div class="key-hint"><kbd>↑</kbd> or <kbd>Space</kbd> — Jump</div>
+                <div class="key-hint"><kbd>←</kbd> <kbd>→</kbd> — Move</div>
+            </div>
+            <button class="play-btn" onclick="startGame()">▶ Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div class="overlay hidden" id="gameOverScreen">
+        <div class="overlay-box">
+            <div class="dino-emoji">💀</div>
+            <h1>Game Over</h1>
+            <div class="score-display">
+                <div class="score-item"><span>Score</span><strong id="finalScore">0</strong></div>
+                <div class="score-item"><span>Best</span><strong id="finalBest">0</strong></div>
+            </div>
+            <button class="play-btn" onclick="restartGame()">↺ Play Again</button>
+        </div>
+    </div>
+
+    <!-- Game -->
+    <div class="game-scene" id="gameScene">
+        <div class="score-bar">
+            <span>Score: <strong id="scoreVal">0</strong></span>
+        </div>
+        <div class="gameContainer" id="gameContainer">
+            <div class="dino" id="dino"></div>
+            <div class="obstacle" id="obstacle"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
