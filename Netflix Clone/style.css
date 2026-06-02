@@ -216,7 +216,36 @@ footer{
 }
 
 
-footer .questions{
+/* Back pill */
+.back-pill {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 0.82rem;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s;
+}
+.back-pill:hover { background: rgba(40,40,40,0.9); }
+
+/* FAQ answer */
+.faqbox { flex-wrap: wrap; }
+.faq-answer {
+    display: none;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+footer .questions {
     padding: 34px 0;
 }
 

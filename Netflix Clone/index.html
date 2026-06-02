@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Pakistan - Watch TV Shows Online, Watch Movies Online</title>
+    <title>Netflix — Watch TV Shows Online, Watch Movies Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+    <!-- Back button -->
+    <a href="../index.html" class="back-pill">&#8592; All Projects</a>
+
     <div class="main">
         <nav>
-            <span><img width="125" src="assets/images/logo.svg" alt=""></span>
-            <div><button class="btn">English</button>
+            <span><img width="125" src="assets/images/logo.svg" alt="Netflix"></span>
+            <div>
+                <button class="btn">English</button>
                 <button class="btn btn-red-sm">Sign In</button>
             </div>
         </nav>
-        <div class="box">
-        </div>
+        <div class="box"></div>
         <div class="hero">
             <span>Unlimited movies, TV shows, and more</span>
             <span>Starts at Rs 250. Cancel anytime.</span>
             <span>Ready to watch? Enter your email to create or restart your membership.</span>
             <div class="hero-buttons">
                 <input type="text" placeholder="Email Address">
-                <button class="btn btn-red">Get Started &gt;</button>
+                <button class="btn btn-red">Get Started &rsaquo;</button>
             </div>
         </div>
         <div class="seperation"></div>
@@ -32,147 +34,134 @@
 
     <section class="first">
         <div>
-            <span>Enjoy your TV</span>
-            <span>Watch on smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-Ray players and more.</span>
+            <span>Enjoy on your TV</span>
+            <span>Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</span>
         </div>
         <div class="secImg">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
-            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
-                loop muted autoplay></video>
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="TV">
+            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" loop muted autoplay></video>
         </div>
     </section>
     <div class="seperation"></div>
 
     <section class="first second">
-
         <div class="secImg">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
-
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Mobile">
         </div>
         <div>
-            <span>Download Your Shows to Watch Offline</span>
+            <span>Download your shows to watch offline</span>
             <span>Save your favourites easily and always have something to watch.</span>
         </div>
     </section>
-
     <div class="seperation"></div>
 
     <section class="first third">
         <div>
-            <span>Watch Everywhere</span>
-            <span>Stream unlimited movies and TV shows on your Phone, Tablet, Laptop, and TV.</span>
+            <span>Watch everywhere</span>
+            <span>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</span>
         </div>
         <div class="secImg">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
-            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v"
-                loop muted autoplay></video>
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="Devices">
+            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v" loop muted autoplay></video>
+        </div>
+    </section>
+    <div class="seperation"></div>
+
+    <section class="first fourth">
+        <div class="secImg">
+            <img src="https://occ-0-2849-3646.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVr8nYuAg0xDpXDv0VI9HUoH7r2aGp4TKRCsKNQrMwxzTtr-NlwOHeS8bCI2oeZddmu3nMYr3j9MjYhHyjBASb1FaOGYZNYvPBCL.png?r=54d" alt="Kids">
+        </div>
+        <div>
+            <span>Create profiles for kids</span>
+            <span>Send children on adventures with their favourite characters in a space made just for them — free with your membership.</span>
+        </div>
+    </section>
+    <div class="seperation"></div>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faqbox" onclick="toggleFaq(this)">
+            <span>What is Netflix?</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 12H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="faq-answer">Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</div>
         </div>
 
+        <div class="faqbox" onclick="toggleFaq(this)">
+            <span>How much does Netflix cost?</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 12H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="faq-answer">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from Rs 250 to Rs 800 a month.</div>
+        </div>
+
+        <div class="faqbox" onclick="toggleFaq(this)">
+            <span>What can I watch on Netflix?</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 12H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="faq-answer">Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want.</div>
+        </div>
+
+        <div class="faqbox" onclick="toggleFaq(this)">
+            <span>Where can I watch?</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 12H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="faq-answer">Watch anywhere, anytime, on an unlimited number of devices. Sign in with your Netflix account to watch instantly on the web or download to your mobile device.</div>
+        </div>
     </section>
+    <div class="seperation"></div>
 
-        <div class="seperation"></div>
-
-        <section class="first fourth">
-            <div class="secImg">
-                <img src="https://occ-0-2849-3646.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVr8nYuAg0xDpXDv0VI9HUoH7r2aGp4TKRCsKNQrMwxzTtr-NlwOHeS8bCI2oeZddmu3nMYr3j9MjYhHyjBASb1FaOGYZNYvPBCL.png?r=54d"
-                    alt="">
-
+    <footer>
+        <div class="questions">Questions? Call 000-800-919-1694</div>
+        <div class="footer">
+            <div class="footer-items">
+                <a href="#">Investor Relations</a>
+                <a href="#">Jobs</a>
+                <a href="#">Ways to Watch</a>
+                <a href="#">Terms of Use</a>
             </div>
-            <div>
-                <span>Create Profiles for Kids</span>
-                <span>Send Children on adventures with their favourite characters in a space made just for them free
-                    with your membership.</span>
+            <div class="footer-items">
+                <a href="#">Help Centre</a>
+                <a href="#">Legal Notices</a>
+                <a href="#">Account</a>
+                <a href="#">Speed Test</a>
             </div>
-        </section>
-
-
-        <div class="seperation"></div>
-
-        <section class="faq">
-            <h2>Frequently Asked Quesitons</h2>
-            <div class="faqbox">
-                <span>What is Netfilx?</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-
+            <div class="footer-items">
+                <a href="#">Media Centre</a>
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Privacy</a>
+                <a href="#">Corporate Information</a>
             </div>
-            <div class="faqbox">
-                <span>How much does Netflix Cost?</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-
+            <div class="footer-items">
+                <a href="#">Contact Us</a>
+                <a href="#">Speed Test</a>
+                <a href="#">Only on Netflix</a>
+                <a href="#">Originals</a>
             </div>
-            <div class="faqbox">
-                <span>What can I Watch on Netflix?</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
+        </div>
+        <p style="color:grey; font-size:0.8rem; padding: 1rem 0;">Netflix Pakistan</p>
+    </footer>
 
-            </div>
-            <div class="faqbox">
-                <span>Where Can I Watch?</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-
-            </div>
-        </section>
-
-        <div class="seperation"></div>
-
-        <footer>
-            <div class="quesitons">
-                Quesitons? Call 000-800-919-1694
-            </div>
-            <div class="footer">
-
-                <div class="footer-items">
-                    <a href="faq">Investor Relations</a>
-                    <a href="faq">Jobs</a>
-                    <a href="faq">Ways to Watch</a>
-                    <a href="faq">Terms of Use</a>
-                </div>
-
-                <div class="footer-items">
-                    <a href="faq">Help Centre</a>
-                    <a href="faq">Legal Notices</a>
-                    <a href="faq">Account</a>
-                    <a href="faq">Speed Test</a>
-                </div>
-
-                <div class="footer-items">
-                    <a href="faq">Media Centre</a>
-                    <a href="faq">Cookie Preferences</a>
-                    <a href="faq">Privacy</a>
-                    <a href="faq">Corporate</a>
-                </div>
-
-                <div class="footer-items">
-                    <a href="faq">Contact Us</a>
-                    <a href="faq">Speed Test</a>
-                    <a href="faq">Only on Netfilx</a>
-                    <a href="faq">Orginals</a>
-                </div>
-
-            </div>
-        </footer>
-
-
-
+    <script>
+        function toggleFaq(el) {
+            const answer = el.querySelector('.faq-answer');
+            const icon = el.querySelector('.faq-icon');
+            const isOpen = answer.style.display === 'block';
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+            document.querySelectorAll('.faq-icon path:first-child').forEach(p => p.style.display = 'block');
+            if (!isOpen) {
+                answer.style.display = 'block';
+                icon.querySelector('path:first-child').style.display = 'none';
+            }
+        }
+    </script>
 </body>
-
 </html>

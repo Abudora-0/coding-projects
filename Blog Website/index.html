@@ -1,192 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeBlog - The De Best Blog Website</title>
+    <title>DeBlog — The Best Blog Website</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/utils.css">
     <link rel="stylesheet" href="css/mobile.css">
 </head>
-
 <body>
     <nav class="navigation max-width-1 m-auto">
         <div class="nav-left">
-            <div class="logo"><img src="img/logo.svg" width="75px" alt=""><a href="/">DeBlog</a></div>
-
+            <div class="logo"><img src="img/logo.svg" width="75px" alt="DeBlog"><a href="index.html">DeBlog</a></div>
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
         <div class="nav-right">
-            <form action="/search.html" method="get">
-                <input class="form-input" type="text" name="query" placeholder="Article Search">
+            <form action="search.html" method="get">
+                <input class="form-input" type="text" name="query" placeholder="Search articles...">
                 <button class="btn">Search</button>
             </form>
+            <a href="../index.html" class="back-link">&#8592; All Projects</a>
         </div>
     </nav>
 
-
-    <div class="max-width-1 m-auto">
-        <hr>
-    </div>
+    <div class="max-width-1 m-auto"><hr></div>
 
     <div class="m-auto content max-width-1 my-2">
         <div class="content-left">
-            <h1>DeBlog, Post your Shitpost Blog Here</h1>
-            <p>DeBlog is a website which lets you submit an article which upon approval will be up on our website and
-                you
-                can get a good amount of reach from here!</p>
-            <p>My Halloween decorations are staying in the box this year. To be honest, they didn’t make it out of the
-                box last year either. My Halloween spirit has officially been bludgeoned to death by teenagers who no
-                longer care and a persistent October fear of the Northern California wildfires. And speaking of fear,
-                isn’t there more than enough of that going around? Maybe all of us can pretend that Halloween isn’t even
-                happening this year?</p>
+            <h1>Welcome to DeBlog</h1>
+            <p>DeBlog is a platform where writers submit articles that get featured on our homepage. Join our community and share your ideas with the world.</p>
+            <p>From tech and travel to culture and lifestyle &mdash; every perspective has a home here. Browse our featured articles below and discover something new today.</p>
         </div>
         <div class="content-right">
-            <img src="img/home.svg" alt="pic">
+            <img src="img/home.svg" alt="Blog illustration">
         </div>
     </div>
 
-    <div class="max-width-1 m-auto">
-        <hr>
-    </div>
+    <div class="max-width-1 m-auto"><hr></div>
 
     <div class="home-articles max-width-1 m-auto font2">
-        <h2>Featured DeBlog Articles</h2>
+        <h2>Featured Articles</h2>
         <div class="year-box adjust-year">
-            <div>
-                <h3>Year</h3>
-            </div>
-            <div>
-                <input type="radio" name="year" id="">2023
-            </div>
-            <div>
-                <input type="radio" name="year" id="">2024
+            <div><h3>Year</h3></div>
+            <div><input type="radio" name="year" id="y2025"> <label for="y2025">2025</label></div>
+            <div><input type="radio" name="year" id="y2024"> <label for="y2024">2024</label></div>
+        </div>
+
+        <div class="home-article">
+            <div class="home-article-img"><img src="img/1.png" alt="article"></div>
+            <div class="home-article-content font1">
+                <a href="blogpost.html"><h3>The Future of Web Development in 2025</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>15 March 2025 &middot; 5 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/1.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/3.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>Why Every Developer Should Learn Git</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>2 February 2025 &middot; 4 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/3.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/2.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>CSS Grid vs Flexbox: When to Use Which</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>10 January 2025 &middot; 6 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/2.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/1.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>Getting Started with JavaScript Promises</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>5 December 2024 &middot; 7 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/1.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/4.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>Building Responsive Layouts the Right Way</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>20 November 2024 &middot; 5 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/4.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/3.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>Top 10 VS Code Extensions for Web Devs</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>8 October 2024 &middot; 3 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/3.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/2.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>21 April | 7 min read</span>
+                <a href="blogpost.html"><h3>How to Structure a Full-Stack Project</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>14 August 2024 &middot; 8 min read</span>
             </div>
         </div>
 
         <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/2.png" alt="article">
-            </div>
+            <div class="home-article-img"><img src="img/4.png" alt="article"></div>
             <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>14 August | 3 min read</span>
+                <a href="blogpost.html"><h3>Understanding REST APIs for Beginners</h3></a>
+                <div>Abdullah Akbar</div>
+                <span>1 July 2024 &middot; 5 min read</span>
             </div>
         </div>
-
-        <div class="home-article">
-            <div class="home-article-img">
-                <img src="img/4.png" alt="article">
-            </div>
-            <div class="home-article-content font1">
-                <a href="/blogpost.html">
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                </a>
-
-                <div>Author Name</div>
-                <span>1 May | 5 min read</span>
-            </div>
-        </div>
-
     </div>
 
     <div class="footer">
-        <p>Copyright &copy; DeBlog.com || All rights reserved</p>
+        <p>Copyright &copy; DeBlog &mdash; All rights reserved</p>
     </div>
-
 </body>
-
 </html>
