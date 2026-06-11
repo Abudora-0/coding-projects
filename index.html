@@ -4,296 +4,459 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abdullah Akbar — Web Projects</title>
-  <meta name="description" content="A collection of web projects by Abdullah Akbar — games, tools, UI clones, and more.">
-  <meta name="theme-color" content="#09090b">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2309090b'/%3E%3Cpath d='M6 22 L12 10 L16 18 L20 13 L26 22' stroke='%236366f1' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta name="description" content="A collection of web projects by Abdullah Akbar — games, tools, UI clones, and full websites.">
+  <meta name="theme-color" content="#07070e">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307070e'/%3E%3Cpath d='M6 22 L12 10 L16 18 L20 13 L26 22' stroke='%23a78bfa' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-    :root {
-      --p:      #6366f1;
-      --p2:     #818cf8;
-      --bg:     #09090b;
-      --bg2:    #111116;
-      --bg3:    #18181e;
-      --bg4:    #232329;
-      --text:   #f4f4f5;
-      --text2:  #a1a1aa;
-      --text3:  #52525b;
-      --border: rgba(255,255,255,.07);
-      --border2:rgba(255,255,255,.13);
-      --radius: 12px;
-      --trans:  all .2s cubic-bezier(.4,0,.2,1);
-    }
+:root {
+  /* Palette */
+  --bg:        #07070e;
+  --bg2:       #0d0d18;
+  --bg3:       #12121f;
+  --bg4:       #1a1a2e;
+  --bg5:       #22223b;
+  --text:      #eef0ff;
+  --text2:     #9294b8;
+  --text3:     #4a4c6a;
+  --border:    rgba(255,255,255,.055);
+  --border2:   rgba(255,255,255,.11);
 
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+  /* Accent colours */
+  --violet:    #a78bfa;
+  --violet2:   #7c3aed;
+  --pink:      #f472b6;
+  --cyan:      #22d3ee;
+  --emerald:   #34d399;
+  --amber:     #fbbf24;
 
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+  /* Per-category */
+  --c-game:    #34d399;
+  --c-tool:    #22d3ee;
+  --c-clone:   #fbbf24;
+  --c-site:    #f472b6;
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+  --radius: 14px;
+  --trans:  all .22s cubic-bezier(.4,0,.2,1);
+}
 
-    /* ── HEADER ── */
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(9,9,11,.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .header-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 24px; height: 58px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .header-logo {
-      display: flex; align-items: center; gap: 9px;
-      font-size: 1rem; font-weight: 800; color: var(--text);
-      flex-shrink: 0;
-    }
-    .header-logo svg { color: var(--p); }
-    .header-slug {
-      font-size: .8rem; font-weight: 500; color: var(--text3);
-      padding: 3px 9px; border-radius: 6px;
-      background: var(--bg3); border: 1px solid var(--border);
-    }
-    .header-spacer { flex: 1; }
-    .header-link {
-      display: flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 8px;
-      font-size: .8rem; font-weight: 700; color: var(--text2);
-      background: var(--bg3); border: 1px solid var(--border);
-      transition: var(--trans);
-    }
-    .header-link:hover { color: var(--text); border-color: var(--border2); }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--bg5); border-radius: 2px; }
 
-    /* ── HERO ── */
-    .hero {
-      max-width: 1200px; margin: 0 auto;
-      padding: 60px 24px 44px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 14px; border-radius: 20px;
-      background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.25);
-      font-size: .75rem; font-weight: 700; color: var(--p2);
-      margin-bottom: 20px; letter-spacing: .04em; text-transform: uppercase;
-    }
-    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--p); display: inline-block; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900; line-height: 1.1; margin-bottom: 14px;
-    }
-    .hero h1 em { font-style: normal; color: var(--p2); }
-    .hero p { font-size: 1rem; color: var(--text2); max-width: 500px; line-height: 1.65; margin-bottom: 32px; }
-    .hero-stats {
-      display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
-    }
-    .stat { text-align: center; }
-    .stat-num { font-size: 1.5rem; font-weight: 900; color: var(--text); }
-    .stat-lbl { font-size: .72rem; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BACKGROUND — floating gradient orbs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.bg-orbs {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); opacity: .18;
+  animation: orbFloat 18s ease-in-out infinite;
+}
+.orb-1 { width: 600px; height: 600px; background: var(--violet2); top: -200px; left: -200px; animation-delay: 0s; }
+.orb-2 { width: 500px; height: 500px; background: var(--pink);    top: 30%;   right: -150px; animation-delay: -6s; }
+.orb-3 { width: 400px; height: 400px; background: var(--cyan);    bottom: -100px; left: 30%; animation-delay: -12s; }
+@keyframes orbFloat {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(40px,-30px) scale(1.07); }
+  66%      { transform: translate(-20px,20px) scale(.95); }
+}
 
-    /* ── CONTROLS ── */
-    .controls {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 24px 28px;
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    .search-wrap {
-      flex: 1; min-width: 220px;
-      display: flex; align-items: center; gap: 8px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 0 12px;
-      transition: var(--trans);
-    }
-    .search-wrap:focus-within { border-color: var(--p); }
-    .search-wrap svg { color: var(--text3); flex-shrink: 0; }
-    .search-wrap input {
-      background: none; border: none; outline: none;
-      color: var(--text); font-size: .85rem; font-family: inherit;
-      padding: 9px 0; width: 100%;
-    }
-    .search-wrap input::placeholder { color: var(--text3); }
-    .filters { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-btn {
-      padding: 7px 14px; border-radius: 8px; flex-shrink: 0;
-      font-size: .78rem; font-weight: 700;
-      background: var(--bg2); border: 1px solid var(--border);
-      color: var(--text2); transition: var(--trans);
-    }
-    .filter-btn:hover { color: var(--text); border-color: var(--border2); }
-    .filter-btn.active { background: var(--p); color: #fff; border-color: transparent; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(7,7,14,.82);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px; height: 58px;
+  display: flex; align-items: center; gap: 14px;
+}
+.logo {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 1rem; font-weight: 800; color: var(--text);
+}
+.logo-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--violet2), var(--pink));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.repo-slug {
+  padding: 3px 10px; border-radius: 6px;
+  font-size: .75rem; font-weight: 600; color: var(--text3);
+  background: var(--bg3); border: 1px solid var(--border);
+  font-family: 'Courier New', monospace;
+}
+.spacer { flex: 1; }
+.hlink {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 13px; border-radius: 8px;
+  font-size: .78rem; font-weight: 700; color: var(--text2);
+  background: var(--bg3); border: 1px solid var(--border);
+  transition: var(--trans);
+}
+.hlink:hover { color: var(--text); border-color: var(--border2); background: var(--bg4); }
 
-    /* ── SECTION LABEL ── */
-    .section-head {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 24px 14px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-head h2 {
-      font-size: .72rem; font-weight: 800; color: var(--text3);
-      text-transform: uppercase; letter-spacing: .1em;
-    }
-    .section-head .count {
-      padding: 1px 7px; border-radius: 10px;
-      font-size: .68rem; font-weight: 800;
-      background: var(--bg3); color: var(--text3);
-    }
-    .section-divider { flex: 1; height: 1px; background: var(--border); }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 90px 24px 56px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
 
-    /* ── GRID ── */
-    .grid {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 24px 32px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 12px;
-    }
+/* Animated badge */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 20px;
+  background: rgba(167,139,250,.08);
+  border: 1px solid rgba(167,139,250,.22);
+  font-size: .72rem; font-weight: 800;
+  color: var(--violet); margin-bottom: 28px;
+  text-transform: uppercase; letter-spacing: .08em;
+  animation: fadeDown .7s ease both;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 8px var(--violet);
+  animation: ping 2s ease-in-out infinite;
+}
+@keyframes ping {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.4); opacity: .6; }
+}
 
-    /* ── PROJECT CARD ── */
-    .card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex; flex-direction: column; gap: 10px;
-      transition: var(--trans);
-      position: relative; overflow: hidden;
-    }
-    .card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(99,102,241,.06), transparent);
-      opacity: 0; transition: opacity .25s;
-    }
-    .card:hover {
-      border-color: var(--border2);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.5);
-    }
-    .card:hover::before { opacity: 1; }
-    .card.hidden { display: none !important; }
+/* Gradient animated title */
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900; line-height: 1.05;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #fff 0%, var(--violet) 40%, var(--pink) 70%, var(--cyan) 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 6s ease infinite, fadeUp .7s .1s ease both;
+}
+@keyframes gradShift {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
 
-    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .card-icon {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: var(--bg3); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; flex-shrink: 0;
-    }
-    .card-cat {
-      padding: 3px 9px; border-radius: 6px;
-      font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
-      border: 1px solid;
-    }
-    .cat-game  { color: #10b981; border-color: rgba(16,185,129,.25); background: rgba(16,185,129,.08); }
-    .cat-tool  { color: #06b6d4; border-color: rgba(6,182,212,.25);  background: rgba(6,182,212,.08); }
-    .cat-clone { color: #f59e0b; border-color: rgba(245,158,11,.25); background: rgba(245,158,11,.08); }
-    .cat-site  { color: #ec4899; border-color: rgba(236,72,153,.25); background: rgba(236,72,153,.08); }
+.hero-sub {
+  font-size: .98rem; color: var(--text2); max-width: 480px;
+  line-height: 1.7; margin-bottom: 40px;
+  animation: fadeUp .7s .2s ease both;
+}
 
-    .card h3 { font-size: .9rem; font-weight: 800; line-height: 1.3; }
-    .card p  { font-size: .78rem; color: var(--text2); line-height: 1.6; flex: 1; }
+/* Stats row */
+.hero-stats {
+  display: flex; gap: 0; margin-bottom: 0;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  animation: fadeUp .7s .3s ease both;
+}
+.stat-box {
+  padding: 16px 32px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-box:last-child { border-right: none; }
+.stat-num {
+  font-size: 1.6rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-lbl { font-size: .65rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-top: 2px; }
 
-    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tag {
-      padding: 2px 7px; border-radius: 5px;
-      font-size: .65rem; font-weight: 600;
-      background: var(--bg4); color: var(--text3);
-      border: 1px solid var(--border);
-    }
-    .card-arrow {
-      width: 26px; height: 26px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--bg3); color: var(--text3);
-      transition: var(--trans); flex-shrink: 0;
-    }
-    .card:hover .card-arrow { background: var(--p); color: #fff; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTROLS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.controls {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px 32px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  animation: fadeUp .7s .4s ease both;
+}
+.search-wrap {
+  flex: 1; min-width: 220px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0 14px; transition: var(--trans);
+}
+.search-wrap:focus-within {
+  border-color: rgba(167,139,250,.4);
+  box-shadow: 0 0 0 3px rgba(167,139,250,.08);
+}
+.search-wrap svg { color: var(--text3); flex-shrink: 0; }
+.search-wrap input {
+  background: none; border: none; outline: none;
+  color: var(--text); font-size: .85rem; font-family: inherit;
+  padding: 10px 0; width: 100%;
+}
+.search-wrap input::placeholder { color: var(--text3); }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 8px 16px; border-radius: 9px;
+  font-size: .78rem; font-weight: 700; flex-shrink: 0;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text2); transition: var(--trans);
+}
+.filter-btn:hover { color: var(--text); border-color: var(--border2); background: var(--bg3); }
+.filter-btn.active[data-filter="all"]   { background: linear-gradient(135deg,var(--violet2),var(--pink)); color:#fff; border-color:transparent; }
+.filter-btn.active[data-filter="game"]  { background: rgba(52,211,153,.15); color:var(--emerald); border-color:rgba(52,211,153,.3); }
+.filter-btn.active[data-filter="tool"]  { background: rgba(34,211,238,.15); color:var(--cyan);    border-color:rgba(34,211,238,.3); }
+.filter-btn.active[data-filter="clone"] { background: rgba(251,191,36,.12); color:var(--amber);   border-color:rgba(251,191,36,.28); }
+.filter-btn.active[data-filter="site"]  { background: rgba(244,114,182,.12);color:var(--pink);    border-color:rgba(244,114,182,.28); }
 
-    /* ── NO RESULTS ── */
-    .no-results {
-      max-width: 1200px; margin: 0 auto;
-      padding: 60px 24px; text-align: center; color: var(--text3);
-      display: none;
-    }
-    .no-results.show { display: block; }
-    .no-results h3 { font-size: 1rem; font-weight: 700; color: var(--text2); margin-bottom: 6px; }
-    .no-results p  { font-size: .85rem; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION HEADER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.section-head {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label {
+  font-size: .68rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .12em;
+  padding: 3px 10px; border-radius: 5px;
+  border: 1px solid;
+}
+.section-label.game  { color:var(--emerald); border-color:rgba(52,211,153,.25); background:rgba(52,211,153,.07); }
+.section-label.tool  { color:var(--cyan);    border-color:rgba(34,211,238,.25); background:rgba(34,211,238,.07); }
+.section-label.clone { color:var(--amber);   border-color:rgba(251,191,36,.22); background:rgba(251,191,36,.07); }
+.section-label.site  { color:var(--pink);    border-color:rgba(244,114,182,.22);background:rgba(244,114,182,.07); }
+.section-count {
+  font-size: .65rem; font-weight: 800; color: var(--text3);
+  padding: 2px 8px; border-radius: 8px;
+  background: var(--bg3); border: 1px solid var(--border);
+}
+.section-line { flex: 1; height: 1px; background: var(--border); }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      padding: 24px;
-      margin-top: 20px;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-brand {
-      display: flex; align-items: center; gap: 8px;
-      font-size: .9rem; font-weight: 800;
-    }
-    .footer-brand svg { color: var(--p); }
-    footer p { font-size: .78rem; color: var(--text3); }
-    footer a { color: var(--p2); transition: color .15s; }
-    footer a:hover { color: var(--p); }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GRID
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.grid {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px,1fr));
+  gap: 13px;
+}
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .header-slug { display: none; }
-      .hero { padding: 40px 16px 32px; }
-      .controls { padding: 0 16px 20px; }
-      .grid { padding: 0 16px 24px; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .section-head { padding: 0 16px 10px; }
-      .card { padding: 14px; }
-    }
-    @media (max-width: 420px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 16px; }
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PROJECT CARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 11px;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1),
+              border-color .22s, box-shadow .22s;
+  position: relative; overflow: hidden;
+  cursor: pointer;
+  animation: cardIn .5s ease both;
+}
+.card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--c,#a78bfa) 0%, transparent 60%);
+  opacity: 0; transition: opacity .28s;
+  pointer-events: none;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: var(--border2);
+  box-shadow: 0 20px 50px rgba(0,0,0,.55), 0 0 0 1px var(--border2);
+}
+.card:hover::after { opacity: .06; }
+.card.hidden { display: none !important; }
 
-    /* ── ANIMATIONS ── */
-    .card { animation: fadeUp .4s ease both; }
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(12px); }
-      to   { opacity:1; transform:none; }
-    }
+/* Shimmer line at top on hover */
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--c,#a78bfa), transparent);
+  transform: scaleX(0); transition: transform .35s ease;
+}
+.card:hover::before { transform: scaleX(1); }
+
+/* Set per-category color variable */
+.card[data-cat="game"]  { --c: var(--emerald); }
+.card[data-cat="tool"]  { --c: var(--cyan); }
+.card[data-cat="clone"] { --c: var(--amber); }
+.card[data-cat="site"]  { --c: var(--pink); }
+
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.card-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  background: var(--bg3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem; flex-shrink: 0;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.card:hover .card-icon { transform: scale(1.12) rotate(-4deg); }
+
+.cat-tag {
+  padding: 3px 9px; border-radius: 6px;
+  font-size: .63rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid; white-space: nowrap;
+}
+.cat-game  { color:var(--emerald); border-color:rgba(52,211,153,.3);  background:rgba(52,211,153,.08); }
+.cat-tool  { color:var(--cyan);    border-color:rgba(34,211,238,.3);  background:rgba(34,211,238,.08); }
+.cat-clone { color:var(--amber);   border-color:rgba(251,191,36,.28); background:rgba(251,191,36,.07); }
+.cat-site  { color:var(--pink);    border-color:rgba(244,114,182,.28);background:rgba(244,114,182,.07); }
+
+.card h3 { font-size: .9rem; font-weight: 800; line-height: 1.3; }
+.card p  { font-size: .77rem; color: var(--text2); line-height: 1.65; flex: 1; }
+
+.card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 2px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag {
+  padding: 2px 7px; border-radius: 5px;
+  font-size: .62rem; font-weight: 600;
+  background: var(--bg4); color: var(--text3);
+  border: 1px solid var(--border);
+  transition: var(--trans);
+}
+.card:hover .tag { color: var(--text2); }
+.arrow {
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg4); color: var(--text3); flex-shrink: 0;
+  transition: var(--trans);
+}
+.card:hover .arrow {
+  background: var(--c, var(--violet));
+  color: var(--bg);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c,#a78bfa) 60%, transparent);
+}
+
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NO RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.no-results {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 70px 24px; text-align: center; display: none;
+}
+.no-results.show { display: block; }
+.no-results h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+.no-results p  { color: var(--text2); font-size: .88rem; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  background: var(--bg2); margin-top: 24px; padding: 24px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .9rem; font-weight: 800;
+}
+.footer-logo span { color: var(--violet); }
+footer p { font-size: .75rem; color: var(--text3); }
+footer a { color: var(--violet); transition: color .15s; }
+footer a:hover { color: var(--pink); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   UTILITY ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:none} }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 700px) {
+  .repo-slug { display: none; }
+  .hero { padding: 60px 16px 40px; }
+  .hero-stats { width: 100%; }
+  .stat-box { padding: 12px 20px; flex: 1; }
+  .controls { padding: 0 16px 24px; }
+  .grid { padding: 0 16px 28px; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .section-head { padding: 0 16px 10px; }
+  .card { padding: 14px; }
+  .card-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+}
+@media (max-width: 420px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero-stats { border-radius: 10px; flex-wrap: wrap; }
+  .stat-box { border-right: none; border-bottom: 1px solid var(--border); width: 50%; }
+}
   </style>
 </head>
 <body>
 
+<!-- Background Orbs -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
 <!-- HEADER -->
 <header class="header">
   <div class="header-inner">
-    <div class="header-logo">
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="8" fill="#6366f1"/>
-        <path d="M6 22 L12 10 L16 18 L20 13 L26 22" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
       Abdullah Akbar
     </div>
-    <span class="header-slug">web-projects</span>
-    <div class="header-spacer"></div>
-    <a href="Portfolio/" class="header-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span class="repo-slug">web-projects</span>
+    <div class="spacer"></div>
+    <a href="Portfolio/" class="hlink">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       Portfolio
     </a>
-    <a href="https://github.com/Abudora-0/web-projects" target="_blank" class="header-link">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+    <a href="https://github.com/Abudora-0/web-projects" target="_blank" rel="noopener" class="hlink">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
       GitHub
     </a>
   </div>
@@ -301,13 +464,14 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge"><span></span>Open Source</div>
-  <h1>My <em>Web Projects</em></h1>
-  <p>A curated collection of games, tools, UI clones, and full websites — built with HTML, CSS & JavaScript.</p>
+  <div class="hero-badge"><span class="badge-dot"></span>Open Source &bull; 27 Projects</div>
+  <h1 class="hero-title">My Web Projects</h1>
+  <p class="hero-sub">Games, tools, UI clones &amp; full websites — all built from scratch with HTML, CSS &amp; JavaScript.</p>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num" id="statTotal">27</div><div class="stat-lbl">Projects</div></div>
-    <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Categories</div></div>
-    <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Languages</div></div>
+    <div class="stat-box"><div class="stat-num" id="sTotal">27</div><div class="stat-lbl">Projects</div></div>
+    <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">Languages</div></div>
+    <div class="stat-box"><div class="stat-num" id="sFiltered">27</div><div class="stat-lbl">Visible</div></div>
   </div>
 </section>
 
@@ -315,482 +479,327 @@
 <div class="controls">
   <div class="search-wrap">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="searchInput" placeholder="Search projects…" autocomplete="off">
+    <input type="text" id="search" placeholder="Search projects…" autocomplete="off">
   </div>
-  <div class="filters" id="filterBtns">
+  <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="game">Games</button>
-    <button class="filter-btn" data-filter="tool">Tools</button>
-    <button class="filter-btn" data-filter="clone">Clones</button>
-    <button class="filter-btn" data-filter="site">Websites</button>
+    <button class="filter-btn" data-filter="game">🎮 Games</button>
+    <button class="filter-btn" data-filter="tool">🔧 Tools</button>
+    <button class="filter-btn" data-filter="clone">🎨 Clones</button>
+    <button class="filter-btn" data-filter="site">🌐 Websites</button>
   </div>
 </div>
 
-<!-- ── GAMES ── -->
-<div class="section-head" data-section="game">
-  <h2>Games</h2>
-  <span class="count" id="count-game"></span>
-  <div class="section-divider"></div>
+<!-- ━━━━━━ GAMES ━━━━━━ -->
+<div class="section-head" id="sh-game">
+  <span class="section-label game">Games</span>
+  <span class="section-count" id="sc-game">5</span>
+  <div class="section-line"></div>
 </div>
-<div class="grid" id="grid-game">
+<div class="grid">
 
-  <a href="Dino%20Game/" class="card" data-cat="game" data-name="dino game endless runner dinosaur">
-    <div class="card-top">
-      <div class="card-icon">🦕</div>
-      <span class="card-cat cat-game">Game</span>
-    </div>
+  <a href="Dino Game/index.html" class="card" data-cat="game" data-name="dino game endless runner dinosaur obstacles">
+    <div class="card-top"><div class="card-icon">🦕</div><span class="cat-tag cat-game">Game</span></div>
     <h3>Dino Game</h3>
-    <p>Browser-based dinosaur endless runner with obstacles, high scores, and sound effects.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Browser-based dinosaur endless runner with obstacles, high scores, and mobile touch controls.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Snake%20Game/" class="card" data-cat="game" data-name="snake game canvas score keyboard">
-    <div class="card-top">
-      <div class="card-icon">🐍</div>
-      <span class="card-cat cat-game">Game</span>
-    </div>
+  <a href="Snake Game/index.html" class="card" data-cat="game" data-name="snake game canvas score keyboard controls">
+    <div class="card-top"><div class="card-icon">🐍</div><span class="cat-tag cat-game">Game</span></div>
     <h3>Snake Game</h3>
-    <p>Classic snake on canvas with keyboard controls, growing snake, and score tracking.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Classic snake on canvas with keyboard + swipe controls, growing snake, and score tracking.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Animated%20Car/" class="card" data-cat="game" data-name="animated car animation css scene motion">
-    <div class="card-top">
-      <div class="card-icon">🚗</div>
-      <span class="card-cat cat-game">Game</span>
-    </div>
+  <a href="Animated Car/index.html" class="card" data-cat="game" data-name="animated car css animation scene parallax motion">
+    <div class="card-top"><div class="card-icon">🚗</div><span class="cat-tag cat-game">Game</span></div>
     <h3>Animated Car</h3>
-    <p>CSS + JS animated car scene with parallax scrolling and smooth motion effects.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>CSS + JS animated car scene with parallax scrolling background and smooth motion effects.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Arcade%20Hub/" class="card" data-cat="game" data-name="arcade hub games collection mini games memory wordle">
-    <div class="card-top">
-      <div class="card-icon">🕹️</div>
-      <span class="card-cat cat-game">Game</span>
-    </div>
+  <a href="Arcade Hub/index.html" class="card" data-cat="game" data-name="arcade hub games collection memory wordle 2048 simon hangman quiz">
+    <div class="card-top"><div class="card-icon">🕹️</div><span class="cat-tag cat-game">Game</span></div>
     <h3>Arcade Hub</h3>
-    <p>A hub of mini-games — Memory, Snake, Wordle, 2048, Hangman, Simon Says, and more.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>A hub of 8 mini-games — Memory, Snake, Wordle, 2048, Hangman, Tic-Tac-Toe, Simon Says &amp; Quiz.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Tic%20Tac%20Toe/" class="card" data-cat="game" data-name="tic tac toe xo noughts crosses game">
-    <div class="card-top">
-      <div class="card-icon">⭕</div>
-      <span class="card-cat cat-game">Game</span>
-    </div>
+  <a href="Tic Tac Toe/index.html" class="card" data-cat="game" data-name="tic tac toe xo noughts crosses two player">
+    <div class="card-top"><div class="card-icon">⭕</div><span class="cat-tag cat-game">Game</span></div>
     <h3>Tic Tac Toe</h3>
-    <p>Two-player tic-tac-toe with win detection, score tracking, and smooth animations.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Two-player tic-tac-toe with win detection, score tracking, and satisfying animations.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
 </div>
 
-<!-- ── TOOLS ── -->
-<div class="section-head" data-section="tool">
-  <h2>Tools &amp; Apps</h2>
-  <span class="count" id="count-tool"></span>
-  <div class="section-divider"></div>
+<!-- ━━━━━━ TOOLS ━━━━━━ -->
+<div class="section-head" id="sh-tool">
+  <span class="section-label tool">Tools &amp; Apps</span>
+  <span class="section-count" id="sc-tool">10</span>
+  <div class="section-line"></div>
 </div>
-<div class="grid" id="grid-tool">
+<div class="grid">
 
-  <a href="Analog%20Clock/" class="card" data-cat="tool" data-name="analog clock time realtime css transforms">
-    <div class="card-top">
-      <div class="card-icon">🕐</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Analog Clock/index.html" class="card" data-cat="tool" data-name="analog clock time realtime transforms">
+    <div class="card-top"><div class="card-icon">🕐</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Analog Clock</h3>
-    <p>Real-time analog clock rendered with CSS transforms and JavaScript date functions.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Real-time analog clock rendered with CSS transforms and JavaScript Date, with theme switcher.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Email%20Validator/" class="card" data-cat="tool" data-name="email validator validate check regex feedback">
-    <div class="card-top">
-      <div class="card-icon">✉️</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Email Validator/index.html" class="card" data-cat="tool" data-name="email validator validate regex feedback">
+    <div class="card-top"><div class="card-icon">✉️</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Email Validator</h3>
     <p>Client-side email validation tool with real-time regex checking and visual feedback.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Password%20Manager/" class="card" data-cat="tool" data-name="password manager credentials localstorage save delete">
-    <div class="card-top">
-      <div class="card-icon">🔐</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Password Manager/index.html" class="card" data-cat="tool" data-name="password manager credentials localstorage save delete">
+    <div class="card-top"><div class="card-icon">🔐</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Password Manager</h3>
     <p>Browser-based password manager using localStorage. Save, view, copy, and delete credentials.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="De%20Calc/" class="card" data-cat="tool" data-name="calculator calc math arithmetic de calc">
-    <div class="card-top">
-      <div class="card-icon">🧮</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="De Calc/index.html" class="card" data-cat="tool" data-name="calculator calc math arithmetic keyboard history">
+    <div class="card-top"><div class="card-icon">🧮</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>De Calc</h3>
-    <p>A sleek calculator with arithmetic operations, keyboard support, and history.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>A sleek calculator with arithmetic operations, keyboard shortcut support, and history log.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="To%20Do%20List/" class="card" data-cat="tool" data-name="todo list tasks checklist localstorage productivity">
-    <div class="card-top">
-      <div class="card-icon">✅</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="To Do List/index.html" class="card" data-cat="tool" data-name="todo list tasks checklist localstorage productivity">
+    <div class="card-top"><div class="card-icon">✅</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>To Do List</h3>
-    <p>Task manager with add, complete, delete, and filter functionality powered by localStorage.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Task manager with add, complete, delete, and filter functionality — persisted to localStorage.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Wheather%20App/" class="card" data-cat="tool" data-name="weather app forecast api temperature wind">
-    <div class="card-top">
-      <div class="card-icon">🌤️</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Wheather App/index.html" class="card" data-cat="tool" data-name="weather app forecast api temperature wind humidity">
+    <div class="card-top"><div class="card-icon">🌤️</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Weather App</h3>
-    <p>Live weather app using a weather API. Shows temperature, wind, humidity, and forecast.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">API</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Live weather app using a weather API. Shows temperature, wind speed, humidity, and forecast.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">API</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Xchange/" class="card" data-cat="tool" data-name="xchange currency converter exchange rates api">
-    <div class="card-top">
-      <div class="card-icon">💱</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Xchange/index.html" class="card" data-cat="tool" data-name="xchange currency converter exchange rates api">
+    <div class="card-top"><div class="card-icon">💱</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Xchange</h3>
-    <p>Live currency converter with real exchange rates. Supports all major global currencies.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">API</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Live currency converter with real-time exchange rates. Supports all major global currencies.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">API</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Album%20Player/" class="card" data-cat="tool" data-name="album player music audio player songs playlist">
-    <div class="card-top">
-      <div class="card-icon">🎧</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Album Player/index.html" class="card" data-cat="tool" data-name="album player music audio player songs playlist vinyl">
+    <div class="card-top"><div class="card-icon">🎧</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Album Player</h3>
-    <p>Custom audio player with album art, playlist, progress bar, and playback controls.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Custom audio player with album art, vinyl animation, lyrics, playlist, and upload support.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Personal%20Budget%20Expense%20Tracker/" class="card" data-cat="tool" data-name="budget expense tracker finance money personal fintrack">
-    <div class="card-top">
-      <div class="card-icon">💰</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Personal Budget Expense Tracker/index.html" class="card" data-cat="tool" data-name="budget expense tracker finance money fintrack chart">
+    <div class="card-top"><div class="card-icon">💰</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Budget Tracker</h3>
-    <p>Personal finance tracker with income/expenses, charts, budget goals, and CSV export.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">Chart.js</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Personal finance tracker with income/expense charts, budget goals, insights, and CSV export.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">Chart.js</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Movie%20Recommendation%20App/" class="card" data-cat="tool" data-name="movie recommendation app tmdb api films watchlist favorites">
-    <div class="card-top">
-      <div class="card-icon">🎬</div>
-      <span class="card-cat cat-tool">Tool</span>
-    </div>
+  <a href="Movie Recommendation App/index.html" class="card" data-cat="tool" data-name="movie recommendation app tmdb api films watchlist favorites search">
+    <div class="card-top"><div class="card-icon">🎬</div><span class="cat-tag cat-tool">Tool</span></div>
     <h3>Movie Finder</h3>
-    <p>Movie discovery app using TMDB API. Browse trending films, search, add to watchlist and favorites.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">TMDB API</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Movie discovery app powered by TMDB API — trending films, genre filter, watchlist &amp; favorites.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">TMDB API</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
 </div>
 
-<!-- ── CLONES ── -->
-<div class="section-head" data-section="clone">
-  <h2>UI Clones &amp; Templates</h2>
-  <span class="count" id="count-clone"></span>
-  <div class="section-divider"></div>
+<!-- ━━━━━━ CLONES ━━━━━━ -->
+<div class="section-head" id="sh-clone">
+  <span class="section-label clone">UI Clones &amp; Templates</span>
+  <span class="section-count" id="sc-clone">8</span>
+  <div class="section-line"></div>
 </div>
-<div class="grid" id="grid-clone">
+<div class="grid">
 
-  <a href="Netflix%20Clone/" class="card" data-cat="clone" data-name="netflix clone streaming landing page ui">
-    <div class="card-top">
-      <div class="card-icon">🎞️</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="Netflix Clone/index.html" class="card" data-cat="clone" data-name="netflix clone streaming landing page ui">
+    <div class="card-top"><div class="card-icon">🎞️</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Netflix Clone</h3>
-    <p>Static frontend clone of the Netflix landing page with hero, FAQ, and feature sections.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Static frontend clone of the Netflix landing page — hero, FAQs, and feature sections.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Spotify%20Clone/" class="card" data-cat="clone" data-name="spotify clone music player ui playlist sidebar">
-    <div class="card-top">
-      <div class="card-icon">🎵</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="Spotify Clone/index.html" class="card" data-cat="clone" data-name="spotify clone music player ui sidebar playlist">
+    <div class="card-top"><div class="card-icon">🎵</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Spotify Clone</h3>
-    <p>Spotify UI clone with sidebar navigation, playlist layout, and functional player controls.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Spotify UI clone with sidebar navigation, multiple artists, and functional player controls.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Myntra%20Clone/" class="card" data-cat="clone" data-name="myntra clone ecommerce fashion shopping ui">
-    <div class="card-top">
-      <div class="card-icon">👗</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="Myntra Clone/index.html" class="card" data-cat="clone" data-name="myntra clone ecommerce fashion shopping ui grid">
+    <div class="card-top"><div class="card-icon">👗</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Myntra Clone</h3>
-    <p>E-commerce fashion landing page clone inspired by Myntra's UI and product grid.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>E-commerce fashion landing page clone with product grid, navbar, and responsive layout.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="WIndow%2011%20UI%20Clone/" class="card" data-cat="clone" data-name="windows 11 ui clone desktop taskbar start menu">
-    <div class="card-top">
-      <div class="card-icon">🖥️</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="WIndow 11 UI Clone/index.html" class="card" data-cat="clone" data-name="windows 11 ui clone desktop taskbar start menu">
+    <div class="card-top"><div class="card-icon">🖥️</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Windows 11 UI Clone</h3>
     <p>Web-based recreation of the Windows 11 desktop with taskbar, start menu, and widgets.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="X%20%26%20Twitter%20Clone/" class="card" data-cat="clone" data-name="x twitter clone social media feed tweets ui">
-    <div class="card-top">
-      <div class="card-icon">𝕏</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="X &amp; Twitter Clone/index.html" class="card" data-cat="clone" data-name="x twitter clone social media feed tweets ui tailwind">
+    <div class="card-top"><div class="card-icon">𝕏</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>X / Twitter Clone</h3>
-    <p>Twitter/X UI clone with feed layout, tweet cards, sidebar, and dark mode design.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Twitter/X UI clone with feed layout, tweet cards, sidebar trends, and dark mode design.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="BootStrap%20Website/" class="card" data-cat="clone" data-name="bootstrap website multi-page responsive framework">
-    <div class="card-top">
-      <div class="card-icon">🅱️</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="BootStrap Website/index.html" class="card" data-cat="clone" data-name="bootstrap website multi page responsive framework">
+    <div class="card-top"><div class="card-icon">🅱️</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Bootstrap Website</h3>
-    <p>Multi-page responsive website built with Bootstrap framework components.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Multi-page responsive website built entirely with Bootstrap framework components.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="CheatSheet%20Template/" class="card" data-cat="clone" data-name="cheatsheet template prism syntax highlight code">
-    <div class="card-top">
-      <div class="card-icon">📋</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="CheatSheet Template/index.html" class="card" data-cat="clone" data-name="cheatsheet template prism syntax highlight code developer">
+    <div class="card-top"><div class="card-icon">📋</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Cheatsheet Template</h3>
-    <p>Developer cheatsheet template with Prism.js syntax highlighting for HTML, CSS, JS, Python, and more.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Prism.js</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Developer cheatsheet template with Prism.js syntax highlighting — HTML, CSS, JS, Python, C, Java.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Prism.js</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Incognito%20Mode/" class="card" data-cat="clone" data-name="incognito mode dark browser ui chrome private">
-    <div class="card-top">
-      <div class="card-icon">🕵️</div>
-      <span class="card-cat cat-clone">Clone</span>
-    </div>
+  <a href="Incognito Mode/index.html" class="card" data-cat="clone" data-name="incognito mode dark chrome browser private new tab">
+    <div class="card-top"><div class="card-icon">🕵️</div><span class="cat-tag cat-clone">Clone</span></div>
     <h3>Incognito Mode</h3>
     <p>Stylized recreation of the Chrome incognito new tab page with dark aesthetic.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
 </div>
 
-<!-- ── WEBSITES ── -->
-<div class="section-head" data-section="site">
-  <h2>Websites</h2>
-  <span class="count" id="count-site"></span>
-  <div class="section-divider"></div>
+<!-- ━━━━━━ WEBSITES ━━━━━━ -->
+<div class="section-head" id="sh-site">
+  <span class="section-label site">Websites</span>
+  <span class="section-count" id="sc-site">4</span>
+  <div class="section-line"></div>
 </div>
-<div class="grid" id="grid-site">
+<div class="grid">
 
-  <a href="Portfolio/" class="card" data-cat="site" data-name="portfolio personal website skills projects contact">
-    <div class="card-top">
-      <div class="card-icon">👤</div>
-      <span class="card-cat cat-site">Website</span>
-    </div>
+  <a href="Portfolio/index.html" class="card" data-cat="site" data-name="portfolio personal website skills projects contact">
+    <div class="card-top"><div class="card-icon">👤</div><span class="cat-tag cat-site">Website</span></div>
     <h3>Portfolio</h3>
-    <p>Personal portfolio website with skills, project showcase, and contact section.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Personal portfolio website with skills showcase, project gallery, and contact section.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Blog%20Website/" class="card" data-cat="site" data-name="blog website multi-page search about contact posts">
-    <div class="card-top">
-      <div class="card-icon">📝</div>
-      <span class="card-cat cat-site">Website</span>
-    </div>
+  <a href="Blog Website/index.html" class="card" data-cat="site" data-name="blog website multi page search about contact posts articles">
+    <div class="card-top"><div class="card-icon">📝</div><span class="cat-tag cat-site">Website</span></div>
     <h3>Blog Website</h3>
-    <p>Multi-page blog with article listing, search, about, and contact pages.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Multi-page blog with article listing, search functionality, about, and contact pages.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Landing%20Page/" class="card" data-cat="site" data-name="landing page product marketing animations responsive">
-    <div class="card-top">
-      <div class="card-icon">🚀</div>
-      <span class="card-cat cat-site">Website</span>
-    </div>
+  <a href="Landing Page/index.html" class="card" data-cat="site" data-name="landing page product marketing animations responsive hero">
+    <div class="card-top"><div class="card-icon">🚀</div><span class="cat-tag cat-site">Website</span></div>
     <h3>Landing Page</h3>
     <p>Modern product landing page with scroll animations, responsive layout, and CTA sections.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
-  <a href="Foodies/" class="card" data-cat="site" data-name="foodies food restaurant website menu recipes">
-    <div class="card-top">
-      <div class="card-icon">🍕</div>
-      <span class="card-cat cat-site">Website</span>
-    </div>
+  <a href="Foodies/index.html" class="card" data-cat="site" data-name="foodies food restaurant website menu recipes">
+    <div class="card-top"><div class="card-icon">🍕</div><span class="cat-tag cat-site">Website</span></div>
     <h3>Foodies</h3>
-    <p>Food and restaurant website with menu sections, recipe cards, and vibrant visuals.</p>
-    <div class="card-footer">
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-      <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </div>
+    <p>Food and restaurant website with menu sections, recipe cards, and vibrant visual design.</p>
+    <div class="card-footer"><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><div class="arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div>
   </a>
 
 </div>
 
-<!-- No results -->
+<!-- No Results -->
 <div class="no-results" id="noResults">
   <h3>No projects found</h3>
-  <p>Try a different search term or category filter.</p>
+  <p>Try a different keyword or category filter.</p>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#6366f1"/><path d="M6 22 L12 10 L16 18 L20 13 L26 22" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Abdullah Akbar
+    <div class="footer-logo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--violet)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Abdullah</span> Akbar
     </div>
     <p>Built with HTML, CSS &amp; JS &mdash; <a href="https://github.com/Abudora-0/web-projects" target="_blank">github.com/Abudora-0/web-projects</a></p>
   </div>
 </footer>
 
 <script>
-  const cards    = document.querySelectorAll('.card[data-cat]');
-  const sections = document.querySelectorAll('.section-head, .grid');
+  const cards    = [...document.querySelectorAll('.card[data-cat]')];
+  const sections = { game:'sh-game', tool:'sh-tool', clone:'sh-clone', site:'sh-site' };
   const noRes    = document.getElementById('noResults');
-  const search   = document.getElementById('searchInput');
-  const statTotal = document.getElementById('statTotal');
+  const sFiltered = document.getElementById('sFiltered');
 
-  // Category counts
-  const cats = ['game','tool','clone','site'];
-  cats.forEach(c => {
-    const n = document.querySelectorAll(`.card[data-cat="${c}"]`).length;
-    const el = document.getElementById('count-' + c);
-    if (el) el.textContent = n;
-  });
-  statTotal.textContent = cards.length;
+  // Stagger card animations
+  cards.forEach((c,i) => c.style.animationDelay = (i * 35) + 'ms');
 
-  // Filter
-  let activeCat = 'all';
-  let searchQ   = '';
+  let activeCat = 'all', q = '';
 
-  function applyFilters() {
-    let visible = 0;
-    cards.forEach(card => {
-      const cat   = card.dataset.cat;
-      const name  = card.dataset.name;
-      const matchCat  = activeCat === 'all' || cat === activeCat;
-      const matchQ    = !searchQ || name.includes(searchQ) || card.querySelector('h3').textContent.toLowerCase().includes(searchQ);
-      const show      = matchCat && matchQ;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
+  function filter() {
+    let vis = 0;
+    cards.forEach(c => {
+      const match = (activeCat === 'all' || c.dataset.cat === activeCat)
+                 && (!q || c.dataset.name.includes(q) || c.querySelector('h3').textContent.toLowerCase().includes(q));
+      c.classList.toggle('hidden', !match);
+      if (match) vis++;
+    });
+    if (sFiltered) sFiltered.textContent = vis;
+
+    // Hide/show section headers
+    Object.entries(sections).forEach(([cat, id]) => {
+      const hasVis = document.querySelector(`.card[data-cat="${cat}"]:not(.hidden)`);
+      const el = document.getElementById(id);
+      if (el) el.style.display = hasVis ? '' : 'none';
+      // Also hide associated grid
+      const grids = document.querySelectorAll('.grid');
+      grids.forEach(g => {
+        const first = g.querySelector('.card[data-cat]');
+        if (first && first.dataset.cat === cat) g.style.display = hasVis ? '' : 'none';
+      });
     });
 
-    // hide empty section headers
-    cats.forEach(c => {
-      const hasVisible = document.querySelector(`#grid-${c} .card:not(.hidden)`);
-      const head = document.querySelector(`.section-head[data-section="${c}"]`);
-      const grid = document.getElementById('grid-' + c);
-      if (head) head.style.display = hasVisible ? '' : 'none';
-      if (grid) grid.style.display = hasVisible ? '' : 'none';
-    });
-
-    noRes.classList.toggle('show', visible === 0);
+    noRes.classList.toggle('show', vis === 0);
   }
 
-  document.getElementById('filterBtns').addEventListener('click', e => {
+  document.getElementById('filters').addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeCat = btn.dataset.filter;
-    applyFilters();
+    filter();
   });
 
-  search.addEventListener('input', () => {
-    searchQ = search.value.trim().toLowerCase();
-    applyFilters();
+  document.getElementById('search').addEventListener('input', e => {
+    q = e.target.value.trim().toLowerCase();
+    filter();
   });
+
+  // Animate stats counter on load
+  function countUp(el, target, duration=1200) {
+    let start = 0, step = target / (duration / 16);
+    const tick = () => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.floor(start);
+      if (start < target) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  const sTotal = document.getElementById('sTotal');
+  const sFil   = document.getElementById('sFiltered');
+  setTimeout(() => { countUp(sTotal, 27); countUp(sFil, 27); }, 600);
 </script>
 </body>
 </html>
