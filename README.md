@@ -2,7 +2,7 @@
 
 A curated collection of **27 web projects** built from scratch using HTML, CSS, and vanilla JavaScript. Projects span browser games, productivity tools, UI/brand clones, and full multi-page websites.
 
-**Live demo →** [abudora-0.github.io/web-projects](https://abudora-0.github.io/web-projects)
+**Live demo →** [abudora-0.github.io/Web-Projects](https://abudora-0.github.io/Web-Projects/)
 
 ---
 
