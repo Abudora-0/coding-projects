@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simon Says - Remember and repeat the color sequences. Can you reach the highest level? Play on ArcadeHub!">
+  <title>Simon Says - ArcadeHub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .game-header {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .game-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .game-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .game-info {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .stats-display {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(45, 53, 97, 0.5);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .simon-board {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+      background: rgba(30, 35, 70, 0.6);
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 2px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .simon-pad {
+      aspect-ratio: 1;
+      border-radius: 1rem;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simon-pad::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 0;
+    }
+
+    .simon-pad > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .simon-pad.red {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3));
+      border-color: rgba(239, 68, 68, 0.5);
+    }
+
+    .simon-pad.red::before {
+      background: rgba(239, 68, 68, 0.6);
+    }
+
+    .simon-pad.blue {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.3));
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .simon-pad.blue::before {
+      background: rgba(59, 130, 246, 0.6);
+    }
+
+    .simon-pad.green {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3));
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .simon-pad.green::before {
+      background: rgba(16, 185, 129, 0.6);
+    }
+
+    .simon-pad.yellow {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(217, 119, 6, 0.3));
+      border-color: rgba(245, 158, 11, 0.5);
+    }
+
+    .simon-pad.yellow::before {
+      background: rgba(245, 158, 11, 0.6);
+    }
+
+    .simon-pad.active::before {
+      opacity: 1;
+    }
+
+    .simon-pad:hover:not(:disabled) {
+      transform: scale(1.05);
+      border-width: 4px;
+    }
+
+    .simon-pad:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .message {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1rem 0;
+      min-height: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .message.error {
+      color: var(--danger-color);
+    }
+
+    .message.success {
+      color: var(--success-color);
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn.secondary {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(131, 56, 236, 0.1));
+      color: var(--primary-color);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(131, 56, 236, 0.2));
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+            <circle cx="10" cy="10" r="3" fill="url(#logoGradient)"/>
+            <circle cx="30" cy="10" r="3" fill="url(#logoGradient)"/>
+            <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#logoGradient)"/>
+            <line x1="18" y1="5" x2="22" y2="5" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="35" x2="22" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8338ec;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="game-header">
+    <h1>🎮 Simon Says</h1>
+    <a href="index.html" class="back-button">← Back to Hub</a>
+  </div>
+
+  <div class="game-container">
+    <div class="game-info">
+      <p>Watch the pattern and repeat it! Each round adds a new color to remember.</p>
+    </div>
+
+    <div class="stats-display">
+      <div class="stat-item">
+        <span class="stat-label">Level</span>
+        <span class="stat-value" id="level">1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Score</span>
+        <span class="stat-value" id="score">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Best Level</span>
+        <span class="stat-value" id="bestLevel">-</span>
+      </div>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="simon-board" id="simonBoard">
+      <button class="simon-pad red" data-color="red" onclick="playerPress(this)">🔴</button>
+      <button class="simon-pad blue" data-color="blue" onclick="playerPress(this)">🔵</button>
+      <button class="simon-pad green" data-color="green" onclick="playerPress(this)">🟢</button>
+      <button class="simon-pad yellow" data-color="yellow" onclick="playerPress(this)">🟡</button>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="startBtn" onclick="startGame()">Start Game</button>
+      <button class="btn secondary" onclick="location.href='index.html'">Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/simon.js"></script>
+</body>
+</html>

@@ -1,60 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dino Adventures</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dino Run</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a1a'/%3E%3Crect x='4' y='14' width='14' height='10' fill='%2300c896'/%3E%3Crect x='12' y='8' width='6' height='8' fill='%2300c896'/%3E%3Crect x='13' y='4' width='10' height='8' fill='%2300c896'/%3E%3Crect x='20' y='8' width='5' height='4' fill='%2300c896'/%3E%3Crect x='20' y='5' width='3' height='3' fill='%231a1a1a'/%3E%3Crect x='1' y='16' width='5' height='6' fill='%2300c896'/%3E%3Crect x='7' y='23' width='4' height='6' fill='%2300c896'/%3E%3Crect x='12' y='23' width='4' height='4' fill='%2300c896'/%3E%3C/svg%3E"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="page">
 
-    <nav>
-        <span class="nav-logo">🦕 Dino Adventures</span>
-        <div class="nav-right">
-            <span class="hi-score-nav">Best: <strong id="hiScoreNav">0</strong></span>
-            <a href="../index.html" class="back-btn">← All Projects</a>
-        </div>
-    </nav>
-
-    <!-- Start Screen -->
-    <div class="overlay" id="startScreen">
-        <div class="overlay-box">
-            <div class="dino-emoji">🦕</div>
-            <h1>Dino Adventures</h1>
-            <p>Jump over the dragon to survive!</p>
-            <div class="controls-hint">
-                <div class="key-hint"><kbd>↑</kbd> or <kbd>Space</kbd> — Jump</div>
-                <div class="key-hint"><kbd>←</kbd> <kbd>→</kbd> — Move</div>
-            </div>
-            <button class="play-btn" onclick="startGame()">▶ Start Game</button>
-        </div>
+    <div class="hud">
+      <div class="pu-bar" id="puBar"></div>
+      <div class="scores">
+        <span class="hi-lbl">HI</span>
+        <span id="hiEl">00000</span>
+        <span id="scEl">00000</span>
+      </div>
     </div>
 
-    <!-- Game Over Screen -->
-    <div class="overlay hidden" id="gameOverScreen">
-        <div class="overlay-box">
-            <div class="dino-emoji">💀</div>
-            <h1>Game Over</h1>
-            <div class="score-display">
-                <div class="score-item"><span>Score</span><strong id="finalScore">0</strong></div>
-                <div class="score-item"><span>Best</span><strong id="finalBest">0</strong></div>
-            </div>
-            <button class="play-btn" onclick="restartGame()">↺ Play Again</button>
-        </div>
+    <div class="canvas-box">
+      <canvas id="c"></canvas>
     </div>
 
-    <!-- Game -->
-    <div class="game-scene" id="gameScene">
-        <div class="score-bar">
-            <span>Score: <strong id="scoreVal">0</strong></span>
-        </div>
-        <div class="gameContainer" id="gameContainer">
-            <div class="dino" id="dino"></div>
-            <div class="obstacle" id="obstacle"></div>
-        </div>
+    <div class="mob-row">
+      <button id="bJump" class="mbtn">▲ JUMP</button>
+      <button id="bDuck" class="mbtn">▼ DUCK</button>
     </div>
 
-    <script src="script.js"></script>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

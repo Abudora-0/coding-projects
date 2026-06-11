@@ -1,25 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 11 UI Clone</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows 11</title>
+  <link rel="icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <a href="../index.html" style="position:fixed;top:10px;left:10px;z-index:9999;background:rgba(0,0,0,0.55);color:white;text-decoration:none;padding:0.35rem 0.85rem;border-radius:20px;font-size:0.8rem;border:1px solid rgba(255,255,255,0.25);font-family:sans-serif;backdrop-filter:blur(8px);">&#8592; All Projects</a>
 
-    <div class="taskbar">
-        <img src="icons.PNG" alt="">
-        <img src="taskbarright.PNG" class="right" alt="">
+<!-- ═══════════════════ WALLPAPER ═══════════════════ -->
+<video id="wallpaper" autoplay muted loop playsinline>
+  <source src="video.webm" type="video/webm" />
+</video>
+<div id="wallpaperFallback"></div>
+
+<!-- ═══════════════════ DESKTOP ══════════════════════ -->
+<div id="desktop">
+
+  <!-- Desktop icons -->
+  <div class="desktop-icons">
+    <div class="di" data-app="explorer" tabindex="0">
+      <div class="di-icon"><i class="fas fa-folder" style="color:#ffc83d"></i></div>
+      <span>File Explorer</span>
     </div>
-    <div class="startmenu">
-        <img src="startmenu.PNG" alt="">
+    <div class="di" data-app="edge" tabindex="0">
+      <div class="di-icon"><img src="edgeicon.png" alt="Edge" onerror="this.parentElement.innerHTML='<i class=\'fas fa-globe\' style=\'color:#0078d4\'></i>'" /></div>
+      <span>Microsoft Edge</span>
+    </div>
+    <div class="di" data-app="notepad" tabindex="0">
+      <div class="di-icon"><i class="fas fa-file-lines" style="color:#0078d4"></i></div>
+      <span>Notepad</span>
+    </div>
+    <div class="di" data-app="calc" tabindex="0">
+      <div class="di-icon"><i class="fas fa-calculator" style="color:#888"></i></div>
+      <span>Calculator</span>
+    </div>
+    <div class="di" data-app="recycle" tabindex="0">
+      <div class="di-icon"><i class="fas fa-trash" style="color:#ccc"></i></div>
+      <span>Recycle Bin</span>
+    </div>
+  </div>
+
+  <!-- Right-click context menu -->
+  <div class="ctx-menu hidden" id="ctxMenu">
+    <div class="ctx-item" id="ctx-view"><i class="fas fa-eye"></i>View<i class="fas fa-chevron-right ctx-arrow"></i></div>
+    <div class="ctx-item" id="ctx-sort"><i class="fas fa-arrow-down-a-z"></i>Sort by<i class="fas fa-chevron-right ctx-arrow"></i></div>
+    <div class="ctx-item" id="ctx-refresh"><i class="fas fa-rotate-right"></i>Refresh</div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item" id="ctx-new"><i class="fas fa-plus"></i>New<i class="fas fa-chevron-right ctx-arrow"></i></div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item" id="ctx-display"><i class="fas fa-display"></i>Display settings</div>
+    <div class="ctx-item" id="ctx-personalize"><i class="fas fa-palette"></i>Personalize</div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item" id="ctx-terminal"><i class="fas fa-terminal"></i>Open in Terminal</div>
+  </div>
+
+</div><!-- /desktop -->
+
+<!-- ═══════════════════ WINDOWS ════════════════════ -->
+<div id="winsContainer">
+
+  <!-- ── Notepad ───────────────────────────── -->
+  <div class="window hidden" id="win-notepad" data-title="Notepad" style="width:640px;height:480px;left:180px;top:80px">
+    <div class="win-resize-handles">
+      <div class="rh rh-n"></div><div class="rh rh-ne"></div><div class="rh rh-e"></div>
+      <div class="rh rh-se"></div><div class="rh rh-s"></div><div class="rh rh-sw"></div>
+      <div class="rh rh-w"></div><div class="rh rh-nw"></div>
+    </div>
+    <div class="win-titlebar">
+      <div class="win-tb-left">
+        <i class="fas fa-file-lines win-appicon" style="color:#0078d4"></i>
+        <span class="win-title">Untitled – Notepad</span>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min" title="Minimize"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max" title="Maximize"><i class="fas fa-square" id="np-maxicon"></i></button>
+        <button class="wc-btn wc-close" title="Close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="win-menubar" id="np-menubar">
+      <span class="menu-item" data-menu="np-file">File</span>
+      <span class="menu-item" data-menu="np-edit">Edit</span>
+      <span class="menu-item" data-menu="np-view">View</span>
+    </div>
+    <div class="win-content notepad-content">
+      <textarea id="npTextarea" class="np-area" placeholder="Start typing…" spellcheck="false"></textarea>
+    </div>
+    <div class="win-statusbar">
+      <span id="npStatus">Ln 1, Col 1</span>
+      <span>UTF-8</span>
+      <span>Windows (CRLF)</span>
+      <span>100%</span>
+    </div>
+  </div>
+
+  <!-- ── Calculator ───────────────────────── -->
+  <div class="window hidden" id="win-calc" data-title="Calculator" style="width:320px;height:520px;left:400px;top:60px">
+    <div class="win-titlebar">
+      <div class="win-tb-left">
+        <i class="fas fa-calculator win-appicon" style="color:#888"></i>
+        <span class="win-title">Calculator</span>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max"><i class="fas fa-square" id="calc-maxicon"></i></button>
+        <button class="wc-btn wc-close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="win-content calc-content">
+      <div class="calc-mode-bar">Standard</div>
+      <div class="calc-display">
+        <div class="calc-expr" id="calcExpr"></div>
+        <div class="calc-result" id="calcResult">0</div>
+      </div>
+      <div class="calc-btns">
+        <button class="cb fn" data-c="MC">MC</button><button class="cb fn" data-c="MR">MR</button><button class="cb fn" data-c="M+">M+</button><button class="cb fn" data-c="M-">M−</button>
+        <button class="cb fn" data-c="AC">AC</button><button class="cb fn" data-c="negate">±</button><button class="cb fn" data-c="%">%</button><button class="cb op" data-c="÷">÷</button>
+        <button class="cb num" data-c="7">7</button><button class="cb num" data-c="8">8</button><button class="cb num" data-c="9">9</button><button class="cb op" data-c="×">×</button>
+        <button class="cb num" data-c="4">4</button><button class="cb num" data-c="5">5</button><button class="cb num" data-c="6">6</button><button class="cb op" data-c="−">−</button>
+        <button class="cb num" data-c="1">1</button><button class="cb num" data-c="2">2</button><button class="cb num" data-c="3">3</button><button class="cb op" data-c="+">+</button>
+        <button class="cb num zero" data-c="0">0</button><button class="cb num" data-c=".">.</button><button class="cb fn bsp" data-c="⌫"><i class="fas fa-delete-left"></i></button><button class="cb eq" data-c="=">=</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── File Explorer ────────────────────── -->
+  <div class="window hidden" id="win-explorer" data-title="File Explorer" style="width:880px;height:560px;left:80px;top:60px">
+    <div class="win-resize-handles">
+      <div class="rh rh-n"></div><div class="rh rh-ne"></div><div class="rh rh-e"></div>
+      <div class="rh rh-se"></div><div class="rh rh-s"></div><div class="rh rh-sw"></div>
+      <div class="rh rh-w"></div><div class="rh rh-nw"></div>
+    </div>
+    <div class="win-titlebar">
+      <div class="win-tb-left">
+        <i class="fas fa-folder win-appicon" style="color:#ffc83d"></i>
+        <span class="win-title">File Explorer</span>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max"><i class="fas fa-square" id="exp-maxicon"></i></button>
+        <button class="wc-btn wc-close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="explorer-toolbar">
+      <div class="exp-nav-btns">
+        <button class="exp-nav-btn" title="Back"><i class="fas fa-arrow-left"></i></button>
+        <button class="exp-nav-btn" title="Forward"><i class="fas fa-arrow-right"></i></button>
+        <button class="exp-nav-btn" title="Up"><i class="fas fa-arrow-up"></i></button>
+        <button class="exp-nav-btn" title="Refresh"><i class="fas fa-rotate-right"></i></button>
+      </div>
+      <div class="exp-address-bar">
+        <i class="fas fa-house exp-addr-icon"></i>
+        <span id="expPath">Home</span>
+      </div>
+      <div class="exp-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search" />
+      </div>
+    </div>
+    <div class="explorer-body">
+      <div class="explorer-nav">
+        <div class="exp-nav-section">
+          <span class="exp-nav-label">Quick access</span>
+          <div class="exp-nav-item active" data-folder="home"><i class="fas fa-house"></i>Home</div>
+          <div class="exp-nav-item" data-folder="desktop"><i class="fas fa-desktop"></i>Desktop</div>
+          <div class="exp-nav-item" data-folder="downloads"><i class="fas fa-download"></i>Downloads</div>
+          <div class="exp-nav-item" data-folder="documents"><i class="fas fa-file-lines"></i>Documents</div>
+          <div class="exp-nav-item" data-folder="pictures"><i class="fas fa-images"></i>Pictures</div>
+          <div class="exp-nav-item" data-folder="music"><i class="fas fa-music"></i>Music</div>
+          <div class="exp-nav-item" data-folder="videos"><i class="fas fa-film"></i>Videos</div>
+        </div>
+        <div class="exp-nav-section">
+          <span class="exp-nav-label">This PC</span>
+          <div class="exp-nav-item" data-folder="c"><i class="fas fa-hard-drive"></i>Local Disk (C:)</div>
+        </div>
+      </div>
+      <div class="explorer-content" id="expContent">
+        <!-- populated by JS -->
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <span id="expStatus">6 items</span>
+    </div>
+  </div>
+
+  <!-- ── Settings ──────────────────────────── -->
+  <div class="window hidden" id="win-settings" data-title="Settings" style="width:900px;height:620px;left:100px;top:50px">
+    <div class="win-resize-handles">
+      <div class="rh rh-n"></div><div class="rh rh-ne"></div><div class="rh rh-e"></div>
+      <div class="rh rh-se"></div><div class="rh rh-s"></div><div class="rh rh-sw"></div>
+      <div class="rh rh-w"></div><div class="rh rh-nw"></div>
+    </div>
+    <div class="win-titlebar">
+      <div class="win-tb-left">
+        <i class="fas fa-gear win-appicon" style="color:#888"></i>
+        <span class="win-title">Settings</span>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max"><i class="fas fa-square" id="set-maxicon"></i></button>
+        <button class="wc-btn wc-close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="settings-body">
+      <div class="settings-nav">
+        <div class="set-profile">
+          <div class="set-avatar">AB</div>
+          <div><div class="set-user">User</div><div class="set-account">Local Account</div></div>
+        </div>
+        <div class="set-search"><i class="fas fa-search"></i><input type="text" placeholder="Find a setting" /></div>
+        <div class="set-nav-item active" data-panel="system"><i class="fas fa-display"></i>System</div>
+        <div class="set-nav-item" data-panel="bluetooth"><i class="fas fa-bluetooth"></i>Bluetooth & devices</div>
+        <div class="set-nav-item" data-panel="network"><i class="fas fa-wifi"></i>Network & Internet</div>
+        <div class="set-nav-item" data-panel="personalize"><i class="fas fa-palette"></i>Personalization</div>
+        <div class="set-nav-item" data-panel="apps"><i class="fas fa-th-large"></i>Apps</div>
+        <div class="set-nav-item" data-panel="accounts"><i class="fas fa-user"></i>Accounts</div>
+        <div class="set-nav-item" data-panel="time"><i class="fas fa-clock"></i>Time & Language</div>
+        <div class="set-nav-item" data-panel="gaming"><i class="fas fa-gamepad"></i>Gaming</div>
+        <div class="set-nav-item" data-panel="privacy"><i class="fas fa-shield-halved"></i>Privacy & Security</div>
+        <div class="set-nav-item" data-panel="update"><i class="fas fa-arrows-rotate"></i>Windows Update</div>
+      </div>
+      <div class="settings-content" id="setContent">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Edge Browser ──────────────────────── -->
+  <div class="window hidden" id="win-edge" data-title="Microsoft Edge" style="width:960px;height:640px;left:60px;top:40px">
+    <div class="win-resize-handles">
+      <div class="rh rh-n"></div><div class="rh rh-ne"></div><div class="rh rh-e"></div>
+      <div class="rh rh-se"></div><div class="rh rh-s"></div><div class="rh rh-sw"></div>
+      <div class="rh rh-w"></div><div class="rh rh-nw"></div>
+    </div>
+    <div class="win-titlebar edge-titlebar">
+      <div class="edge-tabs">
+        <div class="edge-tab active">
+          <img src="edgeicon.png" class="edge-tab-icon" onerror="this.style.display='none'" />
+          <span>New Tab</span>
+          <button class="edge-tab-close"><i class="fas fa-xmark"></i></button>
+        </div>
+        <button class="edge-new-tab-btn"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max"><i class="fas fa-square" id="edge-maxicon"></i></button>
+        <button class="wc-btn wc-close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="edge-toolbar">
+      <div class="edge-nav-btns">
+        <button class="edge-nav-btn" title="Back"><i class="fas fa-arrow-left"></i></button>
+        <button class="edge-nav-btn" title="Forward"><i class="fas fa-arrow-right"></i></button>
+        <button class="edge-nav-btn" title="Refresh"><i class="fas fa-rotate-right"></i></button>
+      </div>
+      <div class="edge-address-bar">
+        <i class="fas fa-lock edge-lock"></i>
+        <span id="edgeUrl">edge://newtab</span>
+        <i class="fas fa-star edge-fav"></i>
+      </div>
+      <div class="edge-toolbar-right">
+        <button class="edge-nav-btn" title="Extensions"><i class="fas fa-puzzle-piece"></i></button>
+        <button class="edge-nav-btn" title="Collections"><i class="fas fa-bookmark"></i></button>
+        <button class="edge-nav-btn" title="Profile"><i class="fas fa-circle-user"></i></button>
+        <button class="edge-nav-btn" title="Settings"><i class="fas fa-ellipsis-h"></i></button>
+      </div>
+    </div>
+    <div class="win-content edge-content" id="edgeContent">
+      <div class="edge-newtab">
+        <div class="edge-nt-bg"></div>
+        <div class="edge-nt-search">
+          <div class="edge-nt-logo">
+            <img src="edgeicon.png" style="width:28px;height:28px" onerror="this.style.display='none'" />
+          </div>
+          <div class="edge-nt-searchbar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search the web" id="edgeSearch" />
+          </div>
+        </div>
+        <div class="edge-quick-links">
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-youtube" style="color:#f00"></i></div><span>YouTube</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-twitter" style="color:#1da1f2"></i></div><span>Twitter</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-reddit" style="color:#ff4500"></i></div><span>Reddit</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-github" style="color:#fff"></i></div><span>GitHub</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-amazon" style="color:#f90"></i></div><span>Amazon</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fab fa-wikipedia-w" style="color:#fff"></i></div><span>Wikipedia</span></a>
+          <a class="eql" href="#" onclick="return false"><div class="eql-icon"><i class="fas fa-plus" style="color:#aaa"></i></div><span>Add site</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Recycle Bin ───────────────────────── -->
+  <div class="window hidden" id="win-recycle" data-title="Recycle Bin" style="width:640px;height:400px;left:200px;top:100px">
+    <div class="win-titlebar">
+      <div class="win-tb-left">
+        <i class="fas fa-trash win-appicon" style="color:#888"></i>
+        <span class="win-title">Recycle Bin</span>
+      </div>
+      <div class="win-controls">
+        <button class="wc-btn wc-min"><i class="fas fa-minus"></i></button>
+        <button class="wc-btn wc-max"><i class="fas fa-square"></i></button>
+        <button class="wc-btn wc-close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="win-content recycle-content">
+      <div class="recycle-empty">
+        <i class="fas fa-trash-can"></i>
+        <p>The Recycle Bin is empty.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /winsContainer -->
+
+<!-- ═══════════════════ TASKBAR ══════════════════════ -->
+<div id="taskbar">
+
+  <!-- Center group (Start + Search + Apps) -->
+  <div class="tb-center-group" id="tbCenterGroup">
+
+    <!-- Start button -->
+    <button class="tb-btn" id="startBtn" title="Start">
+      <svg viewBox="0 0 24 24" class="tb-winlogo">
+        <path fill="#00b4f0" d="M0 3.449L9.75 2.1v9.451H0"/>
+        <path fill="#00b4f0" d="M10.949 1.949L24 0v11.4H10.949"/>
+        <path fill="#00b4f0" d="M0 12.6h9.75v9.451L0 20.699"/>
+        <path fill="#00b4f0" d="M10.949 12.6H24V24l-12.9-1.801"/>
+      </svg>
+    </button>
+
+    <!-- Search -->
+    <button class="tb-search-btn" id="searchBtn" title="Search">
+      <i class="fas fa-search tb-search-icon"></i>
+      <span class="tb-search-text">Search</span>
+    </button>
+
+    <!-- Task View -->
+    <button class="tb-btn" id="taskviewBtn" title="Task View">
+      <i class="fas fa-table-cells tb-icon"></i>
+    </button>
+
+    <div class="tb-separator"></div>
+
+    <!-- Pinned + Open apps -->
+    <div class="tb-apps" id="tbApps">
+      <button class="tb-app-btn" data-app="edge" title="Microsoft Edge">
+        <img src="edgeicon.png" class="tb-app-icon-img" onerror="this.outerHTML='<i class=\'fas fa-globe\' style=\'color:#0078d4;font-size:1.1rem\'></i>'" />
+        <div class="tb-app-indicator hidden"></div>
+      </button>
+      <button class="tb-app-btn" data-app="explorer" title="File Explorer">
+        <i class="fas fa-folder" style="color:#ffc83d;font-size:1.1rem"></i>
+        <div class="tb-app-indicator hidden"></div>
+      </button>
+      <button class="tb-app-btn" data-app="settings" title="Settings">
+        <i class="fas fa-gear" style="color:#ccc;font-size:1.1rem"></i>
+        <div class="tb-app-indicator hidden"></div>
+      </button>
+      <button class="tb-app-btn" data-app="notepad" title="Notepad">
+        <i class="fas fa-file-lines" style="color:#4d9eff;font-size:1.1rem"></i>
+        <div class="tb-app-indicator hidden"></div>
+      </button>
+      <button class="tb-app-btn" data-app="calc" title="Calculator">
+        <i class="fas fa-calculator" style="color:#bbb;font-size:1.1rem"></i>
+        <div class="tb-app-indicator hidden"></div>
+      </button>
     </div>
 
-    <video autoplay muted loop>
-        <source src="video.webm" type="video/webm">
-    </video>
-    <script src="script.js"></script>
+  </div>
+
+  <!-- System tray (right) -->
+  <div class="tb-tray" id="tbTray">
+    <button class="tray-icon-btn" title="Show hidden icons"><i class="fas fa-chevron-up" style="font-size:.6rem"></i></button>
+    <div class="tray-icons">
+      <button class="tray-icon-btn" id="wifiBtn" title="WiFi: Connected"><i class="fas fa-wifi"></i></button>
+      <button class="tray-icon-btn" id="volBtn" title="Volume"><i class="fas fa-volume-high"></i></button>
+      <button class="tray-icon-btn" id="batBtn" title="Battery: 80%"><i class="fas fa-battery-three-quarters"></i></button>
+    </div>
+    <button class="tb-datetime-btn" id="trayClockBtn">
+      <div id="tbTime">10:30 AM</div>
+      <div id="tbDate">6/10/2025</div>
+    </button>
+    <button class="tray-icon-btn" id="notifBtn" title="Notifications"><i class="fas fa-bell" style="font-size:.75rem"></i></button>
+  </div>
+
+</div><!-- /taskbar -->
+
+<!-- ═══════════════════ START MENU ═══════════════════ -->
+<div class="panel hidden" id="startMenu">
+  <div class="sm-search-wrap">
+    <div class="sm-search">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search for apps, files, settings…" id="smSearch" />
+    </div>
+  </div>
+  <div class="sm-section-header">
+    <span>Pinned</span>
+    <button class="sm-all-btn">All apps <i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="sm-pinned-grid">
+    <button class="sm-app" data-app="edge"><div class="sm-app-icon"><img src="edgeicon.png" onerror="this.outerHTML='<i class=\'fas fa-globe\' style=\'color:#0078d4\'></i>'" /></div><span>Edge</span></button>
+    <button class="sm-app" data-app="explorer"><div class="sm-app-icon"><i class="fas fa-folder" style="color:#ffc83d"></i></div><span>Explorer</span></button>
+    <button class="sm-app" data-app="settings"><div class="sm-app-icon"><i class="fas fa-gear" style="color:#888"></i></div><span>Settings</span></button>
+    <button class="sm-app" data-app="notepad"><div class="sm-app-icon"><i class="fas fa-file-lines" style="color:#0078d4"></i></div><span>Notepad</span></button>
+    <button class="sm-app" data-app="calc"><div class="sm-app-icon"><i class="fas fa-calculator" style="color:#888"></i></div><span>Calculator</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-envelope" style="color:#0078d4"></i></div><span>Mail</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-calendar" style="color:#0078d4"></i></div><span>Calendar</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-images" style="color:#e77"></i></div><span>Photos</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-music" style="color:#1db954"></i></div><span>Spotify</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-store" style="color:#0078d4"></i></div><span>Store</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-gamepad" style="color:#107c10"></i></div><span>Xbox</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-camera" style="color:#ccc"></i></div><span>Camera</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-users" style="color:#5059c9"></i></div><span>Teams</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-map" style="color:#0078d4"></i></div><span>Maps</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-tv" style="color:#e50914"></i></div><span>Netflix</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-clock" style="color:#0078d4"></i></div><span>Alarm</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-sticky-note" style="color:#f9c535"></i></div><span>Sticky Notes</span></button>
+    <button class="sm-app"><div class="sm-app-icon"><i class="fas fa-scissors" style="color:#888"></i></div><span>Snipping Tool</span></button>
+  </div>
+  <div class="sm-section-header">
+    <span>Recommended</span>
+    <button class="sm-all-btn">More <i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="sm-recommended">
+    <div class="sm-rec-item"><i class="fas fa-file-lines sm-rec-icon"></i><div><div class="sm-rec-name">Untitled.txt</div><div class="sm-rec-time">Just now</div></div></div>
+    <div class="sm-rec-item"><i class="fas fa-file-image sm-rec-icon" style="color:#e77"></i><div><div class="sm-rec-name">screenshot.png</div><div class="sm-rec-time">2 minutes ago</div></div></div>
+    <div class="sm-rec-item"><i class="fas fa-file-pdf sm-rec-icon" style="color:#e74c3c"></i><div><div class="sm-rec-name">Report.pdf</div><div class="sm-rec-time">Yesterday</div></div></div>
+    <div class="sm-rec-item"><i class="fas fa-folder sm-rec-icon" style="color:#ffc83d"></i><div><div class="sm-rec-name">Documents</div><div class="sm-rec-time">Yesterday</div></div></div>
+  </div>
+  <div class="sm-footer">
+    <button class="sm-user-btn"><div class="sm-user-avatar">AB</div><span>User</span></button>
+    <button class="sm-power-btn" id="smPowerBtn" title="Power"><i class="fas fa-power-off"></i></button>
+  </div>
+</div>
+
+<!-- ═══════════════════ QUICK SETTINGS ═══════════════════ -->
+<div class="panel hidden" id="quickSettings">
+  <div class="qs-grid">
+    <button class="qs-tile active" id="qs-wifi"><i class="fas fa-wifi"></i><span>Wi-Fi</span></button>
+    <button class="qs-tile" id="qs-bt"><i class="fas fa-bluetooth-b"></i><span>Bluetooth</span></button>
+    <button class="qs-tile" id="qs-airplane"><i class="fas fa-plane"></i><span>Airplane mode</span></button>
+    <button class="qs-tile" id="qs-focus"><i class="fas fa-moon"></i><span>Focus</span></button>
+    <button class="qs-tile" id="qs-night"><i class="fas fa-adjust"></i><span>Night light</span></button>
+    <button class="qs-tile" id="qs-accessibility"><i class="fas fa-universal-access"></i><span>Accessibility</span></button>
+  </div>
+  <div class="qs-slider-row">
+    <i class="fas fa-volume-high qs-slider-icon"></i>
+    <input type="range" class="qs-slider" id="volSlider" min="0" max="100" value="75" />
+    <span class="qs-slider-val" id="volVal">75</span>
+  </div>
+  <div class="qs-slider-row">
+    <i class="fas fa-sun qs-slider-icon"></i>
+    <input type="range" class="qs-slider" id="brightSlider" min="0" max="100" value="85" />
+    <span class="qs-slider-val" id="brightVal">85</span>
+  </div>
+  <div class="qs-footer">
+    <button class="qs-foot-btn" id="qsSettings"><i class="fas fa-gear"></i></button>
+    <button class="qs-foot-btn" id="qsPower"><i class="fas fa-power-off"></i></button>
+  </div>
+</div>
+
+<!-- ═══════════════════ NOTIFICATION CENTER ═══════════════════ -->
+<div class="panel hidden" id="notifCenter">
+  <div class="nc-header">
+    <span class="nc-title">Notifications</span>
+    <button class="nc-clear-btn">Clear all</button>
+  </div>
+  <div class="nc-list">
+    <div class="nc-item">
+      <div class="nc-item-icon"><i class="fas fa-windows" style="color:#0078d4"></i></div>
+      <div class="nc-item-body">
+        <div class="nc-item-title">Windows Update</div>
+        <div class="nc-item-text">Your device is up to date. Last checked today.</div>
+        <div class="nc-item-time">10:02 AM</div>
+      </div>
+    </div>
+    <div class="nc-item">
+      <div class="nc-item-icon"><i class="fas fa-shield-halved" style="color:#107c10"></i></div>
+      <div class="nc-item-body">
+        <div class="nc-item-title">Windows Security</div>
+        <div class="nc-item-text">No action needed. Your device is protected.</div>
+        <div class="nc-item-time">9:45 AM</div>
+      </div>
+    </div>
+  </div>
+  <div class="nc-calendar">
+    <div class="nc-cal-header" id="ncCalHeader"></div>
+    <div class="nc-cal-grid" id="ncCalGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ POWER MENU ═══════════════════ -->
+<div class="panel hidden" id="powerMenu">
+  <button class="pm-item" id="pmSleep"><i class="fas fa-moon"></i>Sleep</button>
+  <button class="pm-item" id="pmShutdown"><i class="fas fa-power-off"></i>Shut down</button>
+  <button class="pm-item" id="pmRestart"><i class="fas fa-rotate-right"></i>Restart</button>
+</div>
+
+<!-- Toast container -->
+<div id="toastContainer"></div>
+
+<script src="script.js"></script>
 </body>
 </html>

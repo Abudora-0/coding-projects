@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Memory Game - Test your memory skills by matching pairs of cards. Play now on ArcadeHub!">
+  <title>Memory Game - ArcadeHub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer rounded square -->
+            <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+            <!-- Inner elements -->
+            <circle cx="10" cy="10" r="3" fill="url(#logoGradient)"/>
+            <circle cx="30" cy="10" r="3" fill="url(#logoGradient)"/>
+            <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#logoGradient)"/>
+            <!-- Accent lines -->
+            <line x1="18" y1="5" x2="22" y2="5" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="35" x2="22" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8338ec;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="game-header">
+    <h1>🧠 Memory Game</h1>
+    <a href="index.html" class="back-button">← Back to Hub</a>
+  </div>
+
+  <div class="game-container">
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+      Match the pairs! Click on two cards to reveal them. If they match, they stay revealed.
+    </p>
+
+    <div class="game-stats">
+      <div class="stat-box">
+        <label>Moves</label>
+        <div class="value" id="moves">0</div>
+      </div>
+      <div class="stat-box">
+        <label>Matches</label>
+        <div class="value" id="matches">0/8</div>
+      </div>
+      <div class="stat-box">
+        <label>Best Time</label>
+        <div class="value" id="bestTime">--:--</div>
+      </div>
+      <div class="stat-box">
+        <label>Current Time</label>
+        <div class="value" id="timer">00:00</div>
+      </div>
+    </div>
+
+    <div id="memory-board"></div>
+
+    <div class="button-group">
+      <button class="btn" onclick="resetGame()">New Game</button>
+      <button class="btn secondary" onclick="location.href='index.html'">Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/memory.js"></script>
+</body>
+</html>

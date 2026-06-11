@@ -1,57 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeValidator — Email Validator</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeValidator — Email Validator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111'/%3E%3Crect x='4' y='9' width='24' height='16' rx='2' fill='none' stroke='%23f0f0f0' stroke-width='1.5'/%3E%3Cpath d='M4 11l12 9 12-9' stroke='%23f0f0f0' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='24' cy='23' r='7' fill='%232ecc71'/%3E%3Cpath d='M21 23l2 2 4-4' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <nav>
-        <div class="logo">
-            <img src="img/logo.svg" alt="DeValidator Logo">
-            <span>DeValidator</span>
-        </div>
-        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
-    </nav>
+  <div class="toast" id="toast"></div>
 
-    <main>
-        <div class="hero">
-            <h1><i class="fas fa-envelope-circle-check"></i> Email Validator</h1>
-            <p>Check if an email address is valid, deliverable, and not disposable.</p>
-        </div>
+  <nav>
+    <div class="logo">
+      <i class="fas fa-envelope-circle-check logo-icon"></i>
+      <span>DeValidator</span>
+    </div>
+    <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+  </nav>
 
-        <div class="card search-card">
-            <div class="api-notice">
-                <i class="fas fa-info-circle"></i>
-                <span>Add your free API key from <a href="https://emailvalidation.io" target="_blank">emailvalidation.io</a> in <code>script.js</code> to enable live validation.</span>
+  <main>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge"><i class="fas fa-shield-halved"></i> No API key required</div>
+      <h1>Email Validator</h1>
+      <p>Validate format, detect disposable addresses, role accounts, typos &amp; more — instantly.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="single"><i class="fas fa-envelope"></i> Single</button>
+      <button class="tab" data-tab="batch"><i class="fas fa-list-check"></i> Batch</button>
+      <button class="tab" data-tab="history"><i class="fas fa-clock-rotate-left"></i> History <span class="hist-count" id="histCount"></span></button>
+    </div>
+
+    <!-- ── Single Tab ── -->
+    <div class="tab-pane active" id="tab-single">
+      <div class="card search-card">
+        <form id="validateForm" autocomplete="off">
+          <div class="input-group">
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="text" id="emailInput" placeholder="Enter email address…" spellcheck="false" />
+              <div class="rt-dot" id="rtDot"></div>
             </div>
-            <form id="validateForm">
-                <div class="input-row">
-                    <div class="input-wrapper">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="emailInput" placeholder="Enter email address to validate..." required autocomplete="off">
-                    </div>
-                    <button class="btn" type="submit" id="submitBtn">
-                        <i class="fas fa-search"></i> Validate
-                    </button>
-                </div>
-            </form>
+            <button class="btn" type="submit" id="submitBtn">
+              <i class="fas fa-magnifying-glass"></i> Validate
+            </button>
+          </div>
+          <div class="sugg-hint hidden" id="suggHint"></div>
+        </form>
+
+        <!-- Optional API key -->
+        <div class="api-toggle-wrap">
+          <button class="api-toggle-btn" id="apiToggle">
+            <i class="fas fa-key"></i> Use API key for live SMTP check
+          </button>
+          <div class="api-key-row hidden" id="apiRow">
+            <input type="text" id="apiKeyInput" placeholder="Paste emailvalidation.io API key…" />
+            <button class="btn-sm" id="saveApiKey"><i class="fas fa-floppy-disk"></i> Save</button>
+          </div>
         </div>
+      </div>
 
-        <div class="results-card" id="resultCard">
-            <div class="results-header" id="resultsHeader"></div>
-            <div class="results-grid" id="resultCont"></div>
+      <!-- Results -->
+      <div class="results-card hidden" id="resultCard">
+        <div class="results-header" id="resultsHeader"></div>
+        <div class="score-wrap" id="scoreWrap">
+          <span class="score-lbl">Score</span>
+          <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
+          <span class="score-val" id="scoreVal">0%</span>
         </div>
-    </main>
+        <div class="results-grid" id="resultCont"></div>
+        <div class="result-actions">
+          <button class="btn-ghost" id="copyResult"><i class="fas fa-copy"></i> Copy</button>
+          <button class="btn-ghost" id="exportSingle"><i class="fas fa-download"></i> Export</button>
+        </div>
+      </div>
+    </div>
 
-    <footer>
-        <p>&copy; DeValidator &mdash; Powered by <a href="https://emailvalidation.io" target="_blank">EmailValidation.io</a></p>
-    </footer>
+    <!-- ── Batch Tab ── -->
+    <div class="tab-pane hidden" id="tab-batch">
+      <div class="card">
+        <div class="field-label"><i class="fas fa-list"></i> Paste emails (one per line)</div>
+        <textarea id="batchInput" class="batch-ta" placeholder="user@example.com&#10;another@test.org&#10;bad-email&#10;..."></textarea>
+        <div class="batch-bar">
+          <span class="batch-count" id="batchCount">0 emails</span>
+          <div style="display:flex;gap:.5rem">
+            <button class="btn-ghost" id="clearBatch"><i class="fas fa-trash"></i> Clear</button>
+            <button class="btn" id="batchBtn"><i class="fas fa-play"></i> Validate All</button>
+          </div>
+        </div>
+      </div>
+      <div class="batch-results hidden" id="batchResults">
+        <div class="batch-summary" id="batchSummary"></div>
+        <div class="table-wrap">
+          <table class="btable">
+            <thead><tr><th>Email</th><th>Status</th><th>Score</th><th>Issues</th></tr></thead>
+            <tbody id="batchBody"></tbody>
+          </table>
+        </div>
+        <button class="btn-ghost" id="exportBatch" style="margin-top:.75rem"><i class="fas fa-download"></i> Export CSV</button>
+      </div>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- ── History Tab ── -->
+    <div class="tab-pane hidden" id="tab-history">
+      <div class="hist-top">
+        <span class="hist-sub">Recent validations</span>
+        <button class="btn-ghost sm" id="clearHist"><i class="fas fa-trash"></i> Clear all</button>
+      </div>
+      <div id="histList"></div>
+      <div class="empty-state hidden" id="histEmpty">
+        <i class="fas fa-clock-rotate-left"></i>
+        <p>No history yet. Validate some emails first!</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>DeValidator &mdash; Client-side + optional <a href="https://emailvalidation.io" target="_blank">EmailValidation.io</a></p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Tab</title>
+
+  <!-- Incognito hat favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23202124'/%3E%3Cellipse cx='16' cy='20' rx='9' ry='6' fill='%23e8eaed'/%3E%3Crect x='9' y='12' width='14' height='8' rx='3' fill='%23e8eaed'/%3E%3Crect x='7' y='11' width='18' height='4' rx='2' fill='%23e8eaed'/%3E%3Ccircle cx='16' cy='10' r='3' fill='%23e8eaed'/%3E%3C/svg%3E" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Back to projects -->
+  <a href="../index.html" class="back-pill"><i class="fas fa-arrow-left"></i> Projects</a>
+
+  <!-- ── SEARCH BAR ──────────────────────────── -->
+  <div class="search-section" id="searchSection">
+    <div class="search-bar" id="searchBar">
+      <i class="fas fa-lock search-lock"></i>
+      <input type="text" id="searchInput" placeholder="Search Google or type a URL" autocomplete="off" spellcheck="false" />
+      <button class="search-go" id="searchGo" title="Search"><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- ── MAIN INCOGNITO CONTENT ─────────────── -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Icon + Title -->
+    <div class="hero" id="hero">
+      <div class="incognito-icon">
+        <img src="img-removebg-preview.png" alt="Incognito" />
+      </div>
+      <h1 class="title">You've gone incognito</h1>
+      <p class="subtitle">
+        Others who use this device won't see your activity, so you can browse more privately.
+        This won't change how data is collected by websites you visit and services they use, including Google.
+        <a href="https://support.google.com/chrome/?p=incognito" target="_blank" class="link">Learn more</a>
+      </p>
+    </div>
+
+    <!-- Info grid -->
+    <div class="info-grid" id="infoGrid">
+      <div class="info-col">
+        <div class="info-col-header">
+          <i class="fas fa-eye-slash"></i>
+          <span>Chrome won't save:</span>
+        </div>
+        <ul>
+          <li>Your browsing history</li>
+          <li>Cookies and site data</li>
+          <li>Information entered in forms</li>
+        </ul>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-col">
+        <div class="info-col-header">
+          <i class="fas fa-eye"></i>
+          <span>Your activity might still be visible to:</span>
+        </div>
+        <ul>
+          <li>Websites you visit</li>
+          <li>Your employer or school</li>
+          <li>Your Internet service provider</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cookie toggle -->
+    <div class="cookie-toggle-card" id="cookieCard">
+      <div class="ct-left">
+        <div class="ct-icon"><i class="fas fa-cookie-bite"></i></div>
+        <div class="ct-text">
+          <div class="ct-title">Block third-party cookies</div>
+          <div class="ct-desc">When on, sites can't use cookies that track you across the web. Some features may break.</div>
+        </div>
+      </div>
+      <label class="toggle-switch" id="cookieToggle">
+        <input type="checkbox" id="cookieCheck" />
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+      </label>
+    </div>
+
+  </main>
+
+  <!-- ── EXTRA FEATURES ─────────────────────── -->
+  <section class="extras" id="extras">
+
+    <!-- Session timer card -->
+    <div class="extra-card session-card" id="sessionCard">
+      <div class="ec-icon"><i class="fas fa-user-secret"></i></div>
+      <div class="ec-label">Session Active</div>
+      <div class="ec-val" id="sessionTimer">00:00:00</div>
+      <div class="ec-sub">This session isn't saved</div>
+    </div>
+
+    <!-- Privacy score card -->
+    <div class="extra-card score-card" id="scoreCard">
+      <div class="ec-icon"><i class="fas fa-shield-halved"></i></div>
+      <div class="ec-label">Privacy Level</div>
+      <div class="score-ring-wrap">
+        <svg class="score-ring" viewBox="0 0 60 60">
+          <circle class="ring-bg"   cx="30" cy="30" r="24" />
+          <circle class="ring-fill" cx="30" cy="30" r="24" id="ringFill" />
+        </svg>
+        <span class="score-num" id="scoreNum">60</span>
+      </div>
+      <div class="ec-sub" id="scoreLabel">Standard Protection</div>
+    </div>
+
+    <!-- Privacy tip card -->
+    <div class="extra-card tip-card" id="tipCard">
+      <div class="ec-icon tip-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="ec-label">Privacy Tip</div>
+      <p class="tip-text" id="tipText">Use a VPN to hide your IP address from websites and your ISP.</p>
+      <div class="tip-dots" id="tipDots"></div>
+    </div>
+
+  </section>
+
+  <!-- ── KEYBOARD SHORTCUTS ─────────────────── -->
+  <section class="shortcuts-section" id="shortcutsSection">
+    <div class="shortcuts-title"><i class="fas fa-keyboard"></i> Useful shortcuts</div>
+    <div class="shortcuts-grid">
+      <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd><span>New incognito window</span></div>
+      <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Delete</kbd><span>Clear browsing data</span></div>
+      <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>W</kbd><span>Close current tab</span></div>
+      <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>T</kbd><span>Open new tab</span></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

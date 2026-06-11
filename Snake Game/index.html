@@ -1,36 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeSnake — Snake Game</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1117'/%3E%3Crect x='4' y='14' width='18' height='8' rx='4' fill='%234ade80'/%3E%3Crect x='16' y='8' width='8' height='10' rx='4' fill='%2322c55e'/%3E%3Ccircle cx='21' cy='10' r='1.5' fill='white'/%3E%3Ccircle cx='21' cy='10' r='.7' fill='%23111'/%3E%3C/svg%3E" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav>
-        <span class="nav-title"><i class="fas fa-gamepad"></i> Snake Game</span>
-        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
-    </nav>
 
-    <div class="game-wrapper">
-        <div class="scores">
-            <div class="score-box">
-                <div class="score-label">Score</div>
-                <div id="scoreBox" class="score-val">0</div>
-            </div>
-            <div class="score-box hi">
-                <div class="score-label">Best</div>
-                <div id="hiscoreBox" class="score-val">0</div>
-            </div>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-left">
+      <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 7c0-2.2-1.8-4-4-4s-4 1.8-4 4v3H7C4.8 10 3 11.8 3 14s1.8 4 4 4h1v1c0 1.1.9 2 2 2s2-.9 2-2v-1h2c2.2 0 4-1.8 4-4v-1.2c1.2-.4 2-1.5 2-2.8z" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="17" cy="7" r="1.2" fill="#4ade80"/>
+      </svg>
+      <span class="nav-title">De<span>Snake</span></span>
+    </div>
+    <div class="nav-right">
+      <button class="nav-btn" id="soundBtn" title="Toggle Sound"><i class="fas fa-volume-high" id="soundIcon"></i></button>
+      <a href="../index.html" class="nav-btn nav-back"><i class="fas fa-arrow-left"></i> Projects</a>
+    </div>
+  </nav>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-label">SCORE</span>
+      <span class="stat-val" id="scoreVal">0</span>
+    </div>
+    <div class="stat level">
+      <span class="stat-label">LEVEL</span>
+      <span class="stat-val" id="levelVal">1</span>
+    </div>
+    <div class="stat best">
+      <span class="stat-label">BEST</span>
+      <span class="stat-val" id="bestVal">0</span>
+    </div>
+    <div class="stat length">
+      <span class="stat-label">LENGTH</span>
+      <span class="stat-val" id="lengthVal">1</span>
+    </div>
+  </div>
+
+  <!-- Speed bar -->
+  <div class="speed-track-wrap">
+    <div class="speed-label"><i class="fas fa-gauge-high"></i> Speed</div>
+    <div class="speed-track"><div class="speed-fill" id="speedFill"></div></div>
+    <div class="speed-max">MAX</div>
+  </div>
+
+  <!-- Canvas wrap + overlays -->
+  <div class="canvas-wrap">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Start screen -->
+    <div class="overlay" id="startScreen">
+      <div class="ov-inner">
+        <div class="ov-snake-icon">🐍</div>
+        <h1 class="ov-title">DESNAKE</h1>
+        <div class="ov-best">Best Score: <strong id="preBest">0</strong></div>
+        <button class="ov-btn primary" id="startBtn"><i class="fas fa-play"></i> Start Game</button>
+        <div class="ov-hints">
+          <span><kbd>↑↓←→</kbd> / <kbd>WASD</kbd> Move</span>
+          <span><kbd>P</kbd> / <kbd>Space</kbd> Pause</span>
         </div>
-
-        <div id="board"></div>
-
-        <p class="hint"><i class="fas fa-keyboard"></i> Use arrow keys to move. Press any key to start.</p>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Pause screen -->
+    <div class="overlay hidden" id="pauseScreen">
+      <div class="ov-inner">
+        <i class="fas fa-pause ov-pause-icon"></i>
+        <h2 class="ov-title">PAUSED</h2>
+        <button class="ov-btn primary" id="resumeBtn"><i class="fas fa-play"></i> Resume</button>
+        <button class="ov-btn ghost" id="quitBtn"><i class="fas fa-stop"></i> Quit</button>
+      </div>
+    </div>
+
+    <!-- Game Over screen -->
+    <div class="overlay hidden" id="gameoverScreen">
+      <div class="ov-inner">
+        <div class="ov-go-emoji" id="goEmoji">💀</div>
+        <h2 class="ov-title">GAME OVER</h2>
+        <div class="go-stats">
+          <div class="go-stat"><span class="gs-label">Score</span><span class="gs-val" id="goScore">0</span></div>
+          <div class="go-stat"><span class="gs-label">Level</span><span class="gs-val" id="goLevel">1</span></div>
+          <div class="go-stat"><span class="gs-label">Length</span><span class="gs-val" id="goLength">1</span></div>
+        </div>
+        <div class="new-record hidden" id="newRecord"><i class="fas fa-trophy"></i> New Record!</div>
+        <button class="ov-btn primary" id="playAgainBtn"><i class="fas fa-rotate-right"></i> Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile D-pad -->
+  <div class="dpad" id="dpad">
+    <button class="dp-btn dp-up" data-dir="up">
+      <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="10,3 18,17 2,17"/></svg>
+    </button>
+    <button class="dp-btn dp-left" data-dir="left">
+      <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="3,10 17,2 17,18"/></svg>
+    </button>
+    <button class="dp-btn dp-center">
+      <svg viewBox="0 0 20 20" fill="currentColor" opacity=".25"><circle cx="10" cy="10" r="3"/></svg>
+    </button>
+    <button class="dp-btn dp-right" data-dir="right">
+      <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="17,10 3,2 3,18"/></svg>
+    </button>
+    <button class="dp-btn dp-down" data-dir="down">
+      <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="10,17 2,3 18,3"/></svg>
+    </button>
+  </div>
+
+  <p class="footer-hint">🍎 Red food = 1pt &nbsp;·&nbsp; ⭐ Gold food = 3pts &nbsp;·&nbsp; Speed increases every 5pts</p>
+
+  <script src="script.js"></script>
 </body>
 </html>

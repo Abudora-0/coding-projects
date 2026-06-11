@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xchange — Currency Converter</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none'%3E%3Crect width='48' height='48' rx='12' fill='%2300c896'/%3E%3Cpath d='M12 18h18M12 18l4-4M12 18l4 4' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M36 30H18M36 30l-4-4M36 30l-4 4' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">
+      <img src="logo.svg" alt="Xchange" />
+      <span>Xchange</span>
+    </a>
+    <div class="nav-right">
+      <span class="rate-time" id="rateTime"></span>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Live Currency Converter</h1>
+      <p>Real-time exchange rates for 160+ currencies, updated daily.</p>
+    </section>
+
+    <!-- Main converter card -->
+    <div class="converter-card">
+
+      <!-- FROM side -->
+      <div class="converter-side">
+        <div class="side-label">From</div>
+        <input class="amount-input" type="number" id="fromAmount" value="1" min="0" step="any" placeholder="0" autocomplete="off" />
+        <!-- Custom dropdown trigger -->
+        <div class="currency-picker" id="fromPickerBtn" tabindex="0" role="button" aria-haspopup="listbox">
+          <span class="cc-badge" id="fromFlag">US</span>
+          <div class="picker-info">
+            <span class="picker-code" id="fromCode">USD</span>
+            <span class="picker-name" id="fromName">US Dollar</span>
+          </div>
+          <svg class="picker-chevron" id="fromChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+
+      <!-- Swap -->
+      <div class="swap-col">
+        <button class="swap-btn" id="swapBtn" title="Swap currencies">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 16V4m0 0L3 8m4-4l4 4"/><path d="M17 8v12m0 0l4-4m-4 4l-4-4"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- TO side -->
+      <div class="converter-side converter-side--result">
+        <div class="side-label">To</div>
+        <div class="amount-result" id="toAmount">—</div>
+        <div class="currency-picker" id="toPickerBtn" tabindex="0" role="button" aria-haspopup="listbox">
+          <span class="cc-badge cc-badge--to" id="toFlag">PK</span>
+          <div class="picker-info">
+            <span class="picker-code" id="toCode">PKR</span>
+            <span class="picker-name" id="toName">Pakistani Rupee</span>
+          </div>
+          <svg class="picker-chevron" id="toChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Custom dropdown panel (shared, moved by JS) -->
+    <div class="dropdown-panel" id="dropdownPanel" style="display:none">
+      <div class="dropdown-search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="dropdownSearch" placeholder="Search currency…" autocomplete="off" />
+      </div>
+      <ul class="dropdown-list" id="dropdownList" role="listbox"></ul>
+    </div>
+
+    <!-- Rate badge + quick amounts -->
+    <div class="meta-row">
+      <div class="rate-badge" id="rateBadge">—</div>
+      <div class="quick-amounts">
+        <span class="quick-label">Quick:</span>
+        <button class="qa-btn" data-val="100">100</button>
+        <button class="qa-btn" data-val="500">500</button>
+        <button class="qa-btn" data-val="1000">1K</button>
+        <button class="qa-btn" data-val="10000">10K</button>
+      </div>
+    </div>
+
+    <!-- Popular pairs -->
+    <section class="section">
+      <h2 class="section-title">Popular Pairs</h2>
+      <div class="pairs-grid" id="pairsGrid"></div>
+    </section>
+
+    <!-- All currencies results -->
+    <section class="section" id="resultsSection" style="display:none">
+      <div class="results-header">
+        <h2 class="section-title" id="resultsTitle">All Currencies</h2>
+        <div class="results-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Search currency…" />
+        </div>
+      </div>
+      <div class="results-grid" id="resultsGrid"></div>
+    </section>
+
+    <!-- Convert all button -->
+    <div class="center-row" id="convertAllWrap">
+      <button class="btn-convert-all" id="convertAllBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Convert to All Currencies
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>Xchange &nbsp;·&nbsp; Rates from <a href="https://open.er-api.com" target="_blank">open.er-api.com</a> &nbsp;·&nbsp; Updated every 24h</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

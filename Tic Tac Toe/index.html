@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeXO — Tic Tac Toe</title>
+
+  <!-- Favicon: X/O split -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2309090b'/%3E%3Cline x1='5' y1='5' x2='14' y2='14' stroke='%23818cf8' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='14' y1='5' x2='5' y2='14' stroke='%23818cf8' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='23' r='6' fill='none' stroke='%23fb7185' stroke-width='3'/%3E%3Cline x1='16' y1='0' x2='16' y2='32' stroke='rgba(255,255,255,0.12)' stroke-width='1'/%3E%3Cline x1='0' y1='16' x2='32' y2='16' stroke='rgba(255,255,255,0.12)' stroke-width='1'/%3E%3C/svg%3E" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back link -->
+  <a href="../index.html" class="back-pill"><i class="fas fa-arrow-left"></i> Projects</a>
+
+  <div class="wrapper">
+
+    <!-- ── Header ──────────────────────────────── -->
+    <header>
+      <div class="brand">De<span>XO</span></div>
+      <button class="sound-btn" id="soundBtn" title="Toggle Sound">
+        <i class="fas fa-volume-high" id="soundIcon"></i>
+      </button>
+    </header>
+
+    <!-- ── Score Board ─────────────────────────── -->
+    <div class="scoreboard">
+      <div class="score-card" id="xScoreCard">
+        <svg class="score-sym" viewBox="0 0 40 40">
+          <line x1="8" y1="8" x2="32" y2="32" stroke="#818cf8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="32" y1="8" x2="8" y2="32" stroke="#818cf8" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <div class="score-info">
+          <div class="score-label">PLAYER X</div>
+          <div class="score-num" id="xScore">0</div>
+        </div>
+      </div>
+      <div class="score-mid">
+        <div class="score-label">DRAW</div>
+        <div class="score-num" id="drawScore">0</div>
+      </div>
+      <div class="score-card" id="oScoreCard">
+        <svg class="score-sym" viewBox="0 0 40 40">
+          <circle cx="20" cy="20" r="13" fill="none" stroke="#fb7185" stroke-width="5"/>
+        </svg>
+        <div class="score-info">
+          <div class="score-label">PLAYER O</div>
+          <div class="score-num" id="oScore">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Mode Selector ───────────────────────── -->
+    <div class="mode-bar">
+      <button class="mode-btn active" id="pvpBtn"><i class="fas fa-users"></i> 2 Players</button>
+      <button class="mode-btn" id="aiBtn"><i class="fas fa-robot"></i> vs AI</button>
+    </div>
+
+    <!-- ── AI Difficulty ───────────────────────── -->
+    <div class="diff-bar hidden" id="diffBar">
+      <button class="diff-btn active" data-diff="easy">Easy</button>
+      <button class="diff-btn" data-diff="medium">Medium</button>
+      <button class="diff-btn" data-diff="hard"><i class="fas fa-brain"></i> Hard</button>
+    </div>
+
+    <!-- ── Turn Indicator ──────────────────────── -->
+    <div class="turn-indicator" id="turnIndicator">
+      <div class="turn-avatar" id="turnAvatar">
+        <!-- SVG injected by JS -->
+      </div>
+      <span id="turnText">Player X's turn</span>
+    </div>
+
+    <!-- ── Board ───────────────────────────────── -->
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+    </div>
+
+    <!-- ── Result Banner ───────────────────────── -->
+    <div class="result-banner hidden" id="resultBanner">
+      <span id="resultText">X Wins!</span>
+    </div>
+
+    <!-- ── Buttons ─────────────────────────────── -->
+    <div class="btn-row">
+      <button class="btn-new" id="newGameBtn"><i class="fas fa-rotate-right"></i> New Game</button>
+      <button class="btn-ghost-sm" id="resetScoresBtn"><i class="fas fa-trash"></i> Reset Scores</button>
+    </div>
+
+    <!-- ── Keyboard hint ───────────────────────── -->
+    <p class="hint">Press <kbd>1</kbd>–<kbd>9</kbd> to play &nbsp;·&nbsp; <kbd>R</kbd> to reset</p>
+
+  </div><!-- /wrapper -->
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,122 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="utility.css">
-    <title>Spotify - Web Player: Music for everyone</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify - Web Player: Music for everyone</title>
+  <link rel="icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-    <a href="../index.html" style="position:fixed;top:10px;right:12px;z-index:9999;background:rgba(255,255,255,0.1);color:white;text-decoration:none;padding:0.35rem 0.8rem;border-radius:20px;font-size:0.8rem;border:1px solid rgba(255,255,255,0.2);font-family:sans-serif;backdrop-filter:blur(6px);">&#8592; All Projects</a>
+<!-- ── Back pill ──────────────────────────────── -->
+<a href="../index.html" class="back-pill">&#8592; All Projects</a>
 
-    <div class="container flex bg-black">
-        <div class="left">
-            <div class="close">
-                <img width="30" class="invert" src="img/close.svg" alt="">
-            </div>
-            <div class="home bg-grey rounded m-1 p-1">
-                <div class="logo"><img width="110" class="invert" src="img/logo.svg"></div>
-                <ul>
-                    <li><img class="invert" src="img/home.svg" alt="home">Home</li>
-                    <li><img class="invert" src="img/search.svg" alt="search">Search</li>
-                </ul>
-            </div>
+<!-- ═══════════════ APP SHELL ═══════════════════ -->
+<div class="spotify-app">
 
-            <div class="library bg-grey rounded m-1 p-1">
-                <div class="heading">
-                    <img src="img/playlist.svg" class="invert" alt="">
-                    <h2>Your Library</h2>
-                </div>
+  <!-- ══ LEFT SIDEBAR ══════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
 
-                <div class="songList">
-                    <ul>
+    <!-- Nav panel -->
+    <div class="sidebar-nav-panel">
+      <a href="#" class="sp-logo" aria-label="Spotify">
+        <svg viewBox="0 0 78 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.507 17.306a.748.748 0 01-1.03.249c-2.82-1.723-6.37-2.112-10.551-1.158a.748.748 0 11-.334-1.458c4.576-1.046 8.502-.595 11.667 1.337.353.216.464.676.248 1.03zm1.47-3.27a.936.936 0 01-1.287.308C14.85 12.262 10.9 11.667 6.07 13.027a.936.936 0 01-.522-1.797c5.322-1.547 9.727-.87 13.122 1.52a.936.936 0 01.308 1.287zm.126-3.405C15.553 8.565 10.8 8.4 6.6 9.657A1.123 1.123 0 016.28 7.44c4.783-1.453 10.13-1.17 13.957 1.07a1.123 1.123 0 01-1.133 1.942v-.001z"/>
+          <text x="27" y="17" font-family="DM Sans, sans-serif" font-weight="700" font-size="14" fill="white">Spotify</text>
+        </svg>
+      </a>
 
-                    </ul>
-                </div>
-
-                <div class="footer">
-                    <div><a href=""><span>Legal</span></a></div>
-                    <div><a href=""><span>Privacy Center</span></a></div>
-                    <div><a href=""><span>Privacy Policy</span></a></div>
-                    <div><a href=""><span>Cookies</span></a></div>
-                    <div><a href=""><span>About Ads</span></a></div>
-                    <div><a href=""><span>Accessibility</span></a></div>
-                </div>
-            </div>
-        </div>
-
-
-        
-        <div class="right bg-grey rounded">
-            <div class="header">
-                <div class="nav">
-                    <div class="hamburgerContainer">
-
-                        <img src="img/hamburger.svg" class="invert humburger" width="40" alt="">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M15 6L9.70711 11.2929C9.37377 11.6262 9.20711 11.7929 9.20711 12C9.20711 12.2071 9.37377 12.3738 9.70711 12.7071L15 18"
-                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6"
-                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="buttons">
-                    <button class="signupbtn">Sign Up</button>
-                    <button class="loginbtn">Log In</button>
-                </div>
-            </div>
-
-            <div class="SpotifyPlaylists">
-                <h1>Spotify Playlists</h1>
-                <div class="cardContainer"> </div>
-                <div class="playbar">
-                    <div class="seekbar">
-                        <div class="circle"></div>
-                    </div>
-
-
-                    <div class="abovebar">
-                        <div class="songinfo">
-
-                        </div>
-                        <div class="songbuttons">
-                            <img width="35" id="previous" src="img/prevsong.svg" alt="">
-                            <img width="35" id="play" src="img/play.svg" alt="">
-                            <img width="35" id="next" src="img/nextsong.svg" alt="">
-                        </div>
-
-
-                        <div class="timevol">
-
-                            <div class="songtime">
-
-                            </div>
-
-                            <div class="volume">
-                                <img src="img/volume.svg" width="25" alt="">
-                                <div class="range">
-                                    <input type="range" name="volume" id="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" id="navHome">
+          <i class="fa-solid fa-house nav-icon"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" id="navSearch">
+          <i class="fa-solid fa-magnifying-glass nav-icon"></i>
+          <span>Search</span>
+        </a>
+      </nav>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Library panel -->
+    <div class="sidebar-library-panel">
+      <div class="library-header">
+        <button class="lib-title-btn">
+          <i class="fa-solid fa-swatchbook"></i>
+          <span>Your Library</span>
+        </button>
+        <div class="lib-header-actions">
+          <button class="lib-icon-btn" title="Create playlist or folder">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button class="lib-icon-btn" title="Show more">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
 
+      <!-- Filter chips -->
+      <div class="lib-filters">
+        <button class="filter-chip active" data-filter="all">Playlists</button>
+        <button class="filter-chip" data-filter="albums">Albums</button>
+        <button class="filter-chip" data-filter="artists">Artists</button>
+      </div>
+
+      <!-- Library list -->
+      <div class="lib-list" id="libList">
+        <!-- populated by JS -->
+      </div>
+
+      <!-- Footer -->
+      <div class="sidebar-footer">
+        <a href="#">Legal</a>
+        <a href="#">Privacy Center</a>
+        <a href="#">Cookies</a>
+        <a href="#">About Ads</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ═══════════════════════════ -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Sticky top bar -->
+    <div class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="topbar-btn" id="navBack" title="Go back">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="topbar-btn" id="navFwd" title="Go forward">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-pill" id="topbarNotif" title="What's new">
+          <i class="fa-regular fa-bell"></i>
+        </button>
+        <button class="topbar-user" id="topbarUser">
+          <div class="topbar-avatar">A</div>
+          <span>User</span>
+          <i class="fa-solid fa-chevron-down" style="font-size:.55rem;margin-left:2px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="content-area" id="contentArea">
+
+      <!-- ── Home View ─────────────────────────── -->
+      <section id="viewHome" class="view active">
+
+        <!-- Hero greeting -->
+        <div class="greeting-section">
+          <div class="greeting-grid" id="greetingGrid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Recently Played -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Recently played</h2>
+            <a href="#" class="show-all-btn">Show all</a>
+          </div>
+          <div class="card-grid" id="recentGrid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Featured Albums -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Featured Albums</h2>
+            <a href="#" class="show-all-btn">Show all</a>
+          </div>
+          <div class="card-grid" id="albumGrid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Made for you -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Made for you</h2>
+            <a href="#" class="show-all-btn">Show all</a>
+          </div>
+          <div class="card-grid" id="madeGrid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── Album / Playlist View ──────────────── -->
+      <section id="viewAlbum" class="view">
+
+        <!-- Album hero -->
+        <div class="album-hero" id="albumHero">
+          <div class="album-hero-img" id="albumHeroImg"></div>
+          <div class="album-hero-info">
+            <span class="album-type" id="albumType">Album</span>
+            <h1 class="album-title" id="albumTitle">Album Title</h1>
+            <div class="album-meta">
+              <span class="album-artist" id="albumArtist">Artist</span>
+              <span class="dot">•</span>
+              <span id="albumYear">2024</span>
+              <span class="dot">•</span>
+              <span id="albumTrackCount">0 songs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Album actions -->
+        <div class="album-actions">
+          <button class="play-big-btn" id="albumPlayBtn">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button class="action-icon-btn like-btn" id="albumLikeBtn" title="Save to library">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <button class="action-icon-btn" title="More options">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
+        </div>
+
+        <!-- Track list header -->
+        <div class="track-list-header">
+          <span class="th-num">#</span>
+          <span class="th-title">Title</span>
+          <span class="th-album">Album</span>
+          <span class="th-duration"><i class="fa-regular fa-clock"></i></span>
+        </div>
+
+        <div class="track-list" id="trackList">
+          <!-- populated by JS -->
+        </div>
+
+      </section>
+
+      <!-- ── Search View ────────────────────────── -->
+      <section id="viewSearch" class="view">
+        <div class="search-box-wrap">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="What do you want to play?" autocomplete="off" />
+          </div>
+        </div>
+        <h2 class="section-title" style="margin:28px 0 16px">Browse all</h2>
+        <div class="browse-grid" id="browseGrid">
+          <!-- genre cards -->
+        </div>
+      </section>
+
+    </div><!-- /content-area -->
+  </main>
+
+</div><!-- /spotify-app -->
+
+<!-- ══ NOW PLAYING BAR ════════════════════════════ -->
+<div class="now-playing-bar" id="nowPlayingBar">
+
+  <!-- Left: track info -->
+  <div class="np-left">
+    <div class="np-cover" id="npCover">
+      <img id="npCoverImg" src="" alt="" />
+    </div>
+    <div class="np-info">
+      <div class="np-title" id="npTitle">–</div>
+      <div class="np-artist" id="npArtist">–</div>
+    </div>
+    <button class="np-like-btn" id="npLike" title="Save to Liked Songs">
+      <i class="fa-regular fa-heart"></i>
+    </button>
+  </div>
+
+  <!-- Center: controls + seekbar -->
+  <div class="np-center">
+    <div class="np-controls">
+      <button class="ctrl-btn" id="ctrlShuffle" title="Shuffle">
+        <i class="fa-solid fa-shuffle"></i>
+      </button>
+      <button class="ctrl-btn ctrl-prev" id="ctrlPrev" title="Previous">
+        <i class="fa-solid fa-backward-step"></i>
+      </button>
+      <button class="ctrl-play" id="ctrlPlay" title="Play">
+        <i class="fa-solid fa-play" id="playIcon"></i>
+      </button>
+      <button class="ctrl-btn ctrl-next" id="ctrlNext" title="Next">
+        <i class="fa-solid fa-forward-step"></i>
+      </button>
+      <button class="ctrl-btn" id="ctrlRepeat" title="Repeat">
+        <i class="fa-solid fa-repeat"></i>
+      </button>
+    </div>
+    <div class="np-seek-row">
+      <span class="np-time" id="timeElapsed">0:00</span>
+      <div class="seek-bar-wrap" id="seekBarWrap">
+        <div class="seek-bar-bg">
+          <div class="seek-bar-fill" id="seekFill"></div>
+          <div class="seek-thumb" id="seekThumb"></div>
+        </div>
+      </div>
+      <span class="np-time" id="timeDuration">0:00</span>
+    </div>
+  </div>
+
+  <!-- Right: volume + extras -->
+  <div class="np-right">
+    <button class="np-extra-btn" id="btnQueue" title="Queue">
+      <i class="fa-solid fa-list"></i>
+    </button>
+    <button class="np-extra-btn" id="btnDevice" title="Connect to a device">
+      <i class="fa-solid fa-desktop"></i>
+    </button>
+    <div class="volume-row">
+      <button class="np-extra-btn" id="volMute" title="Mute">
+        <i class="fa-solid fa-volume-high" id="volIcon"></i>
+      </button>
+      <div class="vol-bar-wrap" id="volBarWrap">
+        <div class="vol-bar-bg">
+          <div class="vol-bar-fill" id="volFill"></div>
+          <div class="vol-thumb" id="volThumb"></div>
+        </div>
+      </div>
+    </div>
+    <button class="np-extra-btn" id="btnFullscreen" title="Full screen">
+      <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+    </button>
+  </div>
+
+</div>
+
+<!-- ══ TOAST ══════════════════════════════════════ -->
+<div id="toastContainer"></div>
+
+<!-- ══ MOBILE SIDEBAR OVERLAY ════════════════════ -->
+<div class="sidebar-overlay hidden" id="sidebarOverlay"></div>
+
+<!-- Mobile hamburger -->
+<button class="mobile-menu-btn" id="mobileMenuBtn">
+  <i class="fa-solid fa-bars"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
 </html>

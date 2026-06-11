@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ArcadeHub - Play 8 exciting arcade games including Memory, Snake, Wordle, 2048, Hangman, Tic Tac Toe, Simon Says, and Quiz Master.">
+  <title>ArcadeHub - Gaming Platform</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Particle canvas ──────────────────────── -->
+<canvas id="particles"></canvas>
+
+<!-- ── Navbar ───────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="nav-logo">
+      <svg class="logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none">
+        <rect x="2" y="2" width="36" height="36" rx="7" fill="none" stroke="url(#lg)" stroke-width="2.5"/>
+        <circle cx="10" cy="10" r="3" fill="url(#lg)"/>
+        <circle cx="30" cy="10" r="3" fill="url(#lg)"/>
+        <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#lg)"/>
+        <line x1="18" y1="5" x2="22" y2="5" stroke="url(#lg)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="18" y1="35" x2="22" y2="35" stroke="url(#lg)" stroke-width="2" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00d4ff"/>
+            <stop offset="50%" stop-color="#ff006e"/>
+            <stop offset="100%" stop-color="#8338ec"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>ArcadeHub</span>
+    </a>
+
+    <div class="nav-menu" id="navMenu">
+      <a href="#home"   class="nav-link active">Home</a>
+      <a href="#games"  class="nav-link">Games</a>
+      <a href="#scores" class="nav-link">Scores</a>
+      <a href="#about"  class="nav-link">About</a>
+    </div>
+
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🎮 8 Games • Play Free</div>
+    <h1 class="hero-title">Your <span class="gradient-text">Arcade</span><br>Awaits</h1>
+    <p class="hero-subtitle">Classic games, modern vibes. Challenge yourself and beat your high scores.</p>
+    <div class="hero-actions">
+      <a href="#games" class="cta-primary">Play Now <span class="arrow">→</span></a>
+      <a href="#scores" class="cta-secondary">View Scores</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><span class="hs-num" data-target="8">0</span><span class="hs-label">Games</span></div>
+      <div class="hs-divider"></div>
+      <div class="hs"><span class="hs-num" data-target="0" id="heroPlayed">0</span><span class="hs-label">Sessions</span></div>
+      <div class="hs-divider"></div>
+      <div class="hs"><span class="hs-num" data-target="0" id="heroFav">0</span><span class="hs-label">Favourites</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hcs-card hcs-1">🧠</div>
+      <div class="hcs-card hcs-2">🐍</div>
+      <div class="hcs-card hcs-3">📝</div>
+      <div class="hcs-center">
+        <span class="hcs-glyph">🎮</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg-shapes">
+    <div class="hbs hbs-1"></div>
+    <div class="hbs hbs-2"></div>
+    <div class="hbs hbs-3"></div>
+  </div>
+</section>
+
+<!-- ── Recently Played ───────────────────────── -->
+<section class="recent-section" id="recentSection">
+  <div class="inner">
+    <div class="section-label">⏱ Recently Played</div>
+    <div class="recent-strip" id="recentStrip">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ── Games ─────────────────────────────────── -->
+<section class="games-section" id="games">
+  <div class="inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">🎮 Game Library</div>
+        <h2>Choose Your Game</h2>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="puzzle">Puzzle</button>
+        <button class="filter-btn" data-filter="arcade">Arcade</button>
+        <button class="filter-btn" data-filter="word">Word</button>
+        <button class="filter-btn" data-filter="strategy">Strategy</button>
+        <button class="filter-btn" data-filter="trivia">Trivia</button>
+      </div>
+    </div>
+
+    <div class="games-grid" id="gamesGrid">
+
+      <div class="game-card" data-game="memory" data-cat="puzzle">
+        <button class="fav-btn" data-game="memory" aria-label="Favourite Memory Game">♡</button>
+        <div class="card-top" style="--c:#8b5cf6">
+          <span class="game-emoji">🧠</span>
+          <span class="cat-badge">Puzzle</span>
+        </div>
+        <div class="card-body">
+          <h3>Memory Game</h3>
+          <p>Match pairs of cards as fast as you can. Tests concentration and recall.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Easy → Hard</span>
+            <span class="meta-pill">5–10 min</span>
+          </div>
+          <div class="best-score" data-score-key="memoryBestTime" data-prefix="Best: " data-suffix="">
+            <span class="bs-label">Best Time</span>
+            <span class="bs-val" id="score-memory">—</span>
+          </div>
+        </div>
+        <a href="memory.html" class="play-btn" style="--c:#8b5cf6">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="snake" data-cat="arcade">
+        <button class="fav-btn" data-game="snake" aria-label="Favourite Snake">♡</button>
+        <div class="card-top" style="--c:#10b981">
+          <span class="game-emoji">🐍</span>
+          <span class="cat-badge">Arcade</span>
+        </div>
+        <div class="card-body">
+          <h3>Snake</h3>
+          <p>Eat, grow, survive. Don't bite yourself or hit the walls.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Medium → Hard</span>
+            <span class="meta-pill">Endless</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">High Score</span>
+            <span class="bs-val" id="score-snake">—</span>
+          </div>
+        </div>
+        <a href="snake.html" class="play-btn" style="--c:#10b981">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="wordle" data-cat="word">
+        <button class="fav-btn" data-game="wordle" aria-label="Favourite Wordle">♡</button>
+        <div class="card-top" style="--c:#f59e0b">
+          <span class="game-emoji">📝</span>
+          <span class="cat-badge">Word</span>
+        </div>
+        <div class="card-body">
+          <h3>Wordle</h3>
+          <p>Guess the hidden word in 6 tries. Green, yellow, grey clues guide you.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Medium</span>
+            <span class="meta-pill">2–5 min</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Best Score</span>
+            <span class="bs-val" id="score-wordle">—</span>
+          </div>
+        </div>
+        <a href="wordle.html" class="play-btn" style="--c:#f59e0b">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="2048" data-cat="puzzle">
+        <button class="fav-btn" data-game="2048" aria-label="Favourite 2048">♡</button>
+        <div class="card-top" style="--c:#ef4444">
+          <span class="game-emoji">🎯</span>
+          <span class="cat-badge">Puzzle</span>
+        </div>
+        <div class="card-body">
+          <h3>2048</h3>
+          <p>Slide tiles to merge them. Reach the 2048 tile without filling the board.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Hard</span>
+            <span class="meta-pill">5–20 min</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Best Score</span>
+            <span class="bs-val" id="score-2048">—</span>
+          </div>
+        </div>
+        <a href="2048.html" class="play-btn" style="--c:#ef4444">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="hangman" data-cat="word">
+        <button class="fav-btn" data-game="hangman" aria-label="Favourite Hangman">♡</button>
+        <div class="card-top" style="--c:#3b82f6">
+          <span class="game-emoji">🔤</span>
+          <span class="cat-badge">Word</span>
+        </div>
+        <div class="card-body">
+          <h3>Hangman</h3>
+          <p>Reveal the hidden word letter by letter before running out of guesses.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Easy → Medium</span>
+            <span class="meta-pill">3–8 min</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Win Streak</span>
+            <span class="bs-val" id="score-hangman">—</span>
+          </div>
+        </div>
+        <a href="hangman.html" class="play-btn" style="--c:#3b82f6">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="tictactoe" data-cat="strategy">
+        <button class="fav-btn" data-game="tictactoe" aria-label="Favourite Tic Tac Toe">♡</button>
+        <div class="card-top" style="--c:#00d4ff">
+          <span class="game-emoji">⭕</span>
+          <span class="cat-badge">Strategy</span>
+        </div>
+        <div class="card-body">
+          <h3>Tic Tac Toe</h3>
+          <p>Challenge the AI. Three in a row wins — simple to learn, hard to master.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Easy → Hard</span>
+            <span class="meta-pill">2–5 min</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Total Wins</span>
+            <span class="bs-val" id="score-tictactoe">—</span>
+          </div>
+        </div>
+        <a href="tictactoe.html" class="play-btn" style="--c:#00d4ff">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="simon" data-cat="arcade">
+        <button class="fav-btn" data-game="simon" aria-label="Favourite Simon">♡</button>
+        <div class="card-top" style="--c:#ff006e">
+          <span class="game-emoji">🎮</span>
+          <span class="cat-badge">Arcade</span>
+        </div>
+        <div class="card-body">
+          <h3>Simon Says</h3>
+          <p>Watch the pattern, repeat it back. Each round adds one more colour.</p>
+          <div class="card-meta">
+            <span class="meta-pill">Medium → Hard</span>
+            <span class="meta-pill">Endless</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Best Level</span>
+            <span class="bs-val" id="score-simon">—</span>
+          </div>
+        </div>
+        <a href="simon.html" class="play-btn" style="--c:#ff006e">Play <span>→</span></a>
+      </div>
+
+      <div class="game-card" data-game="quiz" data-cat="trivia">
+        <button class="fav-btn" data-game="quiz" aria-label="Favourite Quiz">♡</button>
+        <div class="card-top" style="--c:#f97316">
+          <span class="game-emoji">🎓</span>
+          <span class="cat-badge">Trivia</span>
+        </div>
+        <div class="card-body">
+          <h3>Quiz Master</h3>
+          <p>10 trivia questions across different topics. How many can you ace?</p>
+          <div class="card-meta">
+            <span class="meta-pill">Easy → Medium</span>
+            <span class="meta-pill">3–5 min</span>
+          </div>
+          <div class="best-score">
+            <span class="bs-label">Best Score</span>
+            <span class="bs-val" id="score-quiz">—</span>
+          </div>
+        </div>
+        <a href="quiz.html" class="play-btn" style="--c:#f97316">Play <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Scores ──────────────────────────────── -->
+<section class="scores-section" id="scores">
+  <div class="inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">🏆 Your Progress</div>
+        <h2>High Scores</h2>
+      </div>
+      <button class="clear-btn" id="clearStatsBtn">Reset All</button>
+    </div>
+
+    <div class="scores-grid">
+      <div class="score-card sc-total">
+        <div class="sc-icon">🎮</div>
+        <div class="sc-info">
+          <div class="sc-label">Sessions Played</div>
+          <div class="sc-val counter" id="statSessions">0</div>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="sc-icon">🏆</div>
+        <div class="sc-info">
+          <div class="sc-label">Total Score</div>
+          <div class="sc-val counter" id="statTotal">0</div>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="sc-icon">⭐</div>
+        <div class="sc-info">
+          <div class="sc-label">Games with Records</div>
+          <div class="sc-val counter" id="statBest">0</div>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="sc-icon">❤️</div>
+        <div class="sc-info">
+          <div class="sc-label">Favourites</div>
+          <div class="sc-val counter" id="statFav">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaderboard">
+      <div class="lb-header">
+        <span>Game</span>
+        <span>Your Record</span>
+      </div>
+      <div id="lbRows"><!-- JS --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ──────────────────────────────────── -->
+<section class="about-section" id="about">
+  <div class="inner about-inner">
+    <div class="about-text">
+      <div class="section-label">ℹ️ About</div>
+      <h2>What is ArcadeHub?</h2>
+      <p>ArcadeHub is a hand-crafted collection of classic browser games — built purely with HTML, CSS, and vanilla JavaScript. No installs, no accounts, no ads. Just games.</p>
+      <p>All your scores are saved locally so your progress is always there when you come back.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon" style="--c:#00d4ff">⚡</div>
+        <h4>Instant Play</h4>
+        <p>No loading screens or installs</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="--c:#8b5cf6">💾</div>
+        <h4>Auto-Save</h4>
+        <p>Progress saved in your browser</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="--c:#10b981">📱</div>
+        <h4>All Devices</h4>
+        <p>Works on desktop and mobile</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="--c:#ff006e">🎨</div>
+        <h4>Polished UI</h4>
+        <p>Carefully crafted experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="footer">
+  <div class="inner footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">ArcadeHub</span>
+      <p>Play free, beat your records.</p>
+    </div>
+    <div class="footer-links">
+      <span class="fl-label">Games</span>
+      <a href="memory.html">Memory</a>
+      <a href="snake.html">Snake</a>
+      <a href="wordle.html">Wordle</a>
+      <a href="2048.html">2048</a>
+      <a href="hangman.html">Hangman</a>
+      <a href="quiz.html">Quiz</a>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 ArcadeHub</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Scroll Top ─────────────────────────────── -->
+<button id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top" title="Back to top">↑</button>
+
+<!-- ── Toast ──────────────────────────────────── -->
+<div id="toastWrap" class="toast-wrap"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

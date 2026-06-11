@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hangman - Guess the word letter by letter. How many wrong guesses can you afford? Play on ArcadeHub!">
+  <title>Hangman - ArcadeHub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .game-header {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .game-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .game-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hangman-display {
+      text-align: center;
+      font-size: 4rem;
+      margin: 2rem 0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .word-display {
+      text-align: center;
+      font-size: 2.5rem;
+      letter-spacing: 1rem;
+      margin: 2rem 0;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      color: var(--primary-color);
+      min-height: 60px;
+    }
+
+    .guesses-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+      background: rgba(45, 53, 97, 0.5);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .info-item {
+      text-align: center;
+    }
+
+    .info-label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .guessed-letters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+      min-height: 40px;
+    }
+
+    .letter-btn {
+      width: 35px;
+      height: 35px;
+      padding: 0;
+      background: rgba(45, 53, 97, 0.6);
+      border: 2px solid rgba(0, 212, 255, 0.2);
+      border-radius: 0.4rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.85rem;
+    }
+
+    .letter-btn:hover:not(:disabled) {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+
+    .letter-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      background: rgba(75, 85, 130, 0.4);
+    }
+
+    .letter-btn.correct {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #10b981;
+      color: white;
+    }
+
+    .letter-btn.wrong {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border-color: #ef4444;
+      color: white;
+    }
+
+    .message {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1rem 0;
+      min-height: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .message.success {
+      color: var(--success-color);
+    }
+
+    .message.error {
+      color: var(--danger-color);
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.secondary {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(131, 56, 236, 0.1));
+      color: var(--primary-color);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(131, 56, 236, 0.2));
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+            <circle cx="10" cy="10" r="3" fill="url(#logoGradient)"/>
+            <circle cx="30" cy="10" r="3" fill="url(#logoGradient)"/>
+            <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#logoGradient)"/>
+            <line x1="18" y1="5" x2="22" y2="5" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="35" x2="22" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8338ec;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="game-header">
+    <h1>🔤 Hangman</h1>
+    <a href="index.html" class="back-button">← Back to Hub</a>
+  </div>
+
+  <div class="game-container">
+    <div class="hangman-display" id="hangmanDisplay">🪆</div>
+    
+    <div class="word-display" id="wordDisplay"></div>
+
+    <div class="guesses-info">
+      <div class="info-item">
+        <span class="info-label">Wrong Guesses</span>
+        <span class="info-value"><span id="wrongCount">0</span>/6</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Correct Guesses</span>
+        <span class="info-value" id="correctCount">0</span>
+      </div>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="guessed-letters" id="guessedLetters"></div>
+
+    <div class="controls">
+      <button class="btn" onclick="newGame()">New Game</button>
+      <button class="btn secondary" onclick="location.href='index.html'">Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/hangman.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <rect width="500" height="500" fill="#111"/>
+  <rect x="0" y="0" width="500" height="500" fill="none" stroke="#ff3300" stroke-width="8"/>
+  <rect x="20" y="20" width="460" height="460" fill="none" stroke="#ff3300" stroke-width="2" opacity="0.4"/>
+  <line x1="0" y1="250" x2="500" y2="250" stroke="#ff3300" stroke-width="1" opacity="0.15"/>
+  <line x1="250" y1="0" x2="250" y2="500" stroke="#ff3300" stroke-width="1" opacity="0.15"/>
+  <text x="250" y="210" font-family="Arial Black,Impact,sans-serif" font-size="110" font-weight="900" fill="white" text-anchor="middle">EM</text>
+  <text x="250" y="330" font-family="Arial Black,sans-serif" font-size="32" font-weight="900" fill="#ff3300" text-anchor="middle" letter-spacing="2">EMINEM</text>
+  <text x="250" y="375" font-family="Arial,sans-serif" font-size="16" fill="#888" text-anchor="middle">The Death of Slim Shady</text>
+</svg>

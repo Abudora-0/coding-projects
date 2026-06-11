@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWeather - Professional Weather App</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>⛅</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cloud-sun-rain"></i>
+                <span>SkyWeather</span>
+            </div>
+            <div class="nav-search">
+                <input type="text" id="cityInput" placeholder="Search city..." spellcheck="false">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-temp-unit="C">°C</a>
+                <a href="#" class="nav-link" data-temp-unit="F">°F</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Error Message -->
+        <div class="error-container">
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>City not found. Please try again.</p>
+            </div>
+        </div>
+
+        <!-- Current Weather Section -->
+        <section class="weather-current" id="currentWeather">
+            <div class="weather-card main-card">
+                <div class="weather-header">
+                    <div class="location-info">
+                        <h1 class="city-name">Select a City</h1>
+                        <p class="weather-description">--</p>
+                        <p class="last-updated">Last updated: --</p>
+                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/414/414927.png" alt="Weather Icon" class="weather-icon-main">
+                </div>
+
+                <div class="temperature-display">
+                    <div class="temp-value">
+                        <span class="temp">--°</span>
+                        <span class="temp-unit">C</span>
+                    </div>
+                    <div class="feels-like">
+                        Feels like <span class="feels-like-temp">--°</span>
+                    </div>
+                </div>
+
+                <!-- Weather Details Grid -->
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-droplet"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">Humidity</p>
+                            <p class="detail-value humidity">--%</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">Wind Speed</p>
+                            <p class="detail-value wind-speed">-- km/h</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-gauge-high"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">Pressure</p>
+                            <p class="detail-value pressure">-- hPa</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">Visibility</p>
+                            <p class="detail-value visibility">-- km</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">UV Index</p>
+                            <p class="detail-value uv-index">--</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="detail-content">
+                            <p class="detail-label">Precipitation</p>
+                            <p class="detail-value precipitation">-- mm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hourly Forecast -->
+        <section class="weather-hourly">
+            <div class="section-title">
+                <h2><i class="fas fa-clock"></i> Hourly Forecast</h2>
+            </div>
+            <div class="hourly-scroll" id="hourlyForecast">
+                <!-- Hourly items will be inserted here -->
+            </div>
+        </section>
+
+        <!-- 5-Day Forecast -->
+        <section class="weather-forecast">
+            <div class="section-title">
+                <h2><i class="fas fa-calendar-days"></i> 5-Day Forecast</h2>
+            </div>
+            <div class="forecast-grid" id="forecastContainer">
+                <!-- Forecast items will be inserted here -->
+            </div>
+        </section>
+
+        <!-- Additional Info -->
+        <section class="weather-additional">
+            <div class="section-title">
+                <h2><i class="fas fa-info-circle"></i> Additional Information</h2>
+            </div>
+            <div class="additional-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="info-content">
+                        <p class="info-label">Sunrise</p>
+                        <p class="info-value sunrise">--:--</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="info-content">
+                        <p class="info-label">Sunset</p>
+                        <p class="info-value sunset">--:--</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <div class="info-content">
+                        <p class="info-label">Dew Point</p>
+                        <p class="info-value dew-point">--°</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="info-content">
+                        <p class="info-label">Chance of Rain</p>
+                        <p class="info-value rain-chance">--%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading weather data...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

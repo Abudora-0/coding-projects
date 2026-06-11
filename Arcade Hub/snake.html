@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Snake Game - Guide the snake to eat food and grow longer. A classic arcade game on ArcadeHub!">
+  <title>Snake Game - ArcadeHub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #gameCanvas {
+      border: 3px solid rgba(0, 212, 255, 0.5);
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(45, 53, 97, 0.9) 0%, rgba(26, 31, 58, 0.9) 100%);
+      display: block;
+      margin: 2rem auto;
+      max-width: 100%;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(131, 56, 236, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    #gameCanvas:hover {
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.5), inset 0 0 30px rgba(131, 56, 236, 0.2);
+    }
+
+    .difficulty-selector {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .difficulty-btn {
+      padding: 0.8rem 1.5rem;
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--primary-color);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .difficulty-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--dark-bg);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .difficulty-btn:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+            <circle cx="10" cy="10" r="3" fill="url(#logoGradient)"/>
+            <circle cx="30" cy="10" r="3" fill="url(#logoGradient)"/>
+            <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#logoGradient)"/>
+            <line x1="18" y1="5" x2="22" y2="5" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="35" x2="22" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8338ec;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="game-header">
+    <h1>🐍 Snake Game</h1>
+    <a href="index.html" class="back-button">← Back to Hub</a>
+  </div>
+
+  <div class="game-container">
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1rem;">
+      Use arrow keys or WASD to move. Eat the food to grow. Don't hit the walls or yourself!
+    </p>
+
+    <div class="difficulty-selector">
+      <button class="difficulty-btn active" onclick="setDifficulty(1)">Easy</button>
+      <button class="difficulty-btn" onclick="setDifficulty(2)">Medium</button>
+      <button class="difficulty-btn" onclick="setDifficulty(3)">Hard</button>
+      <button class="difficulty-btn" onclick="setDifficulty(4)">Insane</button>
+    </div>
+
+    <div class="game-stats">
+      <div class="stat-box">
+        <label>Score</label>
+        <div class="value" id="score">0</div>
+      </div>
+      <div class="stat-box">
+        <label>High Score</label>
+        <div class="value" id="highScore">0</div>
+      </div>
+      <div class="stat-box">
+        <label>Level</label>
+        <div class="value" id="level">1</div>
+      </div>
+      <div class="stat-box">
+        <label>Status</label>
+        <div class="value" id="gameStatus" style="font-size: 1rem; color: var(--primary-color);">Ready</div>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <div class="button-group">
+      <button class="btn" id="startBtn" onclick="toggleGame()">Start Game</button>
+      <button class="btn secondary" onclick="resetSnake()">New Game</button>
+      <button class="btn secondary" onclick="location.href='index.html'">Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/snake.js"></script>
+</body>
+</html>

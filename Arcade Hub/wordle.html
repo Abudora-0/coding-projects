@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wordle - Guess the word in 6 attempts. Play this word puzzle game on ArcadeHub!">
+  <title>Wordle - ArcadeHub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .game-header {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .game-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .game-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .game-info {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .wordle-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .tile {
+      width: 100%;
+      aspect-ratio: 1;
+      border: 2px solid rgba(0, 212, 255, 0.3);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      background: rgba(45, 53, 97, 0.6);
+      color: var(--text-primary);
+      cursor: default;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .tile.filled {
+      border-color: rgba(0, 212, 255, 0.5);
+      background: rgba(45, 53, 97, 0.8);
+    }
+
+    .tile.correct {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #10b981;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+    }
+
+    .tile.present {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-color: #f59e0b;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    }
+
+    .tile.absent {
+      background: rgba(75, 85, 130, 0.6);
+      border-color: rgba(100, 110, 150, 0.5);
+      color: var(--text-secondary);
+    }
+
+    .tile.reveal {
+      animation: revealTile 0.6s ease-in-out;
+    }
+
+    @keyframes revealTile {
+      0% {
+        transform: rotateX(0);
+      }
+      50% {
+        transform: rotateX(90deg);
+      }
+      100% {
+        transform: rotateX(0);
+      }
+    }
+
+    .keyboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }
+
+    .keyboard-row {
+      display: none;
+    }
+
+    .key {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      background: rgba(45, 53, 97, 0.6);
+      border: 2px solid rgba(0, 212, 255, 0.2);
+      border-radius: 0.4rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .key:hover:not(:disabled) {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+
+    .key:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      background: rgba(75, 85, 130, 0.4);
+    }
+
+    .key.correct {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #10b981;
+      color: white;
+    }
+
+    .key.present {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-color: #f59e0b;
+      color: white;
+    }
+
+    .key.absent {
+      background: rgba(75, 85, 130, 0.6);
+      border-color: rgba(100, 110, 150, 0.5);
+      opacity: 0.4;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.secondary {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(131, 56, 236, 0.1));
+      color: var(--primary-color);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(131, 56, 236, 0.2));
+    }
+
+    .message {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      min-height: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .message.error {
+      color: var(--danger-color);
+      animation: shake 0.3s ease-in-out;
+    }
+
+    .message.success {
+      color: var(--success-color);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(45, 53, 97, 0.5);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-item .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .keyboard-row:nth-child(2) {
+        margin-left: 0;
+      }
+
+      .keyboard-row:nth-child(3) {
+        margin-left: 0;
+      }
+
+      .key {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+      }
+
+      .game-container {
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .keyboard {
+        gap: 0.4rem;
+      }
+
+      .key {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+      }
+
+      .wordle-grid {
+        gap: 0.5rem;
+      }
+
+      .tile {
+        font-size: 1.5rem;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 1rem;
+      }
+
+      .game-header {
+        padding: 1.5rem 1rem;
+      }
+
+      .game-header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="36" height="36" rx="6" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+            <circle cx="10" cy="10" r="3" fill="url(#logoGradient)"/>
+            <circle cx="30" cy="10" r="3" fill="url(#logoGradient)"/>
+            <rect x="8" y="22" width="24" height="3" rx="1.5" fill="url(#logoGradient)"/>
+            <line x1="18" y1="5" x2="22" y2="5" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="35" x2="22" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8338ec;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="game-header">
+    <h1>📝 Wordle</h1>
+    <a href="index.html" class="back-button">← Back to Hub</a>
+  </div>
+
+  <div class="game-container">
+    <div class="game-info">
+      <p>Guess the word in 6 attempts. Use the keyboard or click letters below.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <label>Attempts Left</label>
+        <div class="value" id="attemptsLeft">6</div>
+      </div>
+      <div class="stat-item">
+        <label>Best Score</label>
+        <div class="value" id="bestScore">-</div>
+      </div>
+      <div class="stat-item">
+        <label>Win Rate</label>
+        <div class="value" id="winRate">0%</div>
+      </div>
+      <div class="stat-item">
+        <label>Streak</label>
+        <div class="value" id="streak">0</div>
+      </div>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="wordle-grid" id="wordleGrid">
+      <!-- Tiles will be generated by JavaScript -->
+    </div>
+
+    <div class="keyboard" id="keyboard">
+      <!-- Keyboard will be generated by JavaScript -->
+    </div>
+
+    <div class="control-buttons">
+      <button class="btn" onclick="newGame()">New Game</button>
+      <button class="btn secondary" onclick="location.href='index.html'">Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/wordle.js"></script>
+</body>
+</html>
