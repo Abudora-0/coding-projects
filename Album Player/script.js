@@ -4,7 +4,9 @@
 
 'use strict';
 
-/* ── Default GNX album ──────────────────────── */
+/* ── Preset albums ───────────────────────────── */
+const SP = '../Spotify Clone/songs/';  // shared songs folder
+
 const GNX_SONGS = [
   { title: 'wacced out murals',    artist: 'Kendrick Lamar', file: 'songs/1.mp3',  cover: 'covers/1.jpg',  duration: '5:17', lyrics: '' },
   { title: 'squabble up',          artist: 'Kendrick Lamar', file: 'songs/2.mp3',  cover: 'covers/2.jpg',  duration: '2:37', lyrics: '' },
@@ -21,16 +23,171 @@ const GNX_SONGS = [
 ];
 
 const GNX_DEFAULT = {
-  id:     'gnx-default',
-  title:  'GNX',
-  artist: 'Kendrick Lamar',
-  year:   '2024',
-  genre:  'Hip-Hop',
-  accent: '#1db954',
-  artUrl: 'covers/1.jpg',
-  bgUrl:  'bg.webp',
-  songs:  GNX_SONGS,
+  id: 'gnx-default', title: 'GNX', artist: 'Kendrick Lamar',
+  year: '2024', genre: 'Hip-Hop', accent: '#1db954',
+  artUrl: 'covers/1.jpg', bgUrl: 'bg.webp', songs: GNX_SONGS,
 };
+
+function sp(folder, file, title, artist) {
+  return { title, artist, file: SP + folder + '/' + file,
+           cover: SP + folder + '/cover.jpg', duration: '—', lyrics: '' };
+}
+
+const PRESET_ALBUMS = [
+  GNX_DEFAULT,
+  {
+    id: 'billie-hmhas', title: 'HIT ME HARD AND SOFT', artist: 'Billie Eilish',
+    year: '2024', genre: 'Pop', accent: '#a3e6b0',
+    artUrl: SP + 'billie/cover.jpg', bgUrl: SP + 'billie/cover.jpg',
+    songs: [
+      sp('billie','1. SKINNY.mp3','SKINNY','Billie Eilish'),
+      sp('billie','2. LUNCH.mp3','LUNCH','Billie Eilish'),
+      sp('billie','3. CHIHIRO.mp3','CHIHIRO','Billie Eilish'),
+      sp('billie','4. BIRDS OF A FEATHER.mp3','BIRDS OF A FEATHER','Billie Eilish'),
+      sp('billie','5. WILDFLOWER.mp3','WILDFLOWER','Billie Eilish'),
+      sp('billie','6. THE GREATEST.mp3','THE GREATEST','Billie Eilish'),
+      sp('billie',"7. L'AMOUR DE MA VIE.mp3","L'AMOUR DE MA VIE",'Billie Eilish'),
+      sp('billie','8. THE DINER.mp3','THE DINER','Billie Eilish'),
+      sp('billie','9. BITTERSUITE.mp3','BITTERSUITE','Billie Eilish'),
+      sp('billie','10. BLUE.mp3','BLUE','Billie Eilish'),
+    ],
+  },
+  {
+    id: 'drake-clb', title: 'Certified Lover Boy', artist: 'Drake',
+    year: '2021', genre: 'Hip-Hop', accent: '#8a9bc4',
+    artUrl: SP + 'drake/cover.jpg', bgUrl: SP + 'drake/cover.jpg',
+    songs: [
+      sp('drake','Drake - Champagne Poetry (SPOTISAVER).mp3','Champagne Poetry','Drake'),
+      sp('drake','Drake - TSU (SPOTISAVER).mp3','TSU','Drake'),
+      sp('drake',"Drake - Papi's Home (SPOTISAVER).mp3","Papi's Home",'Drake'),
+      sp('drake','Drake, Lil Baby - Girls Want Girls (with Lil Baby) (SPOTISAVER).mp3','Girls Want Girls (ft. Lil Baby)','Drake'),
+      sp('drake','Drake, Lil Durk, GIVĒON - In The Bible (with Lil Durk & Giveon) (SPOTISAVER).mp3','In The Bible (ft. Lil Durk & Giveon)','Drake'),
+      sp('drake','Drake, Future, Young Thug - Way 2 Sexy (with Future & Young Thug) (SPOTISAVER).mp3','Way 2 Sexy (ft. Future & Young Thug)','Drake'),
+      sp('drake','Drake - Race My Mind (SPOTISAVER).mp3','Race My Mind','Drake'),
+      sp('drake','Drake, Tems - Fountains (with Tems) (SPOTISAVER).mp3','Fountains (ft. Tems)','Drake'),
+      sp('drake','Drake, JAŸ-Z - Love All (with JAY-Z) (SPOTISAVER).mp3','Love All (ft. JAY-Z)','Drake'),
+      sp('drake','Drake, Kid Cudi - IMY2 (with Kid Cudi) (SPOTISAVER).mp3','IMY2 (ft. Kid Cudi)','Drake'),
+      sp('drake','Drake, Travis Scott - Fair Trade (with Travis Scott) (SPOTISAVER).mp3','Fair Trade (ft. Travis Scott)','Drake'),
+      sp('drake','Drake, Ty Dolla $ign - Get Along Better (SPOTISAVER).mp3','Get Along Better (ft. Ty Dolla $ign)','Drake'),
+      sp('drake','Drake - Pipe Down (SPOTISAVER).mp3','Pipe Down','Drake'),
+      sp('drake','Drake - The Remorse (SPOTISAVER).mp3','The Remorse','Drake'),
+      sp('drake','Drake - No Friends In The Industry (SPOTISAVER).mp3','No Friends In The Industry','Drake'),
+      sp('drake','Drake - 7am On Bridle Path (SPOTISAVER).mp3','7am On Bridle Path','Drake'),
+      sp('drake','Drake, Future - N 2 Deep (SPOTISAVER).mp3','N 2 Deep (ft. Future)','Drake'),
+      sp('drake','Drake, Yebba - Yebba\'s Heartbreak (SPOTISAVER).mp3',"Yebba's Heartbreak (ft. Yebba)",'Drake'),
+      sp('drake','Drake, Lil Wayne, Rick Ross - You Only Live Twice (with Lil Wayne & Rick Ross) (SPOTISAVER).mp3','You Only Live Twice (ft. Lil Wayne & Rick Ross)','Drake'),
+      sp('drake','Drake - F g Fans (SPOTISAVER).mp3','F**kin\' Problems (CLB)','Drake'),
+    ],
+  },
+  {
+    id: 'dua-ro', title: 'Radical Optimism', artist: 'Dua Lipa',
+    year: '2024', genre: 'Pop / Dance', accent: '#f472b6',
+    artUrl: SP + 'dua/cover.jpg', bgUrl: SP + 'dua/cover.jpg',
+    songs: [
+      sp('dua','1. End Of An Era.mp3','End Of An Era','Dua Lipa'),
+      sp('dua','2. Houdini.mp3','Houdini','Dua Lipa'),
+      sp('dua','3. Training Season.mp3','Training Season','Dua Lipa'),
+      sp('dua','4. These Walls.mp3','These Walls','Dua Lipa'),
+      sp('dua','5. Whatcha Doing.mp3','Whatcha Doing','Dua Lipa'),
+      sp('dua','6. French Exit.mp3','French Exit','Dua Lipa'),
+      sp('dua','7. Illusion.mp3','Illusion','Dua Lipa'),
+      sp('dua','8. Falling Forever.mp3','Falling Forever','Dua Lipa'),
+      sp('dua','9. Anything For Love.mp3','Anything For Love','Dua Lipa'),
+      sp('dua','10. Maria.mp3','Maria','Dua Lipa'),
+      sp('dua','11. Happy For You.mp3','Happy For You','Dua Lipa'),
+    ],
+  },
+  {
+    id: 'eminem-tdoss', title: 'The Death of Slim Shady', artist: 'Eminem',
+    year: '2024', genre: 'Hip-Hop / Rap', accent: '#ef4444',
+    artUrl: SP + 'eminem/cover.jpg', bgUrl: SP + 'eminem/cover.jpg',
+    songs: [
+      sp('eminem','1. Renaissance.mp3','Renaissance','Eminem'),
+      sp('eminem','2. Habits.mp3','Habits','Eminem'),
+      sp('eminem','3. Trouble.mp3','Trouble','Eminem'),
+      sp('eminem','4. Brand New Dance.mp3','Brand New Dance','Eminem'),
+      sp('eminem','5. Evil.mp3','Evil','Eminem'),
+      sp('eminem','6. All You Got - skit.mp3','All You Got (skit)','Eminem'),
+      sp('eminem','7. Lucifer.mp3','Lucifer','Eminem'),
+      sp('eminem','8. Antichrist.mp3','Antichrist','Eminem'),
+      sp('eminem','9. Fuel.mp3','Fuel','Eminem'),
+      sp('eminem','10. Road Rage.mp3','Road Rage','Eminem'),
+      sp('eminem','11. Houdini.mp3','Houdini','Eminem'),
+      sp('eminem','12. Breaking News - skit.mp3','Breaking News (skit)','Eminem'),
+      sp('eminem','13. Guilty Conscience 2.mp3','Guilty Conscience 2','Eminem'),
+      sp('eminem','14. Head Honcho.mp3','Head Honcho','Eminem'),
+      sp('eminem','15. Temporary.mp3','Temporary','Eminem'),
+      sp('eminem','16. Bad One.mp3','Bad One','Eminem'),
+      sp('eminem','17. Tobey (feat. Big Sean and BabyTron).mp3','Tobey (ft. Big Sean & BabyTron)','Eminem'),
+      sp('eminem',"18. Guess Who's Back - skit.mp3","Guess Who's Back (skit)",'Eminem'),
+      sp('eminem','19. Somebody Save Me.mp3','Somebody Save Me','Eminem'),
+    ],
+  },
+  {
+    id: 'kenny-tpab', title: 'To Pimp a Butterfly', artist: 'Kendrick Lamar',
+    year: '2015', genre: 'Hip-Hop / Jazz', accent: '#fbbf24',
+    artUrl: SP + 'kenny/cover.jpg', bgUrl: SP + 'kenny/cover.jpg',
+    songs: [
+      sp('kenny',"1. Wesley's Theory.mp3","Wesley's Theory",'Kendrick Lamar'),
+      sp('kenny','2. For Free_ - Interlude.mp3','For Free? (Interlude)','Kendrick Lamar'),
+      sp('kenny','3. King Kunta.mp3','King Kunta','Kendrick Lamar'),
+      sp('kenny','4. Institutionalized.mp3','Institutionalized','Kendrick Lamar'),
+      sp('kenny','5. These Walls.mp3','These Walls','Kendrick Lamar'),
+      sp('kenny','6. u.mp3','u','Kendrick Lamar'),
+      sp('kenny','7. Alright.mp3','Alright','Kendrick Lamar'),
+      sp('kenny','8. For Sale_ - Interlude.mp3','For Sale? (Interlude)','Kendrick Lamar'),
+      sp('kenny','9. Momma.mp3','Momma','Kendrick Lamar'),
+      sp('kenny','10. Hood Politics.mp3','Hood Politics','Kendrick Lamar'),
+      sp('kenny','11. How Much A Dollar Cost.mp3','How Much a Dollar Cost','Kendrick Lamar'),
+      sp('kenny','12. Complexion (A Zulu Love).mp3','Complexion (A Zulu Love)','Kendrick Lamar'),
+      sp('kenny','13. The Blacker The Berry.mp3','The Blacker the Berry','Kendrick Lamar'),
+      sp('kenny',"14. You Ain't Gotta Lie (Momma Said).mp3","You Ain't Gotta Lie (Momma Said)",'Kendrick Lamar'),
+      sp('kenny','15. i.mp3','i','Kendrick Lamar'),
+      sp('kenny','16. Mortal Man.mp3','Mortal Man','Kendrick Lamar'),
+    ],
+  },
+  {
+    id: 'taylor-midnights', title: 'Midnights', artist: 'Taylor Swift',
+    year: '2022', genre: 'Pop / Synth-pop', accent: '#818cf8',
+    artUrl: SP + 'taylor/cover.jpg', bgUrl: SP + 'taylor/cover.jpg',
+    songs: [
+      sp('taylor','1. Lavender Haze.mp3','Lavender Haze','Taylor Swift'),
+      sp('taylor','2. Maroon.mp3','Maroon','Taylor Swift'),
+      sp('taylor','3. Anti-Hero.mp3','Anti-Hero','Taylor Swift'),
+      sp('taylor','4. Snow On The Beach (feat. Lana Del Rey).mp3','Snow On The Beach (ft. Lana Del Rey)','Taylor Swift'),
+      sp('taylor',"5. You're On Your Own, Kid.mp3","You're On Your Own, Kid",'Taylor Swift'),
+      sp('taylor','6. Midnight Rain.mp3','Midnight Rain','Taylor Swift'),
+      sp('taylor','7. Question..._.mp3','Question...?','Taylor Swift'),
+      sp('taylor','8. Vigilante Shit.mp3','Vigilante Shit','Taylor Swift'),
+      sp('taylor','9. Bejeweled.mp3','Bejeweled','Taylor Swift'),
+      sp('taylor','10. Labyrinth.mp3','Labyrinth','Taylor Swift'),
+      sp('taylor','11. Karma.mp3','Karma','Taylor Swift'),
+      sp('taylor','12. Sweet Nothing.mp3','Sweet Nothing','Taylor Swift'),
+      sp('taylor','13. Mastermind.mp3','Mastermind','Taylor Swift'),
+    ],
+  },
+  {
+    id: 'weeknd-ah', title: 'After Hours', artist: 'The Weeknd',
+    year: '2020', genre: 'R&B / Synth-pop', accent: '#dc2626',
+    artUrl: SP + 'weeknd/cover.jpg', bgUrl: SP + 'weeknd/cover.jpg',
+    songs: [
+      sp('weeknd','1. Alone Again.mp3','Alone Again','The Weeknd'),
+      sp('weeknd','2. Too Late.mp3','Too Late','The Weeknd'),
+      sp('weeknd','3. Hardest To Love.mp3','Hardest To Love','The Weeknd'),
+      sp('weeknd','4. Scared To Live.mp3','Scared To Live','The Weeknd'),
+      sp('weeknd','5. Snowchild.mp3','Snowchild','The Weeknd'),
+      sp('weeknd','6. Escape From LA.mp3','Escape From LA','The Weeknd'),
+      sp('weeknd','7. Heartless.mp3','Heartless','The Weeknd'),
+      sp('weeknd','8. Faith.mp3','Faith','The Weeknd'),
+      sp('weeknd','9. Blinding Lights.mp3','Blinding Lights','The Weeknd'),
+      sp('weeknd','10. In Your Eyes.mp3','In Your Eyes','The Weeknd'),
+      sp('weeknd','11. Save Your Tears.mp3','Save Your Tears','The Weeknd'),
+      sp('weeknd','12. Repeat After Me (Interlude).mp3','Repeat After Me (Interlude)','The Weeknd'),
+      sp('weeknd','13. After Hours.mp3','After Hours','The Weeknd'),
+      sp('weeknd','14. Until I Bleed Out.mp3','Until I Bleed Out','The Weeknd'),
+    ],
+  },
+];
 
 /* ── State ──────────────────────────────────── */
 let albums        = [];
@@ -108,18 +265,20 @@ function initAlbums() {
   const stored = loadStoredAlbums();
   if (stored && stored.length) {
     albums = stored;
+    // Re-hydrate file paths for presets (blob URLs don't persist across sessions)
     albums.forEach(a => {
-      if (a.id === 'gnx-default') {
+      const preset = PRESET_ALBUMS.find(p => p.id === a.id);
+      if (preset) {
         a.songs.forEach((s, i) => {
-          if (!s.file)  s.file  = GNX_SONGS[i] ? GNX_SONGS[i].file  : '';
-          if (!s.cover) s.cover = GNX_SONGS[i] ? GNX_SONGS[i].cover : '';
+          if (!s.file  || s.file.startsWith('blob:'))  s.file  = preset.songs[i] ? preset.songs[i].file  : '';
+          if (!s.cover || s.cover.startsWith('blob:')) s.cover = preset.songs[i] ? preset.songs[i].cover : '';
         });
-        if (!a.artUrl) a.artUrl = GNX_DEFAULT.artUrl;
-        if (!a.bgUrl)  a.bgUrl  = GNX_DEFAULT.bgUrl;
+        if (!a.artUrl || a.artUrl.startsWith('blob:')) a.artUrl = preset.artUrl;
+        if (!a.bgUrl  || a.bgUrl.startsWith('blob:'))  a.bgUrl  = preset.bgUrl;
       }
     });
   } else {
-    albums = [cloneAlbum(GNX_DEFAULT)];
+    albums = PRESET_ALBUMS.map(p => cloneAlbum(p));
   }
   activeAlbum = albums[0];
 }

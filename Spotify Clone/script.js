@@ -64,6 +64,20 @@ function fmt(s) {
   return `${m}:${String(sec).padStart(2,'0')}`;
 }
 
+/* ══ Clean song display name ════════════════════ */
+function cleanSongName(filename, artist) {
+  let n = filename.replace(/\.mp3$/i, '');
+  n = n.replace(/\s*\(SPOTISAVER\)\s*/gi, '');
+  n = n.replace(/^spotifydown\.com\s*-\s*/i, '');
+  n = n.replace(/^\d+\.\s+/, '');
+  // Strip "Artist[, Artist2] - " prefix using the album artist's first word
+  if (artist) {
+    const first = artist.split(/[\s,]/)[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    n = n.replace(new RegExp(`^${first}[^-]*\\s*-\\s*`, 'i'), '');
+  }
+  return n.trim();
+}
+
 /* ══ Toast ══════════════════════════════════════ */
 function toast(msg, dur = 2500) {
   const c = $('toastContainer');
@@ -82,7 +96,7 @@ function showView(id) {
 /* ══ Fetch songs from folder ════════════════════ */
 async function fetchSongs(folder) {
   try {
-    const res  = await fetch(`/songs/${folder}/`);
+    const res  = await fetch(`songs/${folder}/`);
     const text = await res.text();
     const div  = document.createElement('div');
     div.innerHTML = text;
@@ -97,7 +111,7 @@ async function fetchSongs(folder) {
 /* ══ Load albums ════════════════════════════════ */
 async function loadAlbums() {
   try {
-    const res  = await fetch('/songs/');
+    const res  = await fetch('songs/');
     const text = await res.text();
     const div  = document.createElement('div');
     div.innerHTML = text;
@@ -108,12 +122,12 @@ async function loadAlbums() {
 
     for (const folder of folders) {
       try {
-        const infoRes  = await fetch(`/songs/${folder}/info.json`);
+        const infoRes  = await fetch(`songs/${folder}/info.json`);
         const info     = await infoRes.json();
         const songs    = await fetchSongs(folder);
         // Prefer .jpg cover, fall back to .svg
-        const coverJpg = `/songs/${folder}/cover.jpg`;
-        const coverSvg = `/songs/${folder}/cover.svg`;
+        const coverJpg = `songs/${folder}/cover.jpg`;
+        const coverSvg = `songs/${folder}/cover.svg`;
         let cover = coverJpg;
         try {
           const cr = await fetch(coverJpg, { method: 'HEAD' });
@@ -132,15 +146,15 @@ async function loadAlbums() {
       } catch { /* skip bad folder */ }
     }
   } catch {
-    // Fallback: hardcode known albums (works on file:// too)
+    // Fallback: hardcode known albums with full song lists (works on file:// too)
     albums = [
-      { folder:'kenny',  title:'Kendrick Lamar', description:'THE G.O.A.T',             artist:'Kendrick Lamar', year:2024, cover:'songs/kenny/cover.jpg',  songs:['spotifydown.com - Not Like Us.mp3'] },
-      { folder:'drake',  title:'Drake',          description:'Certified Lover Boy',      artist:'Drake',          year:2021, cover:'songs/drake/cover.svg',  songs:[] },
-      { folder:'weeknd', title:'The Weeknd',     description:'After Hours',              artist:'The Weeknd',     year:2020, cover:'songs/weeknd/cover.svg', songs:[] },
-      { folder:'taylor', title:'Taylor Swift',   description:'Midnights',                artist:'Taylor Swift',   year:2022, cover:'songs/taylor/cover.svg', songs:[] },
-      { folder:'billie', title:'Billie Eilish',  description:'HIT ME HARD AND SOFT',    artist:'Billie Eilish',  year:2024, cover:'songs/billie/cover.svg', songs:[] },
-      { folder:'eminem', title:'Eminem',         description:'The Death of Slim Shady', artist:'Eminem',         year:2024, cover:'songs/eminem/cover.svg', songs:[] },
-      { folder:'dua',    title:'Dua Lipa',       description:'Radical Optimism',         artist:'Dua Lipa',       year:2024, cover:'songs/dua/cover.svg',    songs:[] },
+      { folder:'billie', title:'Billie Eilish', description:'HIT ME HARD AND SOFT', artist:'Billie Eilish', year:2024, cover:'songs/billie/cover.jpg', songs:['1. SKINNY.mp3','2. LUNCH.mp3','3. CHIHIRO.mp3','4. BIRDS OF A FEATHER.mp3','5. WILDFLOWER.mp3','6. THE GREATEST.mp3','7. L\'AMOUR DE MA VIE.mp3','8. THE DINER.mp3','9. BITTERSUITE.mp3','10. BLUE.mp3'] },
+      { folder:'drake',  title:'Drake',         description:'Certified Lover Boy',   artist:'Drake',         year:2021, cover:'songs/drake/cover.jpg',  songs:['Drake - 7am On Bridle Path (SPOTISAVER).mp3','Drake - Champagne Poetry (SPOTISAVER).mp3','Drake - F g Fans (SPOTISAVER).mp3','Drake - No Friends In The Industry (SPOTISAVER).mp3','Drake - Papi\'s Home (SPOTISAVER).mp3','Drake - Pipe Down (SPOTISAVER).mp3','Drake - Race My Mind (SPOTISAVER).mp3','Drake - TSU (SPOTISAVER).mp3','Drake - The Remorse (SPOTISAVER).mp3','Drake, Future - N 2 Deep (SPOTISAVER).mp3','Drake, Future, Young Thug - Way 2 Sexy (with Future & Young Thug) (SPOTISAVER).mp3','Drake, JAŸ-Z - Love All (with JAY-Z) (SPOTISAVER).mp3','Drake, Kid Cudi - IMY2 (with Kid Cudi) (SPOTISAVER).mp3','Drake, Lil Baby - Girls Want Girls (with Lil Baby) (SPOTISAVER).mp3','Drake, Lil Durk, GIVĒON - In The Bible (with Lil Durk & Giveon) (SPOTISAVER).mp3','Drake, Lil Wayne, Rick Ross - You Only Live Twice (with Lil Wayne & Rick Ross) (SPOTISAVER).mp3','Drake, Tems - Fountains (with Tems) (SPOTISAVER).mp3','Drake, Travis Scott - Fair Trade (with Travis Scott) (SPOTISAVER).mp3','Drake, Ty Dolla $ign - Get Along Better (SPOTISAVER).mp3','Drake, Yebba - Yebba\'s Heartbreak (SPOTISAVER).mp3'] },
+      { folder:'dua',    title:'Dua Lipa',      description:'Radical Optimism',      artist:'Dua Lipa',      year:2024, cover:'songs/dua/cover.jpg',    songs:['1. End Of An Era.mp3','2. Houdini.mp3','3. Training Season.mp3','4. These Walls.mp3','5. Whatcha Doing.mp3','6. French Exit.mp3','7. Illusion.mp3','8. Falling Forever.mp3','9. Anything For Love.mp3','10. Maria.mp3','11. Happy For You.mp3'] },
+      { folder:'eminem', title:'Eminem',        description:'The Death of Slim Shady', artist:'Eminem',      year:2024, cover:'songs/eminem/cover.jpg', songs:['1. Renaissance.mp3','2. Habits.mp3','3. Trouble.mp3','4. Brand New Dance.mp3','5. Evil.mp3','6. All You Got - skit.mp3','7. Lucifer.mp3','8. Antichrist.mp3','9. Fuel.mp3','10. Road Rage.mp3','11. Houdini.mp3','12. Breaking News - skit.mp3','13. Guilty Conscience 2.mp3','14. Head Honcho.mp3','15. Temporary.mp3','16. Bad One.mp3','17. Tobey (feat. Big Sean and BabyTron).mp3','18. Guess Who\'s Back - skit.mp3','19. Somebody Save Me.mp3'] },
+      { folder:'kenny',  title:'Kendrick Lamar', description:'To Pimp a Butterfly',  artist:'Kendrick Lamar', year:2015, cover:'songs/kenny/cover.jpg', songs:['1. Wesley\'s Theory.mp3','2. For Free_ - Interlude.mp3','3. King Kunta.mp3','4. Institutionalized.mp3','5. These Walls.mp3','6. u.mp3','7. Alright.mp3','8. For Sale_ - Interlude.mp3','9. Momma.mp3','10. Hood Politics.mp3','11. How Much A Dollar Cost.mp3','12. Complexion (A Zulu Love).mp3','13. The Blacker The Berry.mp3','14. You Ain\'t Gotta Lie (Momma Said).mp3','15. i.mp3','16. Mortal Man.mp3'] },
+      { folder:'taylor', title:'Taylor Swift',   description:'Midnights',             artist:'Taylor Swift',   year:2022, cover:'songs/taylor/cover.jpg', songs:['1. Lavender Haze.mp3','2. Maroon.mp3','3. Anti-Hero.mp3','4. Snow On The Beach (feat. Lana Del Rey).mp3','5. You\'re On Your Own, Kid.mp3','6. Midnight Rain.mp3','7. Question..._.mp3','8. Vigilante Shit.mp3','9. Bejeweled.mp3','10. Labyrinth.mp3','11. Karma.mp3','12. Sweet Nothing.mp3','13. Mastermind.mp3'] },
+      { folder:'weeknd', title:'The Weeknd',     description:'After Hours',           artist:'The Weeknd',     year:2020, cover:'songs/weeknd/cover.jpg', songs:['1. Alone Again.mp3','2. Too Late.mp3','3. Hardest To Love.mp3','4. Scared To Live.mp3','5. Snowchild.mp3','6. Escape From LA.mp3','7. Heartless.mp3','8. Faith.mp3','9. Blinding Lights.mp3','10. In Your Eyes.mp3','11. Save Your Tears.mp3','12. Repeat After Me (Interlude).mp3','13. After Hours.mp3','14. Until I Bleed Out.mp3'] },
     ];
   }
 
@@ -321,7 +335,7 @@ function renderTrackList(album) {
   trackList.innerHTML = '';
 
   album.songs.forEach((song, i) => {
-    const name  = song.replace(/\.mp3$/i, '').replace(/spotifydown\.com\s*-\s*/i, '').trim();
+    const name  = cleanSongName(song, album.artist);
     const isPlaying = currentAlbum?.folder === album.folder && currentIndex === i;
 
     const row = document.createElement('div');
@@ -363,7 +377,7 @@ function renderTrackList(album) {
 
   // Load durations asynchronously
   album.songs.forEach((song, i) => {
-    const tmp = new Audio(`/songs/${album.folder}/${encodeURIComponent(song)}`);
+    const tmp = new Audio(`songs/${album.folder}/${encodeURIComponent(song)}`);
     tmp.addEventListener('loadedmetadata', () => {
       const rows = trackList.querySelectorAll('.track-row');
       if (rows[i]) {
@@ -423,8 +437,8 @@ function playTrack(index) {
   currentIndex = index;
 
   const song    = songs[index];
-  const name    = song.replace(/\.mp3$/i, '').replace(/spotifydown\.com\s*-\s*/i, '').trim();
-  const src     = `/songs/${currentAlbum.folder}/${encodeURIComponent(song)}`;
+  const name    = cleanSongName(song, currentAlbum.artist);
+  const src     = `songs/${currentAlbum.folder}/${encodeURIComponent(song)}`;
 
   audio.src = src;
   audio.volume = muted ? 0 : volume;
@@ -681,7 +695,7 @@ function renderBrowse() {
 /* ══ Extra buttons ════════════════════════════════ */
 $('btnQueue').addEventListener('click', () => {
   if (!currentAlbum) { toast('Nothing is playing'); return; }
-  toast(`Up next: ${currentAlbum.songs.slice(currentIndex + 1, currentIndex + 4).map(s => s.replace(/\.mp3$/i,'').replace(/spotifydown\.com\s*-\s*/i,'').trim()).join(', ') || 'Nothing in queue'}`);
+  toast(`Up next: ${currentAlbum.songs.slice(currentIndex + 1, currentIndex + 4).map(s => cleanSongName(s, currentAlbum.artist)).join(', ') || 'Nothing in queue'}`);
 });
 
 $('btnDevice').addEventListener('click', () => toast('Connect to a device'));
