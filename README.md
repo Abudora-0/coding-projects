@@ -125,6 +125,36 @@ web-projects/
 
 ---
 
+## 🎵 Adding Songs Locally (Spotify Clone & Album Player)
+
+MP3 files are not included in this repo — audio files are too large for GitHub.  
+The **Spotify Clone** and **Album Player** will show empty on GitHub Pages.
+
+To get them working locally:
+
+1. Clone the repo and `cd` into it
+2. Add your `.mp3` files into the matching artist folders:
+```
+Spotify Clone/songs/
+├── billie/   → add mp3s here + cover.jpg
+├── drake/    → add mp3s here + cover.jpg
+├── dua/      → add mp3s here + cover.jpg
+├── eminem/   → add mp3s here + cover.jpg
+├── kenny/    → add mp3s here + cover.jpg
+├── taylor/   → add mp3s here + cover.jpg
+└── weeknd/   → add mp3s here + cover.jpg
+```
+3. Each folder already has an `info.json` (artist/album metadata) and a `cover.svg` placeholder.  
+   Add a `cover.jpg` for the full album art experience.
+4. Serve the project with a local server (required — `fetch()` won't work on `file://`):
+```bash
+npx serve .
+# then open http://localhost:3000/Spotify%20Clone/
+```
+5. For **Album Player**, songs are loaded automatically from the Spotify Clone folder via relative paths.
+
+---
+
 ## Author
 
 **Abdullah Akbar**

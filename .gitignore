@@ -4,6 +4,14 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# Audio files — too large for GitHub (add your own mp3s locally)
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+*.m4a
+
 # Skip non-web / build-required projects
 C & C++/
 Backend/
