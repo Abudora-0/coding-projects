@@ -452,6 +452,9 @@ function playTrack(index) {
   npTitle.textContent  = name;
   npArtist.textContent = currentAlbum.artist;
   npCoverImg.src       = currentAlbum.cover;
+  npCoverImg.style.display = '';
+  const npPh = document.getElementById('npCoverPlaceholder');
+  if (npPh) npPh.style.display = 'none';
   npCoverImg.alt       = name;
   document.title       = `${name} • Spotify`;
 
