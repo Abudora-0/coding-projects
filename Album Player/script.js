@@ -277,6 +277,12 @@ function initAlbums() {
         if (!a.bgUrl  || a.bgUrl.startsWith('blob:'))  a.bgUrl  = preset.bgUrl;
       }
     });
+    // Add any preset albums that aren't in stored data yet
+    PRESET_ALBUMS.forEach(preset => {
+      if (!albums.find(a => a.id === preset.id)) {
+        albums.push(cloneAlbum(preset));
+      }
+    });
   } else {
     albums = PRESET_ALBUMS.map(p => cloneAlbum(p));
   }
